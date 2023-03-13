@@ -1,10 +1,11 @@
-import { useState } from 'react'
+import { useSelector } from 'react-redux'
 
-function App() {
-  const [count, setCount] = useState(0)
+function App () {
+  const tasksState = useSelector((state) => state.tasks)
+  console.log({ tasksState })
 
   return (
-    <div className="App">
+    <div className='App'>
       <h1>Hello World</h1>
     </div>
   )
