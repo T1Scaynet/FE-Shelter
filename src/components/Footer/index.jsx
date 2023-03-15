@@ -7,16 +7,16 @@ import pet from '../../assets/Footer/pets.svg';
 
 export const Footer = () => {
   return (
-    <footer className='bg-[#511cbb3a] w-[100vw] h-[17rem] flex items-center justify-center fixed bottom-0 '>
+    <footer className='bg-[#FBF9FF] w-full md:h-[30rem] flex items-center justify-center relative px-[10rem]'>
       <div className='absolute w-[100%] h-[90%]'>
-        <div className='absolute ml-[1.5rem]'>
+        <div className='absolute left-32 top-14'>
           <img src={bark} alt='bark' className='h-[3.5rem]' />
         </div>
-        <div className='absolute bottom-0 right-0 mr-[1.5rem]'>
+        <div className='absolute bottom-0 right-32 mr-[1.5rem]'>
           <img src={pet} alt='cat' className='h-[10rem]' />
         </div>
       </div>
-      <div className='flex flex-row justify-between w-[90%] h-[90%] bg-[#7f818200] p-[0.4rem] relative'>
+      <div className='flex flex-row justify-between items-center max-w-[94.5rem] h-[90%] bg-[#7f818200] p-[0.4rem] relative'>
         <div className='flex flex-col items-start w-[30%]'>
           <img src={logo} alt='logo' className='h-[4.6rem] mt-[0.4rem]' />
           <p className='w-[100%] text-[1rem]'>
@@ -42,11 +42,11 @@ export const Footer = () => {
             <div className='flex flex-col ml-[1.8rem] mt-[0.2rem]'>
               <b>7am - 6pm</b>
               <b>9am - 4pm</b>
-              <b className='mt-[0.2rem] text-[#FF47A2]'>Cerrdo</b>
+              <b className='mt-[0.2rem] text-[#FF47A2]'>Cerrado</b>
             </div>
           </div>
         </div>
-        <div className='flex flex-col mt-[2rem] w-[25rem] bg-[#8b0d0d00]'>
+        <div className='flex flex-col mt-[2rem] w-[22rem] bg-[#8b0d0d00]'>
           <b>Newsletter</b>
           <p>¡Sé el primero en la cola! Reciba nuestras últimas noticias directamente en su bandeja de entrada.</p>
           <div className='flex flex-row'>
