@@ -7,8 +7,8 @@ import pet from '../../assets/Footer/pets.svg';
 
 export const Footer = () => {
   return (
-    <footer className='bg-[#511cbb3a] w-[100vw] h-[17rem] flex items-center justify-center fixed bottom-0 '>
-      <div className='absolute w-[100%] h-[90%]'>
+    <footer className='bg-[#511cbb3a] w-[100%] h-[18rem] flex items-center justify-center '>
+      <div className='absolute w-[100%] h-[16rem]'>
         <div className='absolute ml-[1.5rem]'>
           <img src={bark} alt='bark' className='h-[3.5rem]' />
         </div>
