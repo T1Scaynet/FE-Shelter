@@ -3,6 +3,7 @@ import { DisplayOne } from './DisplayOne';
 import { DisplayTwo } from './DisplayTwo';
 import { Footer } from '../../components/Footer';
 import '../../App.css';
+import { DisplayFive } from './DisplayFive';
 
 export const Home = () => {
   return (
@@ -10,6 +11,7 @@ export const Home = () => {
       <NavBar />
       <DisplayOne />
       <DisplayTwo />
+      <DisplayFive />
       <Footer />
     </div>
   );
