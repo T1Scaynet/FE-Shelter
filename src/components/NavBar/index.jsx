@@ -4,7 +4,7 @@ import logo from '../../assets/Group.svg';
 import SignUp from '../../assets/Sign up.svg';
 import 'tailwindcss/tailwind.css';
 
-const NavBar = () => {
+export const NavBar = () => {
   return (
     <nav className='bg-white-800'>
       <div className='max-w-7xl mx-auto px-2 sm:px-6 lg:px-8'>
@@ -59,5 +59,3 @@ const NavBar = () => {
     </nav>
   );
 };
-
-export default NavBar;
