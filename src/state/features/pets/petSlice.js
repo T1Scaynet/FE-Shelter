@@ -8,15 +8,11 @@ export const petSlice = createSlice({
   initialState: {
     list: []
   },
-  reducers: {}
+  reducers: {
+    // Acá van los reducers
+  }
 });
 
 export default petSlice.reducer;
 
-// funciones que ejecutan operaciones asincronas
-
-// export const getAllPets = () => {
-//   return () => {
-//     axios('linkExample')
-//   };
-// };
+/// Acá abajo van lo que vendrian a ser las funciones del action (funciones asíncronas)
