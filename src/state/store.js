@@ -1,8 +1,8 @@
-import { configureStore } from '@reduxjs/toolkit'
-import tasksReducer from './features/tasks/taskSlice'
+import { configureStore } from '@reduxjs/toolkit';
+import pets from './features/pets/petsSlice';
 
 export const store = configureStore({
-  reducer: {
-    tasks: tasksReducer
+  reducer: { // unifica los reducer que cada estado en un solo lugar
+    pets
   }
-})
+});

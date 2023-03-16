@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit';
 // funciones que voy a poder hacer dentro del estado
 
 export const taskSlice = createSlice({
@@ -7,6 +7,7 @@ export const taskSlice = createSlice({
   reducers: {
     // acá van las funciones para modificar el estado inicial
   }
-})
+});
 
-export default taskSlice.reducer
+// debemos exportar el reducer a nuestra store.
+export default taskSlice.reducer;

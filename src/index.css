@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+*{
+    font-family: 'Nunito';
+    color: #1C103B;
+    box-sizing: border-box;
+}
