@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../assets/Group.svg';
-import SignUp from '../../assets/Sign up.svg';
+import signUp from '../../assets/sign-in-svgrepo-com.svg';
 import 'tailwindcss/tailwind.css';
 
 export const NavBar = () => {
@@ -29,14 +29,14 @@ export const NavBar = () => {
                 to='/contacto'
                 className='text-#6D6D6D-300  px-3 py-2 rounded-md font-medium'
               >
-                Contacto
+                Crear
               </Link>
-              <Link
-                to='/nosotros'
+              <a
+                href='#nosotros'
                 className='text-#6D6D6D-300  px-3 py-2 rounded-md font-medium'
               >
                 Nosotros
-              </Link>
+              </a>
               <Link
                 to='/adoptar'
                 className='text-#6D6D6D-300  px-3 py-2 rounded-md font-medium'
@@ -48,9 +48,10 @@ export const NavBar = () => {
 
           {/* Sign up */}
           <div className='flex-shrink-0 flex items-center'>
-            <Link to='/signUp'>
-              <img src={SignUp} alt='signUp' />
-            </Link>
+            <button class='flex items-center bg-white text-gray-600 hover:bg-[#7C58D3] hover:text-white py-2 px-4 border border-[#7C58D3] rounded shadow transition duration-300 ease-in-out focus:outline-none'>
+              Ingresar
+              <img src={signUp} alt='acceso' className='w-4 h-4 ml-2 text-purple-500 hover:filter hover:hue-rotate-0' />
+            </button>
           </div>
           {/* Empty space to keep the links centered */}
           <div className='w-1/12' />

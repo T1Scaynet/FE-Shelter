@@ -20,19 +20,19 @@ export const Footer = () => {
         <div className='flex flex-col items-start w-[30%]'>
           <img src={logo} alt='logo' className='h-[4.6rem] mt-[0.4rem]' />
           <p className='w-[100%] text-[1rem]'>
-            It is a long established fact that a reader will be distracted by
-            the readable content of a page when looking at its layout.{' '}
+            Adoptar es una forma maravillosa de brindarle una segunda oportunidad a
+            un animal necesitado y darle un hogar amoroso.{' '}
           </p>
           <div className='flex flex-row mt-[2rem]'>
             <img src={phone} alt='phone' className='h-[3.5rem] rotate-[98deg]' />
             <div className='ml-[1.5rem]'>
               <b>(913) 756-3126</b>
-              <p>Tienes preguntas? Llámanos 24/7</p>
+              <p>¿Tienes preguntas? Llámanos</p>
             </div>
           </div>
         </div>
         <div className='flex flex-col mt-[2rem] w-[13rem]'>
-          <b>Hora Laborale</b>
+          <b>Horarios de atención:</b>
           <div className='flex justify-center items-center flex-row mt-[1.4rem] bg-[#FFFFFF] h-[7rem] w-[100%]'>
             <div className='flex flex-col font-thin text-[0.8rem]'>
               <b className='mt-[0.1rem]'>Lun - Vie:</b>
