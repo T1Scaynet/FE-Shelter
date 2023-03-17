@@ -1,10 +1,13 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllPets } from '../../state/features/pets/petSlice';
+import { getAllPets, getPetNames } from '../../state/features/pets/petSlice';
 import dog from '../../assets/PetsList/Dog.svg';
 import puntito from '../../assets/PetsList/PuntitoRosa.svg';
 import linea from '../../assets/PetsList/Shape.svg';
 import { Cards } from '../../components/Cards';
+import SearchBar from '../../components/SearchBar';
+
+
 
 const INITIAL_STATE = {
   size: '',
@@ -17,6 +20,7 @@ export const PetsList = () => {
   const [filters, setFilters] = useState(INITIAL_STATE);
   const pets = useSelector((state) => state.pets);
   const dispatch = useDispatch();
+
 
   const handleFilter = (e, type) => {
     if (!e) {
@@ -32,7 +36,12 @@ export const PetsList = () => {
       ...filters,
       [type]: e.target.value
     }));
+  
   };
+
+  useEffect(() => {
+    dispatch(getPetNames());
+},[dispatch])
 
   const isActive = (selectedType, x) => {
     return filters[selectedType] === x ? 'bg-[#FFDA47] border-[#FFDA47] text-[#0e081e]' : 'border-[#7C58D3]';
@@ -48,7 +57,7 @@ export const PetsList = () => {
 
       <section className='bg-[#FBF9FF] w-full h-[25.8rem] relative overflow-hidden'>
         <div className='w-[79%] m-auto flex'>
-
+           
           <div className='flex flex-col justify-evenly'>
             <span className='flex justify-start space-x-2'>
               <p>Inicio</p>
@@ -75,6 +84,9 @@ export const PetsList = () => {
           <div className='w-[12rem] h-[30.7rem] border-[1px] border-[#EBE5F7] rounded-md text-center flex flex-col justify-center items-center sticky top-8'>
             <h1 className=' text-xl font-bold'>Filtros</h1>
             <div>
+              
+            <SearchBar/>
+
               <h1 className='font-bold text-[#7C58D3] my-2'>Géneros:</h1>
               <span className='flex justify-center space-x-4'>
                 <button onClick={e => handleFilter(e, 'genre')} value='Macho' className={`h-8 w-16 border-2 border-[#7C58D3] rounded-md hover:bg-[#FFDA47] hover:border-none hover:text-[white] ${isActive('genre', 'Macho')}`}>Macho</button>

@@ -4,6 +4,7 @@ import { DisplayTwo } from './DisplayTwo';
 import { DisplayThree } from './DisplayThree';
 import '../../App.css';
 import { DisplayFive } from './DisplayFive';
+import SearchBar from '../../components/SearchBar';
 
 export const Home = () => {
   return (
@@ -12,6 +13,7 @@ export const Home = () => {
       <DisplayTwo />
       <DisplayThree />
       <DisplayFive />
+     
     </div>
   );
 };

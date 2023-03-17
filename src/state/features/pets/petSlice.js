@@ -7,17 +7,21 @@ import axios from 'axios';
 export const petSlice = createSlice({
   name: 'pets',
   initialState: {
-    list: []
+    list: [],
+    namesList: []
   },
   reducers: {
     // Acá van los reducers
     setPetsList: (state, action) => {
       state.list = action.payload;
+    },
+    setPetNamesList: (state, action) => { // nuevo reducer para actualizar la lista de nombres
+      state.namesList = action.payload;
     }
   }
 });
 
-export const { setPetsList, setPetByGenreList, setPetByTypeList } = petSlice.actions;
+export const { setPetsList, setPetByGenreList, setPetByTypeList, setPetNamesList } = petSlice.actions;
 
 export default petSlice.reducer;
 
@@ -32,3 +36,19 @@ export const getAllPets = ({ size, type, genre, order }) => {
       .catch((error) => console.log(error));
   };
 };
+
+// esta es la actions para la search bar
+export const getPetNames = (name) => {  
+  return async function (dispatch) {
+    axios.get(`http://localhost:3001/pets?name=${name}`)
+      .then(r => r.data)
+      .then(response => {
+        dispatch(setPetNamesList(response.petName));
+        console.log("este es elconsole log q trae los nombres", response)
+      })
+      .catch((error) => console.log(error));
+  };
+};
+
+
+
