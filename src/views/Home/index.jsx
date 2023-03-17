@@ -1,5 +1,4 @@
 
-
 import { NavBar } from '../../components/NavBar';
 import { DisplayOne } from './DisplayOne';
 import { DisplayTwo } from './DisplayTwo';
