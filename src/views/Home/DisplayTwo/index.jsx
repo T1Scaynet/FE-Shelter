@@ -1,4 +1,5 @@
 import { Card } from '../../../components/Card';
+import { Link } from 'react-router-dom';
 
 export const DisplayTwo = () => {
   return (
@@ -12,7 +13,9 @@ export const DisplayTwo = () => {
         <Card />
         <Card />
       </div>
-      <button className='w-44 h-14 bg-[#7C58D3] text-[#FFFFFF] rounded-md'>Ver más</button>
+      <Link to='/completeList'>
+        <button className='w-44 h-14 bg-[#7C58D3] text-[#FFFFFF] rounded-md'>Ver más</button>
+      </Link>
     </div>
   );
 };

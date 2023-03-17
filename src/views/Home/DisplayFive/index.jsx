@@ -76,7 +76,7 @@ export const DisplayFive = () => {
     }
   };
 
-  const pages = Math.ceil(profiles.length / 4);
+  // const pages = Math.ceil(profiles.length / 4);
 
   return (
     <section id='nosotros' className='h-[39.75rem] w-[100%] flex flex-col items-center justify-center'>
@@ -86,7 +86,8 @@ export const DisplayFive = () => {
       </div>
       <div className='flex flex-row items-center justify-center mb-[2.438rem]'>
         <button onClick={handlePrevious} className='flex items-center justify-center mr-4 font-extrabold rounded-[6.3px] bg-[#7C58D3] h-[2.5rem] w-[2rem] hover:bg-[#5930b9] transition-colors duration-500'>
-          <img src={leftArrow} alt='left arrow'className='brightness-100' /></button>
+          <img src={leftArrow} alt='left arrow' className='brightness-100' />
+        </button>
         {profiles.slice(startIndex, endIndex).map((profile) => (
           <div key={profile.id} className='mr-[4.625rem] ml-[4.625rem] flex flex-col justify-center items-center'>
             <img src={profile.image} alt={profile.name} />
@@ -96,7 +97,7 @@ export const DisplayFive = () => {
         ))}
         <button onClick={handleNext} className='flex items-center justify-center font-extrabold rounded-[6.3px] bg-[#7C58D3] h-[2.5rem] w-[2rem] hover:bg-[#5930b9] transition-colors duration-500'><img src={rightArrow} alt='right arrow' /></button>
       </div>
-      <button className='flex flex-row items-center justify-center font-extrabold rounded-[6.3px] bg-[#7C58D3] h-[3.563rem] w-[9.688rem] hover:bg-[#5930b9] transition-colors duration-500'><img src={fingerprint} alt='fingerprint' className='mr-[0.4rem]' /> Nuestro equipo</button>
+      <button className='flex flex-row items-center justify-center rounded-[6.3px] bg-[#7C58D3] h-[3.563rem] w-[9.688rem] text-[white] hover:bg-[#5930b9] transition-colors duration-500'><img src={fingerprint} alt='fingerprint' className='mr-[0.4rem]' /> Nuestro equipo</button>
     </section>
   );
 };
