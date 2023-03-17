@@ -1,12 +1,12 @@
 import { Route, Routes } from 'react-router-dom';
 import { Home } from '../views/Home';
-import { Prueba } from '../views/Prueba';
+import { PetsList } from '../views/PetsList';
 
 export function AppRoutes () {
   return (
     <Routes>
       <Route path='/' element={<Home />} />
-      <Route path='/prueba' element={<Prueba />} />
+      <Route path='/completeList' element={<PetsList />} />
     </Routes>
   );
-}
+};
