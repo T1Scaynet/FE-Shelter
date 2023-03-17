@@ -27,7 +27,7 @@ export const getAllPets = ({ size, type, genre, sort }) => {
     axios.get(`http://localhost:3001/pet?size=${size}&type=${type}&genre=${genre}&sort=${sort}`)
       .then(r => r.data)
       .then(response => {
-        dispatch(setPetsList(response.filteredPets));
+        dispatch(setPetsList(response.pets));
       })
       .catch((error) => console.log(error));
   };
