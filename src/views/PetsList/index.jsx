@@ -40,6 +40,7 @@ export const PetsList = () => {
 
   useEffect(() => {
     dispatch(getAllPets(filters));
+    window.scrollTo(0, 0);
   }, [dispatch]);
 
   return (
@@ -68,10 +69,10 @@ export const PetsList = () => {
         <img src={linea} alt='imagen de la linea divisoria' className='absolute bottom-0' />
       </section>
 
-      <section className='h-full w-[80%] m-auto my-10 rounded-md'>
+      <section className='h-full w-[80%] m-auto my-10 rounded-md relative'>
         <div className='flex justify-between'>
           <Cards pets={pets} />
-          <div className='w-[12rem] h-[30.7rem] border-[1px] border-[#EBE5F7] rounded-md text-center flex flex-col justify-center items-center'>
+          <div className='w-[12rem] h-[30.7rem] border-[1px] border-[#EBE5F7] rounded-md text-center flex flex-col justify-center items-center sticky top-8'>
             <h1 className=' text-xl font-bold'>Filtros</h1>
             <div>
               <h1 className='font-bold text-[#7C58D3] my-2'>Géneros:</h1>
