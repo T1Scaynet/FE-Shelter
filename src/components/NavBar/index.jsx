@@ -6,8 +6,8 @@ import 'tailwindcss/tailwind.css';
 
 export const NavBar = () => {
   return (
-    <nav className='bg-white-800'>
-      <div className='max-w-7xl mx-auto px-2 sm:px-6 lg:px-8'>
+    <nav className='bg-[#FFFEFD] h-[6.1rem] flex items-center '>
+      <div className='w-full m-[12.8rem]'>
         <div className='flex justify-between h-16'>
           {/* Logo */}
           <div className='flex-shrink-0 flex items-center'>
@@ -21,25 +21,25 @@ export const NavBar = () => {
             <div className='flex space-x-4'>
               <Link
                 to='/'
-                className='text-#6D6D6D-300 px-3 py-2 rounded-md font-medium'
+                className='text-#0E081E-300 px-3 py-2 rounded-md font-bold'
               >
-                Home
+                Inicio
               </Link>
               <Link
                 to='/contacto'
-                className='text-#6D6D6D-300  px-3 py-2 rounded-md font-medium'
+                className='text-#0E081E-300  px-3 py-2 rounded-md font-bold'
               >
-                Crear
+                Contacto
               </Link>
               <a
                 href='#nosotros'
-                className='text-#6D6D6D-300  px-3 py-2 rounded-md font-medium'
+                className='text-#0E081E-300  px-3 py-2 rounded-md font-bold'
               >
                 Nosotros
               </a>
               <Link
-                to='/adoptar'
-                className='text-#6D6D6D-300  px-3 py-2 rounded-md font-medium'
+                to='/petlist'
+                className='text-#0E081E-300  px-3 py-2 rounded-md font-bold'
               >
                 Adoptar
               </Link>
@@ -48,7 +48,7 @@ export const NavBar = () => {
 
           {/* Sign up */}
           <div className='flex-shrink-0 flex items-center'>
-            <button class='flex items-center bg-white text-gray-600 hover:bg-[#7C58D3] hover:text-white py-2 px-4 border border-[#7C58D3] rounded shadow transition duration-300 ease-in-out focus:outline-none'>
+            <button class='flex items-center bg-transparent text-[#0E081E] font-bold hover:bg-[#7C58D3] hover:text-white py-2 px-4 border border-[#7C58D3] rounded shadow transition duration-300 ease-in-out focus:outline-none'>
               Ingresar
               <img src={signUp} alt='acceso' className='w-4 h-4 ml-2 text-purple-500 hover:filter hover:hue-rotate-0' />
             </button>
