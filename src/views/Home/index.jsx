@@ -1,7 +1,8 @@
+import '../../App.css';
+
 import { DisplayOne } from './DisplayOne';
 import { DisplayTwo } from './DisplayTwo';
 import { DisplayThree } from './DisplayThree';
-import '../../App.css';
 import { DisplayFive } from './DisplayFive';
 
 export const Home = () => {

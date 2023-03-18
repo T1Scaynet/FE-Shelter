@@ -22,7 +22,7 @@ export const Cards = ({ pets }) => {
             ))
           )
         : (
-          <h1> No recipes to show D: </h1>
+          <h1> No se encontró mascotas </h1>
           )}
     </div>
   );
