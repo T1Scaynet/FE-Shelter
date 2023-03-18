@@ -10,12 +10,13 @@ const INITIAL_STATE = {
   size: '',
   type: '',
   genre: '',
-  order: ''
+  sort: ''
 };
 
 export const PetsList = () => {
   const [filters, setFilters] = useState(INITIAL_STATE);
   const pets = useSelector((state) => state.pets);
+  console.log({ pets });
   const dispatch = useDispatch();
 
   const handleFilter = (e, type) => {
@@ -102,8 +103,8 @@ export const PetsList = () => {
             <div>
               <h1 className='font-bold text-[#7C58D3] my-2'>Ordenar:</h1>
               <span className='flex justify-center space-x-4'>
-                <button onClick={e => handleFilter(e, 'sort')} value='alphabetical' className={`h-8 w-16 border-2 border-[#7C58D3] rounded-md hover:bg-[#FFDA47] hover:border-none hover:text-[white] ${isActive('order', 'alphabetical')}`}>A - Z</button>
-                <button onClick={e => handleFilter(e, 'sort')} value='alphabetical_desc' className={`h-8 w-20 border-2 border-[#7C58D3] rounded-md hover:bg-[#FFDA47] hover:border-none hover:text-[white] ${isActive('order', 'alphabetical_desc')}`}>Z - A</button>
+                <button onClick={e => handleFilter(e, 'sort')} value='alphabetical' className={`h-8 w-16 border-2 border-[#7C58D3] rounded-md hover:bg-[#FFDA47] hover:border-none hover:text-[white] ${isActive('sort', 'alphabetical')}`}>A - Z</button>
+                <button onClick={e => handleFilter(e, 'sort')} value='alphabetical_desc' className={`h-8 w-20 border-2 border-[#7C58D3] rounded-md hover:bg-[#FFDA47] hover:border-none hover:text-[white] ${isActive('sort', 'alphabetical_desc')}`}>Z - A</button>
               </span>
             </div>
             <button onClick={() => handleFilter()} className='bg-[#7C58D3] text-[white] w-32 h-8 rounded-md mt-4 hover:bg-[#FFDA47] hover:text-[#0E081E]'>Limpiar filtros</button>
