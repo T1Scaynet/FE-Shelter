@@ -8,7 +8,7 @@ export function AppRoutes () {
     <Routes>
       <Route path='/' element={<Home />} />
       <Route path='/completeList' element={<PetsList />} />
-      <Route path='/error' element={<Error404 />} />
+      <Route path='/*' element={<Error404 />} />
     </Routes>
   );
 };
