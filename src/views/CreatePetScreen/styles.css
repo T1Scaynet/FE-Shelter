@@ -1,0 +1,87 @@
+.createPetInputBox {
+  margin-bottom: 15px;
+  width: calc(100% / 2 - 20px);
+  display: flex;
+  flex-direction: column;
+}
+
+.createPetInputBox span.inputTitle {
+  display: inline-block;
+  font-weight: 700;
+  margin-bottom: 5px;
+  font-size: 1.2rem;
+  color: hsl(258, 58%, 29%);
+}
+
+.createPetInputBox input.text {
+  height: 45px;
+  width: 80%;
+  outline: none;
+  font-size: 16px;
+  border-radius: 5px;
+  padding-left: 15px;
+  border: 1px solid #ccc;
+  border-bottom-width: 2px;
+  transition: all 0.3s ease;
+}
+
+.createPetInputBox select {
+  border-radius: 5px;
+  display: inline-block;
+  width: 80%;
+  cursor: pointer;
+  padding: 3px 5px;
+  height: 45px;
+  font-size: 16px;
+  color: #999;
+  font-family: 'Quicksand', sans-serif;
+  border: 1px solid #ccc;
+  border-bottom-width: 2px;
+  transition: all 0.25s ease;
+  outline: none;
+}
+
+.createPetInputBox .radioBtns {
+  margin-top: 8px;
+}
+.radioBtns input:nth-last-child(-n + 2) {
+  border: 2px solid orange;
+  margin-left: 15px;
+}
+
+.createPetInputBox .petHistory {
+  border-radius: 5px;
+  width: 100%;
+  outline: none;
+  height: 100px;
+  padding: 10px;
+}
+
+.errorMsg {
+  margin-left: 0.5rem;
+  color: red;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.btn_container {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.btn_container input {
+  padding: 10px;
+  height: 100%;
+  width: 100px;
+  border-radius: 5px;
+  border: none;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: #ff47a2;
+}
