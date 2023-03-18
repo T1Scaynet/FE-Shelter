@@ -24,15 +24,12 @@ export const { setPetsList, setPetByGenreList, setPetByTypeList } =
 export default petSlice.reducer;
 
 /// Acá abajo van lo que vendrian a ser las funciones del action (funciones asíncronas)
-export const getAllPets = ({ size, type, genre, order }) => {
+export const getAllPets = ({ size, type, genre, sort }) => {
   return async function (dispatch) {
-    axios
-      .get(
-        `http://localhost:3001/pet?size=${size}&type=${type}&genre=${genre}&sort=${order}`,
-      )
-      .then((r) => r.data)
-      .then((response) => {
-        dispatch(setPetsList(response.filteredPets));
+    axios.get(`http://localhost:3001/pet?size=${size}&type=${type}&genre=${genre}&sort=${sort}`)
+      .then(r => r.data)
+      .then(response => {
+        dispatch(setPetsList(response.pets));
       })
       .catch((error) => console.log(error));
   };

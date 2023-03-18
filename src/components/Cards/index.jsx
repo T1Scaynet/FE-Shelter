@@ -14,9 +14,10 @@ export const Cards = ({ pets }) => {
               size={p.size}
               age={p.age}
               image={p.image}
+              db='true'
             />
           ))
-          : <h1> No recipes to show D: </h1>
+          : <h1> No se encontró mascotas </h1>
       }
     </div>
   );

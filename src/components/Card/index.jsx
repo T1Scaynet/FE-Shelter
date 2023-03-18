@@ -1,17 +1,18 @@
 import { CardDetail } from './CardDetail';
 
 import imageTraces from '../../assets/traces.svg';
+import imageDog from '../../assets/dogPhoto.svg';
 import genre from '../../assets/genre.svg';
 import rule from '../../assets/rule.svg';
 import cake from '../../assets/cake.svg';
 
-export const Card = ({ name, genres, size, age, image }) => {
+export const Card = ({ name, genres, size, age, image, db }) => {
   return (
     <div className='bg-[#FFFEFD] w-[33rem] h-[15.4rem] flex rounded-lg border-2 border-[#EBE5F7]'>
 
       <section className='w-[40%] h-full overflow-hidden'>
         <div className='w-[14.4rem]'>
-          <img src={image} alt='Photo de dogs' />
+          <img src={db ? image : imageDog} alt='Photo de dogs' />
         </div>
       </section>
 
