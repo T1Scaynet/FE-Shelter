@@ -10,7 +10,7 @@ import vac from '../../assets/DetailScreen/vacunado.svg';
 import castrated from '../../assets/DetailScreen/castrado.svg';
 import size from '../../assets/DetailScreen/tamaño.svg';
 import fingerprint from '../../assets/DisplayFive/fingerprint.svg';
-import Slider from 'react-slick';
+// import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import './DetailScreen.css';
@@ -85,16 +85,17 @@ export const DetailScreen = () => {
       ) : (
         <>
           <section className='flex flex-row items-center space-x-10 mt-[0.9rem]'>
-            <Slider {...settingsVertical} className='w-[10.188rem]  bg-[#FBF9FF] flex justify-between'>
+            {/* <Slider {...settingsVertical} className='w-[10.188rem]  bg-[#FBF9FF] flex justify-between'>
               {pet.galery?.map((img, i) => (
                 <img src={img} alt='pet' className='object-cover w-[10.188rem] h-[10.188rem] rounded-[0.5rem] mt-2' key={i} />
               ))}
-            </Slider>
-            <Slider {...settings} className='w-[501px] h-[36.063rem] flex items-center justify-center rounded-t-lg bg-[#FBF9FF]'>
+            </Slider> */}
+            {/* <Slider {...settings} className='w-[501px] h-[36.063rem] flex items-center justify-center rounded-t-lg bg-[#FBF9FF]'>
               {pet.galery?.map((img, i) => (
                 <img src={img} alt='pet' className='object-cover w-[22.938rem] h-[22.938rem] rounded-[0.5rem] m-auto' key={i} />
               ))}
-            </Slider>
+            </Slider> */}
+            <img src={pet.image} alt={pet.image} />
             <div className='flex flex-col items-start w-[20.938rem]'>
               <h4 className='text-[4.125rem] font-bold'>{pet.name}</h4>
               <div className='text-[1.625rem] font-bold flex flex-col justify-center text-left'>
