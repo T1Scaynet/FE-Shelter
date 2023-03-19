@@ -1,3 +1,4 @@
+/* eslint-disable quotes */
 // Las slice es una parte que puedo tener del estado
 
 import { createSlice } from '@reduxjs/toolkit';
@@ -26,6 +27,8 @@ export const petSlice = createSlice({
 });
 
 export const { setPetsList, setPetByGenreList, setPetByTypeList, setPagination } = petSlice.actions;
+export const { setPetsList, setPetByGenreList, setPetByTypeList } =
+  petSlice.actions;
 
 export default petSlice.reducer;
 
@@ -37,7 +40,25 @@ export const getAllPets = ({ size, type, genre, sort, currentPage }) => {
       .then(response => {
         dispatch(setPetsList(response.pets));
         dispatch(setPagination({ totalPages: response.totalPages, currentPage: response.currentPage }));
+        dispatch(setPetsList(response.filteredPets));
       })
       .catch((error) => console.log(error));
+  };
+};
+
+export const PostPet = (payload) => {
+  return async function () {
+    try {
+      console.log('enviando');
+      console.log(payload);
+      const sendInfo = await axios.post(
+        'http://localhost:3001/pet/create',
+        payload
+      );
+      console.log('enviado');
+      console.log(sendInfo);
+    } catch (error) {
+      window.alert("Error al enviar datos en función 'PostPet'");
+    }
   };
 };
