@@ -1,22 +1,27 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+
 import { getAllPets } from '../../state/features/pets/petSlice';
 import dog from '../../assets/PetsList/Dog.svg';
 import puntito from '../../assets/PetsList/PuntitoRosa.svg';
 import linea from '../../assets/PetsList/Shape.svg';
 import { Cards } from '../../components/Cards';
+import { Pagination } from '../../components/Pagination';
 
 const INITIAL_STATE = {
   size: '',
   type: '',
   genre: '',
-  order: ''
+  order: '',
+  totalPages: 1,
+  currentPage: 1
 };
 
 export const PetsList = () => {
   const [filters, setFilters] = useState(INITIAL_STATE);
   const pets = useSelector((state) => state.pets);
   const dispatch = useDispatch();
+  const pagination = useSelector(state => state.pets.pagination);
 
   const handleFilter = (e, type) => {
     if (!e) {
@@ -36,6 +41,18 @@ export const PetsList = () => {
 
   const isActive = (selectedType, x) => {
     return filters[selectedType] === x ? 'bg-[#FFDA47] border-[#FFDA47] text-[#0e081e]' : 'border-[#7C58D3]';
+  };
+
+  const handlePageChange = (pageNumber) => {
+    // console.log(pageNumber)
+    setFilters(prev => ({
+      ...prev,
+      currentPage: pageNumber
+    }));
+    dispatch(getAllPets({
+      ...filters,
+      currentPage: pageNumber
+    }));
   };
 
   useEffect(() => {
@@ -110,6 +127,13 @@ export const PetsList = () => {
           </div>
         </div>
       </section>
+      <div>
+        <Pagination
+          currentPage={pagination.currentPage}
+          totalPages={pagination.totalPages}
+          onPageChange={handlePageChange}
+        />
+      </div>
     </div>
   );
 };
