@@ -1,0 +1,24 @@
+.slick-list div{
+    width: 501px;
+}
+
+/* Cambiar el color de fondo de los dots */
+.slick-dots {
+    background-color: #FBF9FF;
+    border-bottom-left-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+  }
+  
+  /* Cambiar el color de los dots inactivos */
+  .slick-dots li button::before {
+    color: #7d58d3a7;
+    font-size: 10px;
+    line-height: 10px;
+  }
+  
+  /* Cambiar el color del dot activo */
+  .slick-dots li.slick-active button::before {
+    color: #7C58D3;
+    font-size: 10px;
+    line-height: 10px;
+  }
