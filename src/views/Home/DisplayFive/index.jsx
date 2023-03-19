@@ -102,7 +102,7 @@ export const DisplayFive = () => {
         </Slider>
       </div>
       <button className='flex flex-row items-center justify-center rounded-[6.3px] bg-[#7C58D3] h-[3.563rem] w-[9.688rem] text-[white] hover:bg-[#5930b9] transition-colors duration-500 font-bold'>
-        <img src={fingerprint} alt='fingerprint' className='mr-[0.4rem]' />{' '}
+        <img src={fingerprint} alt='fingerprint' className='mr-[0.4rem]' />
         Nuestro equipo
       </button>
     </section>
