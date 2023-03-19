@@ -15,13 +15,14 @@ const INITIAL_STATE = {
   genre: '',
   order: '',
   totalPages: 1,
-  currentPage: 1
+  currentPage: 1,
   sort: ''
 };
 
 export const PetsList = () => {
   const [filters, setFilters] = useState(INITIAL_STATE);
   const pets = useSelector((state) => state.pets);
+  console.log(pets);
   const dispatch = useDispatch();
   const pagination = useSelector(state => state.pets.pagination);
 
@@ -42,9 +43,9 @@ export const PetsList = () => {
     }));
   };
 
-  const isActive = (selectedType, x) => {
-    return filters[selectedType] === x ? 'bg-[#FFDA47] border-[#FFDA47] text-[#0e081e]' : 'border-[#7C58D3]';
-  };
+  // const isActive = (selectedType, x) => {
+  //   return filters[selectedType] === x ? 'bg-[#FFDA47] border-[#FFDA47] text-[#0e081e]' : 'border-[#7C58D3]';
+  // };
 
   const handlePageChange = (pageNumber) => {
     // console.log(pageNumber)
