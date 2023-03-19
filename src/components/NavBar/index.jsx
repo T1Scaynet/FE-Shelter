@@ -26,13 +26,13 @@ export const NavBar = () => {
                 Inicio
               </Link>
               <Link
-                to='/contacto'
+                to='/createPet'
                 className='text-#0E081E-300  px-3 py-2 rounded-md font-bold'
               >
-                Contacto
+                Crear mascota
               </Link>
               <a
-                href='#nosotros'
+                href='/#nosotros'
                 className='text-#0E081E-300  px-3 py-2 rounded-md font-bold'
               >
                 Nosotros
