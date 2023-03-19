@@ -3,6 +3,7 @@ import { Card } from '../Card';
 
 export const Cards = ({ pets }) => {
   const allPets = pets.list;
+  // console.log({ allPets });
   return (
     <div className='grid grid-cols-1 lg:grid-cols-2 gap-2 rounded-md'>
       {allPets.length > 0

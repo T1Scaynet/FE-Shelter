@@ -8,14 +8,14 @@ import axios from 'axios';
 export const petSlice = createSlice({
   name: 'pets',
   initialState: {
-    list: [],
+    list: []
   },
   reducers: {
     // Acá van los reducers
     setPetsList: (state, action) => {
       state.list = action.payload;
-    },
-  },
+    }
+  }
 });
 
 export const { setPetsList, setPetByGenreList, setPetByTypeList } =
@@ -29,7 +29,8 @@ export const getAllPets = ({ size, type, genre, sort }) => {
     axios.get(`http://localhost:3001/pet?size=${size}&type=${type}&genre=${genre}&sort=${sort}`)
       .then(r => r.data)
       .then(response => {
-        dispatch(setPetsList(response.pets));
+        console.log({ response });
+        dispatch(setPetsList(response.filteredPets));
       })
       .catch((error) => console.log(error));
   };
@@ -42,7 +43,7 @@ export const PostPet = (payload) => {
       console.log(payload);
       const sendInfo = await axios.post(
         'http://localhost:3001/pet/create',
-        payload,
+        payload
       );
       console.log('enviado');
       console.log(sendInfo);
