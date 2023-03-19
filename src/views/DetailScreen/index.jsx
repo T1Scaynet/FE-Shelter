@@ -2,7 +2,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
-import { getDetailById } from '../../state/features/details/detailSlice';
+import { clearDetailList, getDetailById } from '../../state/features/details/detailSlice';
 import bg from '../../assets/DetailScreen/bg.svg';
 import weight from '../../assets/DetailScreen/peso.svg';
 import genre from '../../assets/DetailScreen/genero.svg';
@@ -24,6 +24,7 @@ export const DetailScreen = () => {
     window.scrollTo(0, 0);
     dispatch(getDetailById(undefined));
     dispatch(getDetailById(id));
+    dispatch(clearDetailList());
   }, [dispatch]);
 
   console.log(pet.history);
