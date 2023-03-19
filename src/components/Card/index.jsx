@@ -21,7 +21,9 @@ export const Card = ({ name, genres, size, age, image, history, db }) => {
 
         <div className=' space-y-2 w-[95%]'>
           <h1 className='text-[1rem] font-bold'>{name}</h1>
-          <p className='text-[0.9rem]'>{db ? history : <h1> Thea está domesticada y le encantan los juguetes. Le encanta la gente y le encanta llamar la atención. Thea nació en febrero de 2014 </h1>}</p>
+          <p className='text-[0.9rem]'>
+            {db ? history : 'Thea está domesticada y le encantan los juguetes. Le encanta la gente y le encanta llamar la atención. Thea nació en febrero de 2014'}
+          </p>
         </div>
 
         <div className='relative text-sm font-[Nunito] flex flex-col gap-1'>
