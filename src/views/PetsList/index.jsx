@@ -35,11 +35,13 @@ export const PetsList = () => {
     const newValue = filters[type] === e.target.value ? '' : e.target.value;
     setFilters(prev => ({
       ...prev,
-      [type]: newValue
+      [type]: newValue,
+      currentPage: 1
     }));
     dispatch(getAllPets({
       ...filters,
-      [type]: newValue
+      [type]: newValue,
+      currentPage: 1
     }));
   };
 

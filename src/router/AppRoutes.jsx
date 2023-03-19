@@ -12,7 +12,7 @@ export function AppRoutes () {
       <Route path='/completeList' element={<PetsList />} />
       <Route path='/createPet' element={<CreatePetScreen />} />
       <Route path='/detalles/:id' element={<DetailScreen />} />
-      <Route path='/*' element={<Error404 />} />
+      <Route path='*' element={<Error404 />} />
     </Routes>
   );
 }
