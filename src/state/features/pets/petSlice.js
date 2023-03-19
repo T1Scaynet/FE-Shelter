@@ -8,27 +8,38 @@ import axios from 'axios';
 export const petSlice = createSlice({
   name: 'pets',
   initialState: {
-    list: []
+    list: [],
+    pagination: {
+      totalPage: 1,
+      currentPage: 1
+    }
   },
   reducers: {
     // Acá van los reducers
     setPetsList: (state, action) => {
       state.list = action.payload;
+    },
+
+    setPagination: (state, action) => {
+      state.pagination = action.payload;
     }
   }
 });
 
+export const { setPetsList, setPetByGenreList, setPetByTypeList, setPagination } = petSlice.actions;
 export const { setPetsList, setPetByGenreList, setPetByTypeList } =
   petSlice.actions;
 
 export default petSlice.reducer;
 
 /// Acá abajo van lo que vendrian a ser las funciones del action (funciones asíncronas)
-export const getAllPets = ({ size, type, genre, sort }) => {
+export const getAllPets = ({ size, type, genre, sort, currentPage }) => {
   return async function (dispatch) {
-    axios.get(`http://localhost:3001/pet?size=${size}&type=${type}&genre=${genre}&sort=${sort}`)
+    axios.get(`http://localhost:3001/pet?page=${currentPage}&size=${size}&type=${type}&genre=${genre}&sort=${sort}`)
       .then(r => r.data)
       .then(response => {
+        dispatch(setPetsList(response.pets));
+        dispatch(setPagination({ totalPages: response.totalPages, currentPage: response.currentPage }));
         dispatch(setPetsList(response.filteredPets));
       })
       .catch((error) => console.log(error));
