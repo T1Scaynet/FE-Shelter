@@ -29,31 +29,31 @@ export const DetailScreen = () => {
 
   console.log(pet.history);
 
-  const settings = {
-    dots: true,
-    lazyLoad: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    initialSlide: 2
-  };
+  // const settings = {
+  //   dots: true,
+  //   lazyLoad: true,
+  //   infinite: true,
+  //   speed: 500,
+  //   slidesToShow: 1,
+  //   slidesToScroll: 1,
+  //   initialSlide: 2
+  // };
 
-  const settingsVertical = {
-    dots: false,
-    infinite: false,
-    slidesToShow: 3,
-    slidesToScroll: 1,
-    vertical: true,
-    verticalSwiping: true,
-    swipeToSlide: true,
-    beforeChange: function (currentSlide, nextSlide) {
-      console.log('before change', currentSlide, nextSlide);
-    },
-    afterChange: function (currentSlide) {
-      console.log('after change', currentSlide);
-    }
-  };
+  // const settingsVertical = {
+  //   dots: false,
+  //   infinite: false,
+  //   slidesToShow: 3,
+  //   slidesToScroll: 1,
+  //   vertical: true,
+  //   verticalSwiping: true,
+  //   swipeToSlide: true,
+  //   beforeChange: function (currentSlide, nextSlide) {
+  //     console.log('before change', currentSlide, nextSlide);
+  //   },
+  //   afterChange: function (currentSlide) {
+  //     console.log('after change', currentSlide);
+  //   }
+  // };
 
   return (
     <div className='flex justify-center items-center flex-col'>
@@ -66,7 +66,7 @@ export const DetailScreen = () => {
         </Link>
         <div className=' rounded-[50%] bg-[#FF47A2] h-[0.4rem] w-[0.4rem]' />
         <Link
-          to='/completeList'
+          to='/creacion-de-mascota'
           className='font-bold ml-[12.813rem] text-[#7C58D3] text-[0.9rem]'
         >
           Adoptar
