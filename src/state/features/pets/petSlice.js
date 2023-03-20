@@ -36,7 +36,7 @@ export const getAllPets = ({ size, type, genre, sort, currentPage }) => {
     axios.get(`http://localhost:3001/pet?page=${currentPage}&size=${size}&type=${type}&genre=${genre}&sort=${sort}`)
       .then(r => r.data)
       .then(response => {
-        dispatch(setPetsList(response.pets));
+        dispatch(setPetsList(response.filteredPets));
         dispatch(setPagination({ totalPages: response.totalPages, currentPage: response.currentPage }));
         // dispatch(setPetsList(response.filteredPets));
       })
