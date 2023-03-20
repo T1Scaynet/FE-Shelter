@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-
 import { getAllPets } from '../../state/features/pets/petSlice';
-import dog from '../../assets/PetsList/Dog.svg';
+import dog from '../../assets/PetsList/Dog.png';
+import puntito from '../../assets/PetsList/PuntitoRosa.svg';
 import linea from '../../assets/PetsList/Shape.svg';
 import { Cards } from '../../components/Cards';
 import { Link } from 'react-router-dom';
@@ -80,7 +80,7 @@ export const PetsList = () => {
         </Link>
       </span>
       <section className='bg-[#FBF9FF] w-full h-[25.8rem] relative overflow-hidden'>
-        <div className='w-[79%] m-auto flex'>
+        <div className='w-[79%] h-[90%] m-auto flex'>
           <div className='flex flex-col justify-evenly'>
             <div className='w-[48%]'>
               <h1 className='text-7xl font-bold'>Mascotas</h1>
@@ -91,7 +91,7 @@ export const PetsList = () => {
             </div>
           </div>
 
-          <div className='mt-12'>
+          <div className='mt-7'>
             <img src={dog} alt='imagen de un perro' />
           </div>
         </div>
