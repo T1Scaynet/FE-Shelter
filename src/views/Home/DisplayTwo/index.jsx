@@ -9,6 +9,7 @@ export const DisplayTwo = () => {
   const dispatch = useDispatch();
   const topList = useSelector((state) => state.top);
   const top = topList.list;
+  console.log(top);
   console.log(topList.list);
 
   useEffect(() => {
@@ -29,7 +30,7 @@ export const DisplayTwo = () => {
                   <Card
                     key={t.id}
                     name={t.name}
-                    genres={t.genres}
+                    genres={t.genre}
                     size={t.size}
                     age={t.age}
                     image={t.image}
