@@ -29,10 +29,10 @@ export const NavBar = () => {
               </li>
               <li>
                 <NavLink
-                  to='/contacto'
+                  to='/createPet'
                   className='text-#0E081E-300 px-3 py-2 font-bold bg-[#d3dbdb00] transition-colors duration-500 rounded-[16%] p-[1.1vh] hover:bg-[#d3dbdb53]'
                 >
-                  Contacto
+                  Crear Mascota
                 </NavLink>
               </li>
               <li>
