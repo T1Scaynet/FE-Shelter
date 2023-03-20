@@ -4,7 +4,7 @@ import { Card } from '../Card';
 export const Cards = ({ pets }) => {
   const allPets = pets.list;
   return (
-    <div className='grid grid-cols-1 lg:grid-cols-2 gap-3 gap-x-14 2xl:gap-x-[3.8rem] rounded-md'>
+    <div className='grid grid-cols-1 lg:grid-cols-2 gap-3 gap-x-4 2xl:gap-x-[0.5rem] rounded-md'>
       {allPets.length > 0
         ? (
             allPets.map((p) => (
