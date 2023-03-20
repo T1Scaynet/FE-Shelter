@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { PostPet } from '../state/features/pets/petSlice';
 
 export const useForm = (initialForm, validateForm) => {
@@ -7,6 +8,7 @@ export const useForm = (initialForm, validateForm) => {
   const [errors, setErrors] = useState({});
   // const [loading, setLoading] = useState(false);
   // const [response, setResponse] = useState(null);
+  const navigate = useNavigate();
 
   const dispatch = useDispatch();
 
@@ -34,6 +36,7 @@ export const useForm = (initialForm, validateForm) => {
     } else {
       dispatch(PostPet(form));
     }
+    navigate('/');
   };
 
   return {
