@@ -11,9 +11,8 @@ export const Card = ({ name, genres, size, age, image, history, db }) => {
     <div className='bg-[#FFFEFD] w-[33rem] h-[15.4rem] flex rounded-lg border-2 border-[#EBE5F7] overflow-hidden'>
 
       <section className='w-[40%] h-full overflow-hidden'>
-        {/* className='w-[20rem] ml-[-3rem]' */}
         <div className='h-full w-[13rem]'>
-          <img className='h-full w-full rounded-l-md' src={db ? image : imageDog} alt='Photo de dogs' />
+          <img className='h-full w-full rounded-l-md object-cover' src={db ? image : imageDog} alt='Photo de dogs' />
         </div>
       </section>
 
