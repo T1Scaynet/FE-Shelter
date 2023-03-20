@@ -67,10 +67,8 @@ export const DisplayFive = () => {
     speed: 500,
     slidesToShow: 4,
     slidesToScroll: 4,
-    initialSlide: 2
+    initialSlide: 4
   };
-
-  // const pages = Math.ceil(profiles.length / 4);
 
   return (
     <section

@@ -7,16 +7,10 @@ export const detailSlice = createSlice({
   },
   reducers: {
     // Acá van los reducers
-    setDetailList: (state, action) => {
+    setDetailList: (state, { payload }) => {
       return {
         ...state.value,
-        value: action.payload.pet
-      };
-    },
-    clearDetailList: state => {
-      return {
-        ...state.value,
-        value: undefined
+        value: payload === undefined ? undefined : payload.pet
       };
     }
   }
