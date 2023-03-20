@@ -25,7 +25,7 @@ export const DisplayOne = () => {
         </div>
 
         <Link to="/">
-          <div className="button flex items-center bg-[#7C58D3] h-[66px] px-[20px] w-[193px] rounded-md hover:cursor-pointer">
+          <div className="button flex items-center bg-[#7C58D3] h-[66px] px-[20px] w-[193px] rounded-md hover:cursor-pointer hover:bg-[#5930b9] transition-colors duration-500">
             <img src={footprint} alt="footprint" />
             <span className="ml-[30px] text-white font-bold text-2xl">
               Donar
