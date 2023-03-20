@@ -59,7 +59,7 @@ export const DetailScreen = () => {
       {pet === undefined ? (
         <div class='conteneinerLoading'>
           <div class='loader' id='loader'>
-            Loading...
+            Loading....
           </div>
         </div>
       ) : pet === null ? (
