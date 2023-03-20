@@ -22,7 +22,7 @@ const initialForm = {
   type: '',
   state: '',
   history: '',
-  galery: [],
+  galery: []
 };
 
 const validationsForm = (form) => {
@@ -74,13 +74,13 @@ const validationsForm = (form) => {
   }
 
   // size validation
-  if (!form.size) {
-    errors.size = "El campo 'Tamaño' es requerido";
-  } else if (!numberValidation.test(form.size)) {
-    errors.size = 'Debe ingresar un número';
-  } else if (form.size < 15 || form.size > 110) {
-    errors.size = 'El valor de ser entre 15 y 110 cm ';
-  }
+  // if (!form.size) {
+  //   errors.size = "El campo 'Tamaño' es requerido";
+  // } else if (!numberValidation.test(form.size)) {
+  //   errors.size = 'Debe ingresar un número';
+  // } else if (form.size < 15 || form.size > 110) {
+  //   errors.size = 'El valor de ser entre 15 y 110 cm ';
+  // }
 
   // genre validation
 
@@ -135,7 +135,7 @@ export const CreatePetScreen = () => {
     errors,
     handleChange,
     handleBlur,
-    handleSubmit,
+    handleSubmit
     // loading,
     // response,
   } = useForm(initialForm, validationsForm);
@@ -251,7 +251,7 @@ export const CreatePetScreen = () => {
                   {errors.size && (
                     <span className="errorMsg">{errors.size} *</span>
                   )}
-                  <input
+                  {/* <input
                     className="text"
                     type="text"
                     name="size"
@@ -260,7 +260,17 @@ export const CreatePetScreen = () => {
                     onChange={handleChange}
                     value={form.size}
                     required
-                  />
+                  /> */}
+                  <select
+                    name="size"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  >
+                    <option value="">- - -</option>
+                    <option value="Chico">Chico</option>
+                    <option value="Mediano">Mediano</option>
+                    <option value="Grande">Grande</option>
+                  </select>
                 </div>
                 {/* PESO */}
                 <div className="createPetInputBox">
@@ -291,8 +301,8 @@ export const CreatePetScreen = () => {
                     onBlur={handleBlur}
                   >
                     <option value="">- - -</option>
-                    <option value="male">Macho</option>
-                    <option value="female">Hembra</option>
+                    <option value="Macho">Macho</option>
+                    <option value="Hembra">Hembra</option>
                   </select>
                 </div>
                 {/* TIPO */}
@@ -315,7 +325,7 @@ export const CreatePetScreen = () => {
                 </div>
                 {/* ESTADO */}
                 <div className="createPetInputBox">
-                  <span className="inputTitle">Estado</span>
+                  <span className="inpuPequeñotTitle">Estado</span>
                   {errors.state && (
                     <span className="errorMsg">{errors.state} *</span>
                   )}
