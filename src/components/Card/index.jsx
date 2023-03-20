@@ -6,13 +6,14 @@ import genre from '../../assets/genre.svg';
 import rule from '../../assets/rule.svg';
 import cake from '../../assets/cake.svg';
 
-export const Card = ({ name, genres, size, age, image, db }) => {
+export const Card = ({ name, genres, size, age, image, history, db }) => {
   return (
-    <div className='bg-[#FFFEFD] w-[33rem] h-[15.4rem] flex rounded-lg border-2 border-[#EBE5F7]'>
+    <div className='bg-[#FFFEFD] w-[33rem] h-[15.4rem] flex rounded-lg border-2 border-[#EBE5F7] overflow-hidden'>
 
       <section className='w-[40%] h-full overflow-hidden'>
-        <div className='w-[14.4rem]'>
-          <img src={db ? image : imageDog} alt='Photo de dogs' />
+        {/* className='w-[20rem] ml-[-3rem]' */}
+        <div className='h-full w-[13rem]'>
+          <img className='h-full w-full rounded-l-md' src={db ? image : imageDog} alt='Photo de dogs' />
         </div>
       </section>
 
@@ -20,7 +21,9 @@ export const Card = ({ name, genres, size, age, image, db }) => {
 
         <div className=' space-y-2 w-[95%]'>
           <h1 className='text-[1rem] font-bold'>{name}</h1>
-          <p className='text-[0.9rem]'>Thea is house-broken and very toy-motivated. She absolutely loves people and craves attention! Thea was born in February 2014</p>
+          <p className='text-[0.9rem]'>
+            {db ? history : 'Thea está domesticada y le encantan los juguetes. Le encanta la gente y le encanta llamar la atención. Thea nació en febrero de 2014'}
+          </p>
         </div>
 
         <div className='relative text-sm font-[Nunito] flex flex-col gap-1'>
