@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllPets } from '../../state/features/pets/petSlice';
 import dog from '../../assets/PetsList/Dog.png';
-import puntito from '../../assets/PetsList/PuntitoRosa.svg';
 import linea from '../../assets/PetsList/Shape.svg';
 import { Cards } from '../../components/Cards';
 import { Link } from 'react-router-dom';
@@ -103,7 +102,7 @@ export const PetsList = () => {
         />
       </section>
 
-      <section className='h-full w-[80%] m-auto my-10 rounded-md relative'>
+      <section className='h-full w-[90%] 2xl:w-[80%] m-auto my-10 rounded-md relative'>
         <div className='flex justify-between'>
           <Cards pets={pets} />
           <div className='w-[15%] h-[30rem] border-[1px] border-[#EBE5F7] rounded-md flex flex-col items-center sticky top-8 py-2 space-y-4'>
