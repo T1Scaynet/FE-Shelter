@@ -12,11 +12,17 @@ export const detailSlice = createSlice({
         ...state.value,
         value: action.payload.pet
       };
+    },
+    clearDetailList: state => {
+      return {
+        ...state.value,
+        value: undefined
+      };
     }
   }
 });
 
-export const { setDetailList } = detailSlice.actions;
+export const { setDetailList, clearDetailList } = detailSlice.actions;
 
 export default detailSlice.reducer;
 
