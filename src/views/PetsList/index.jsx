@@ -1,39 +1,39 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllPets } from '../../state/features/pets/petSlice';
+import { getAllPets, setFilters } from '../../state/features/pets/petSlice';
 import dog from '../../assets/PetsList/Dog.png';
 import linea from '../../assets/PetsList/Shape.svg';
 import { Cards } from '../../components/Cards';
 import { Link } from 'react-router-dom';
 import { Pagination } from '../../components/Pagination';
 import { CheckBox } from './Filters';
+import { Search } from '../../components/Search';
 
 const INITIAL_STATE = {
   size: '',
   type: '',
   genre: '',
-  order: '',
+  sort: '',
   totalPages: 1,
-  currentPage: 1,
-  sort: ''
+  currentPage: 1
 };
 
 export const PetsList = () => {
-  const [filters, setFilters] = useState(INITIAL_STATE);
+  const filters = useSelector(state => state.pets.filters);
+  console.log(filters);
   const pets = useSelector((state) => state.pets);
-  console.log(pets);
   const dispatch = useDispatch();
   const pagination = useSelector(state => state.pets.pagination);
 
   const handleFilter = (e, type) => {
     if (!e) {
-      setFilters(INITIAL_STATE);
+      dispatch(setFilters(INITIAL_STATE));
       dispatch(getAllPets(INITIAL_STATE));
       return;
     }
     const newValue = filters[type] === e.target.value ? '' : e.target.value;
-    setFilters(prev => ({
-      ...prev,
+    dispatch(setFilters({
+      ...filters,
       [type]: newValue,
       currentPage: 1
     }));
@@ -45,9 +45,8 @@ export const PetsList = () => {
   };
 
   const handlePageChange = (pageNumber) => {
-    // console.log(pageNumber)
-    setFilters(prev => ({
-      ...prev,
+    dispatch(setFilters({
+      ...filters,
       currentPage: pageNumber
     }));
     dispatch(getAllPets({
@@ -57,12 +56,18 @@ export const PetsList = () => {
   };
 
   useEffect(() => {
-    dispatch(getAllPets(filters));
+    dispatch(getAllPets(INITIAL_STATE));
     window.scrollTo(0, 0);
   }, [dispatch]);
 
   return (
     <div className='w-full h-full'>
+      <div className='grid justify-center m-2'>
+        <Search />
+        {
+          filters.search && <p>{`Mostrando resultados de ${filters.search}`}</p>
+        }
+      </div>
       <span className='flex justify-start items-center space-x-2 h-[4.875rem] w-full bg-[#FBF9FF]'>
         <Link
           to='/'
