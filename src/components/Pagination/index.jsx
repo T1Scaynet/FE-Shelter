@@ -15,7 +15,7 @@ export const Pagination = ({ currentPage, totalPages, onPageChange }) => {
         <li
           className={`${
             currentPage === 1 ? 'disabled' : ''
-          } w-[3.1rem] h-[3.1rem] bg-[#7C58D3] flex justify-center items-center rounded-lg`}
+          } w-[3.1rem] h-[3.1rem] bg-[#7C58D3] flex justify-center items-center rounded-lg cursor-pointer`}
         >
           <img
             src={arrowLeft}
@@ -31,11 +31,10 @@ export const Pagination = ({ currentPage, totalPages, onPageChange }) => {
                 pageNumber === currentPage
                   ? 'active bg-[#7C58D3]'
                   : 'disabled text-black bg-transparent border-solid border-2 border-[#EBE5F7] '
-              } w-[3.1rem] h-[3.1rem] flex justify-center items-center rounded-lg text-[#FFFEFD] text-lg font-extrabold`}
+              } w-[3.1rem] h-[3.1rem] flex justify-center items-center rounded-lg text-[#FFFEFD] text-lg font-extrabold cursor-pointer`}
+              onClick={() => onPageChange(pageNumber)}
             >
-              <button onClick={() => onPageChange(pageNumber)}>
-                {pageNumber}
-              </button>
+              {pageNumber}
             </li>
           );
         })}
@@ -44,7 +43,7 @@ export const Pagination = ({ currentPage, totalPages, onPageChange }) => {
             currentPage === totalPages
               ? 'disabled bg-transparent pointer-events-none'
               : ''
-          } w-[3.1rem] h-[3.1rem] bg-[#7C58D3] flex justify-center items-center rounded-lg`}
+          } w-[3.1rem] h-[3.1rem] bg-[#7C58D3] flex justify-center items-center rounded-lg cursor-pointer`}
         >
           <img
             src={arrowRight}
