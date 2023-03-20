@@ -43,7 +43,7 @@ export const DisplayTwo = () => {
         }
 
       </div>
-      <Link to='/completeList'>
+      <Link to='/listado'>
         <button className='w-44 h-14 bg-[#7C58D3] text-[#FFFFFF] rounded-md hover:bg-[#5930b9] font-bold transition-colors duration-500'>Ver más</button>
       </Link>
     </div>
