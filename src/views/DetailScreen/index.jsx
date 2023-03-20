@@ -96,7 +96,7 @@ export const DetailScreen = () => {
                 <img src={img} alt='pet' className='object-cover w-[22.938rem] h-[22.938rem] rounded-[0.5rem] m-auto' key={i} />
               ))}
             </Slider> */}
-            <img src={pet.image} alt={pet.image} />
+            <img src={pet.image} alt={pet.image} className='h-96 rounded-md' />
             <div className='flex flex-col items-start w-[20.938rem]'>
               <h4 className='text-[4.125rem] font-bold'>{pet.name}</h4>
               <div className='text-[1.625rem] font-bold flex flex-col justify-center text-left'>
