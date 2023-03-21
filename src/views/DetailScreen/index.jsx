@@ -20,13 +20,13 @@ export const DetailScreen = () => {
   const dispatch = useDispatch();
   const pet = useSelector((state) => state.petDetails);
 
+  const linkStyle = 'font-bold ml-[12.813rem] text-[#7C58D3] text-[0.9rem]';
+
   useEffect(() => {
     window.scrollTo(0, 0);
     dispatch(getDetailById(undefined));
     dispatch(getDetailById(id));
   }, [dispatch, id]);
-
-  console.log(pet.history);
 
   // const settings = {
   //   dots: true,
@@ -59,21 +59,21 @@ export const DetailScreen = () => {
       <span className='flex justify-start items-center space-x-2 bg-[#EBE5F7] h-[4.875rem] w-full'>
         <Link
           to='/'
-          className='font-bold ml-[12.813rem] text-[#7C58D3] text-[0.9rem]'
+          className={linkStyle}
         >
           Inicio
         </Link>
-        <div className=' rounded-[50%] bg-[#FF47A2] h-[0.4rem] w-[0.4rem]' />
+        <div className='rounded-[50%] bg-[#FF47A2] h-[0.4rem] w-[0.4rem]' />
         <Link
-          to='/creacion-de-mascota'
-          className='font-bold ml-[12.813rem] text-[#7C58D3] text-[0.9rem]'
+          to='/listado'
+          className={linkStyle}
         >
-          Adoptar
+          Listado
         </Link>
-        <div className=' rounded-[50%] bg-[#FF47A2] h-[0.4rem] w-[0.4rem]' />
+        <div className='rounded-[50%] bg-[#FF47A2] h-[0.4rem] w-[0.4rem]' />
         <Link
-          to='/detalles'
-          className='font-bold ml-[12.813rem] text-[#7C58D3] text-[0.9rem]'
+          to={`/detalles/${pet._id}`}
+          className={linkStyle}
         >
           Detalles
         </Link>
@@ -88,28 +88,6 @@ export const DetailScreen = () => {
         <></>
       ) : (
         <>
-          <span className='flex justify-start items-center space-x-2 bg-[#FBF9FF] h-[4.875rem] w-full'>
-            <Link
-              to='/'
-              className='font-bold ml-[12.813rem] text-[#7C58D3] text-[0.9rem]'
-            >
-              Inicio
-            </Link>
-            <div className=' rounded-[50%] bg-[#FF47A2] h-[0.4rem] w-[0.4rem]' />
-            <Link
-              to='/completeList'
-              className='font-bold ml-[12.813rem] text-[#7C58D3] text-[0.9rem]'
-            >
-              Adoptar
-            </Link>
-            <div className=' rounded-[50%] bg-[#FF47A2] h-[0.4rem] w-[0.4rem]' />
-            <Link
-              to='#'
-              className='font-bold ml-[12.813rem] text-[#7C58D3] text-[0.9rem]'
-            >
-              Detalles
-            </Link>
-          </span>
           <section className='flex flex-row items-center space-x-10 mt-[0.9rem]'>
             {/* <Slider {...settingsVertical} className='w-[10.188rem]  bg-[#FBF9FF] flex justify-between'>
               {pet.galery?.map((img, i) => (
