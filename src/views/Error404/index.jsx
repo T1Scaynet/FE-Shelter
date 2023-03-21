@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
@@ -9,6 +9,10 @@ export const Error404 = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const errorMessage = useSelector((state) => state.error.message);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const handleClick = () => {
     dispatch(clearError());

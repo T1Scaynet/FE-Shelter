@@ -28,19 +28,19 @@ export const NavBar = () => {
                 </NavLink>
               </li>
               <li>
+                <a
+                  href='#nosotros'
+                  className='text-#0E081E-300 px-3 py-2 font-bold bg-[#d3dbdb00] transition-colors duration-500 rounded-[16%] p-[1.1vh] hover:bg-[#d3dbdb53]'
+                >
+                  Nosotros
+                </a>
+              </li>
+              <li>
                 <NavLink
                   to='/creacion-de-mascota'
                   className='text-#0E081E-300 px-3 py-2 font-bold bg-[#d3dbdb00] transition-colors duration-500 rounded-[16%] p-[1.1vh] hover:bg-[#d3dbdb53]'
                 >
                   Crear Mascota
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  href='/#nosotros'
-                  className='text-#0E081E-300 px-3 py-2 font-bold bg-[#d3dbdb00] transition-colors duration-500 rounded-[16%] p-[1.1vh] hover:bg-[#d3dbdb53]'
-                >
-                  Nosotros
                 </NavLink>
               </li>
               <li>
