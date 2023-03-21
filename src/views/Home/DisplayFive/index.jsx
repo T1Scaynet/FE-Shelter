@@ -35,7 +35,7 @@ const profiles = [
   },
   {
     id: 5,
-    name: 'Estanilao',
+    name: 'Estanislao',
     position: 'FrontEnd Team',
     image: profile3
   },
@@ -47,13 +47,13 @@ const profiles = [
   },
   {
     id: 7,
-    name: 'Joaquin',
+    name: 'Joaquín',
     position: 'BackEnd Team',
     image: profile1
   },
   {
     id: 8,
-    name: 'Ivan',
+    name: 'Iván',
     position: 'FrontEnd Team',
     image: profile3
   }

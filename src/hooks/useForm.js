@@ -16,7 +16,7 @@ export const useForm = (initialForm, validateForm) => {
     const { name, value } = e.target;
     setForm({
       ...form,
-      [name]: value,
+      [name]: value
     });
   };
   const handleBlur = (e) => {
@@ -31,7 +31,7 @@ export const useForm = (initialForm, validateForm) => {
     e.preventDefault();
     if (Object.keys(errors).length !== 0) {
       window.alert(
-        'Existen errores. Por favor introduzca los datos correctamente',
+        'Existen errores. Por favor introduzca los datos correctamente'
       );
     } else {
       dispatch(PostPet(form));
@@ -44,7 +44,7 @@ export const useForm = (initialForm, validateForm) => {
     errors,
     handleChange,
     handleBlur,
-    handleSubmit,
+    handleSubmit
     // loading,
     // response,
   };

@@ -21,6 +21,8 @@ export const DetailScreen = () => {
   const pet = useSelector((state) => state.petDetails);
   const [galery, setGalery] = useState('');
 
+  const linkStyle = 'font-bold ml-[12.813rem] text-[#7C58D3] text-[0.9rem]';
+
   useEffect(() => {
     window.scrollTo(0, 0);
     dispatch(getDetailById(id));
@@ -29,7 +31,7 @@ export const DetailScreen = () => {
     };
   }, [dispatch, id]);
 
-  const settingsVertical = {
+    const settingsVertical = {
     className: 'bg-[#FBF9FF] w-[10.188rem] h-[36.063rem]',
     dots: true,
     infinite: true,
@@ -48,9 +50,32 @@ export const DetailScreen = () => {
   function handleChange (img) {
     setGalery(img);
   };
-
+  
   return (
     <div className='flex justify-center items-center flex-col'>
+      <span className='flex justify-start items-center space-x-2 bg-[#EBE5F7] h-[4.875rem] w-full'>
+        <Link
+          to='/'
+          className={linkStyle}
+        >
+          Inicio
+        </Link>
+        <div className='rounded-[50%] bg-[#FF47A2] h-[0.4rem] w-[0.4rem]' />
+        <Link
+          to='/listado'
+          className={linkStyle}
+        >
+          Listado
+        </Link>
+        <div className='rounded-[50%] bg-[#FF47A2] h-[0.4rem] w-[0.4rem]' />
+        <Link
+          to={`/detalles/${pet._id}`}
+          className={linkStyle}
+        >
+          Detalles
+        </Link>
+      </span>
+      
       {pet === undefined ? (
         <div class='conteneinerLoading'>
           <div class='loader' id='loader'>
@@ -61,28 +86,6 @@ export const DetailScreen = () => {
         <></>
       ) : (
         <>
-          <span className='flex justify-start items-center space-x-2 bg-[#FBF9FF] h-[4.875rem] w-full'>
-            <Link
-              to='/'
-              className='font-bold ml-[12.813rem] text-[#7C58D3] text-[0.9rem]'
-            >
-              Inicio
-            </Link>
-            <div className=' rounded-[50%] bg-[#FF47A2] h-[0.4rem] w-[0.4rem]' />
-            <Link
-              to='/listado'
-              className='font-bold ml-[12.813rem] text-[#7C58D3] text-[0.9rem]'
-            >
-              Adoptar
-            </Link>
-            <div className='rounded-[50%] bg-[#FF47A2] h-[0.4rem] w-[0.4rem]' />
-            <Link
-              to='#'
-              className='font-bold ml-[12.813rem] text-[#7C58D3] text-[0.9rem]'
-            >
-              {pet.name}
-            </Link>
-          </span>
           <section className='flex flex-row items-center space-x-10 mt-[0.9rem]'>
             <Slider {...settingsVertical}>
               {pet.galery?.map((img, i) => (

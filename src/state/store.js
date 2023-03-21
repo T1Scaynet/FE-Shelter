@@ -5,7 +5,7 @@ import errorSlice from './features/error/errorSlice';
 import top from './features/top/topSlice';
 
 export const store = configureStore({
-  reducer: { // unifica los reducer que cada estado en un solo lugar
+  reducer: {
     pets,
     petDetails,
     error: errorSlice,
