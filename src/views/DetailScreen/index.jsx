@@ -1,5 +1,5 @@
 /* eslint-disable multiline-ternary */
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 import { getDetailById } from '../../state/features/details/detailSlice';
@@ -10,7 +10,7 @@ import vac from '../../assets/DetailScreen/vacunado.svg';
 import castrated from '../../assets/DetailScreen/castrado.svg';
 import size from '../../assets/DetailScreen/tamaño.svg';
 import fingerprint from '../../assets/DisplayFive/fingerprint.svg';
-// import Slider from 'react-slick';
+import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import './DetailScreen.css';
@@ -19,41 +19,38 @@ export const DetailScreen = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const pet = useSelector((state) => state.petDetails);
+  const [galery, setGalery] = useState('');
 
   const linkStyle = 'font-bold ml-[12.813rem] text-[#7C58D3] text-[0.9rem]';
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    dispatch(getDetailById(undefined));
     dispatch(getDetailById(id));
+    return () => {
+      dispatch(getDetailById(undefined));
+    };
   }, [dispatch, id]);
 
-  // const settings = {
-  //   dots: true,
-  //   lazyLoad: true,
-  //   infinite: true,
-  //   speed: 500,
-  //   slidesToShow: 1,
-  //   slidesToScroll: 1,
-  //   initialSlide: 2
-  // };
+    const settingsVertical = {
+    className: 'bg-[#FBF9FF] w-[10.188rem] h-[36.063rem]',
+    dots: true,
+    infinite: true,
+    slidesToShow: 3,
+    slidesToScroll: 2,
+    vertical: true,
+    verticalSwiping: true,
+    arrows: false,
+    focusOnSelect: true,
+    beforeChange: function (currentSlide, nextSlide) {
+    },
+    afterChange: function (currentSlide) {
+    }
+  };
 
-  // const settingsVertical = {
-  //   dots: false,
-  //   infinite: false,
-  //   slidesToShow: 3,
-  //   slidesToScroll: 1,
-  //   vertical: true,
-  //   verticalSwiping: true,
-  //   swipeToSlide: true,
-  //   beforeChange: function (currentSlide, nextSlide) {
-  //     console.log('before change', currentSlide, nextSlide);
-  //   },
-  //   afterChange: function (currentSlide) {
-  //     console.log('after change', currentSlide);
-  //   }
-  // };
-
+  function handleChange (img) {
+    setGalery(img);
+  };
+  
   return (
     <div className='flex justify-center items-center flex-col'>
       <span className='flex justify-start items-center space-x-2 bg-[#EBE5F7] h-[4.875rem] w-full'>
@@ -78,6 +75,7 @@ export const DetailScreen = () => {
           Detalles
         </Link>
       </span>
+      
       {pet === undefined ? (
         <div class='conteneinerLoading'>
           <div class='loader' id='loader'>
@@ -89,18 +87,15 @@ export const DetailScreen = () => {
       ) : (
         <>
           <section className='flex flex-row items-center space-x-10 mt-[0.9rem]'>
-            {/* <Slider {...settingsVertical} className='w-[10.188rem]  bg-[#FBF9FF] flex justify-between'>
+            <Slider {...settingsVertical}>
               {pet.galery?.map((img, i) => (
-                <img src={img} alt='pet' className='object-cover w-[10.188rem] h-[10.188rem] rounded-[0.5rem] mt-2' key={i} />
+                <div key={i}>
+                  <img src={img} alt='pet' className='object-cover rounded-[0.5rem] mt-[4rem] cursor-pointer' onClick={() => handleChange(img)} />
+                </div>
               ))}
-            </Slider> */}
-            {/* <Slider {...settings} className='w-[501px] h-[36.063rem] flex items-center justify-center rounded-t-lg bg-[#FBF9FF]'>
-              {pet.galery?.map((img, i) => (
-                <img src={img} alt='pet' className='object-cover w-[22.938rem] h-[22.938rem] rounded-[0.5rem] m-auto' key={i} />
-              ))}
-            </Slider> */}
+            </Slider>
             <div className='bg-[#FBF9FF] w-[31.313rem] h-[36.063rem] flex items-center justify-center rounded-md'>
-              <img src={pet.image} alt={pet.image} className='h-96 rounded-md' />
+              <img src={galery.length === 0 ? pet.image : galery} alt={pet.image} className='h-96 rounded-md object-cover' />
             </div>
             <div className='flex flex-col items-start w-[20.938rem]'>
               <h4 className='text-[4.125rem] font-bold'>{pet.name}</h4>
@@ -149,7 +144,7 @@ export const DetailScreen = () => {
             </div>
           </section>
           {pet.history === undefined ? (
-            <div className='bg-[#FBF9FF] rounded-[0.5rem] mt-[6.875rem] w-[68.875rem] h-[10rem] flex items-center justify-center border-solid border-black border-2'>
+            <div className='bg-[#FBF9FF] rounded-[0.5rem] mt-[6.875rem] w-[68.875rem] h-[10rem] flex items-center justify-center border-solid border-black '>
               <div className='text-center'>
                 <h4 className='text-[1.5rem] font-bold'>
                   ¡Adopta un amigo peludo y cambia su vida para siempre!
@@ -157,7 +152,7 @@ export const DetailScreen = () => {
               </div>
             </div>
           ) : (
-            <div className='bg-[#FBF9FF] rounded-[0.5rem] mt-[6.875rem] w-[68.875rem] h-[10rem] flex items-center justify-center border-solid border-black border-2'>
+            <div className='bg-[#FBF9FF] rounded-[0.5rem] mt-[6.875rem] w-[68.875rem] h-[10rem] flex items-center justify-center border-solid border-black'>
               <div className='text-center'>
                 <h4 className='text-[1.5rem] font-bold'>
                   Descripción de la mascota
