@@ -37,7 +37,7 @@ export const NavBar = () => {
               </li>
               <li>
                 <NavLink
-                  to='/createPet'
+                  to='/creacion-de-mascota'
                   className='text-#0E081E-300 px-3 py-2 font-bold bg-[#d3dbdb00] transition-colors duration-500 rounded-[16%] p-[1.1vh] hover:bg-[#d3dbdb53]'
                 >
                   Crear Mascota
@@ -45,7 +45,7 @@ export const NavBar = () => {
               </li>
               <li>
                 <NavLink
-                  to='/completeList'
+                  to='/listado'
                   className='text-#0E081E-300 px-3 py-2 font-bold bg-[#d3dbdb00] transition-colors duration-500 rounded-[16%] p-[1.1vh] hover:bg-[#d3dbdb53]'
                 >
                   Adoptar

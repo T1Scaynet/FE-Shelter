@@ -56,6 +56,28 @@ export const DetailScreen = () => {
 
   return (
     <div className='flex justify-center items-center flex-col'>
+      <span className='flex justify-start items-center space-x-2 bg-[#EBE5F7] h-[4.875rem] w-full'>
+        <Link
+          to='/'
+          className='font-bold ml-[12.813rem] text-[#7C58D3] text-[0.9rem]'
+        >
+          Inicio
+        </Link>
+        <div className=' rounded-[50%] bg-[#FF47A2] h-[0.4rem] w-[0.4rem]' />
+        <Link
+          to='/creacion-de-mascota'
+          className='font-bold ml-[12.813rem] text-[#7C58D3] text-[0.9rem]'
+        >
+          Adoptar
+        </Link>
+        <div className=' rounded-[50%] bg-[#FF47A2] h-[0.4rem] w-[0.4rem]' />
+        <Link
+          to='/detalles'
+          className='font-bold ml-[12.813rem] text-[#7C58D3] text-[0.9rem]'
+        >
+          Detalles
+        </Link>
+      </span>
       {pet === undefined ? (
         <div class='conteneinerLoading'>
           <div class='loader' id='loader'>

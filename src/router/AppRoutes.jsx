@@ -9,8 +9,8 @@ export function AppRoutes () {
   return (
     <Routes>
       <Route path='/' element={<Home />} />
-      <Route path='/completeList' element={<PetsList />} />
-      <Route path='/createPet' element={<CreatePetScreen />} />
+      <Route path='/listado' element={<PetsList />} />
+      <Route path='/creacion-de-mascota' element={<CreatePetScreen />} />
       <Route path='/detalles/:id' element={<DetailScreen />} />
       <Route path='*' element={<Error404 />} />
     </Routes>

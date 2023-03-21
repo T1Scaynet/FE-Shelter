@@ -77,7 +77,7 @@ export const PetsList = () => {
         </Link>
         <div className=' rounded-[50%] bg-[#FF47A2] h-[0.4rem] w-[0.4rem]' />
         <Link
-          to='/completeList'
+          to='/creacion-de-mascota'
           className='font-bold ml-[12.813rem] text-[#7C58D3] text-[0.9rem]'
         >
           Adoptar
