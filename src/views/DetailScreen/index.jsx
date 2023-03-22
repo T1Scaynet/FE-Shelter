@@ -31,7 +31,7 @@ export const DetailScreen = () => {
     };
   }, [dispatch, id]);
 
-    const settingsVertical = {
+  const settingsVertical = {
     className: 'bg-[#FBF9FF] w-[10.188rem] h-[36.063rem]',
     dots: true,
     infinite: true,
@@ -50,7 +50,7 @@ export const DetailScreen = () => {
   function handleChange (img) {
     setGalery(img);
   };
-  
+
   return (
     <div className='flex justify-center items-center flex-col'>
       <span className='flex justify-start items-center space-x-2 bg-[#EBE5F7] h-[4.875rem] w-full'>
@@ -75,7 +75,6 @@ export const DetailScreen = () => {
           Detalles
         </Link>
       </span>
-      
       {pet === undefined ? (
         <div class='conteneinerLoading'>
           <div class='loader' id='loader'>

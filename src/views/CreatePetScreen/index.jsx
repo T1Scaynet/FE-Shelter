@@ -1,9 +1,4 @@
-/* eslint-disable multiline-ternary */
-/* eslint-disable no-useless-escape */
-/* eslint-disable jsx-quotes */
-/* eslint-disable quotes */
-/* eslint-disable react/self-closing-comp */
-
+/* eslint-disable prefer-regex-literals */
 import { useForm } from '../../hooks/useForm';
 import puntito from '../../assets/PetsList/PuntitoRosa.svg';
 import spinner from '../../assets/CreatePet/spinner.gif';
@@ -25,7 +20,7 @@ const initialForm = {
   type: '',
   state: '',
   history: '',
-  galery: [],
+  galery: []
 };
 
 const validationsForm = (form) => {
@@ -33,7 +28,7 @@ const validationsForm = (form) => {
   const urlVal = new RegExp(/^(ftp|http|https):[^ "]+$/);
   const numberValidation = new RegExp('^[0-9]+$', 'i');
 
-  let errors = {};
+  const errors = {};
 
   // Name validations
   if (!form.name.trim()) {
@@ -138,35 +133,35 @@ export const CreatePetScreen = () => {
 
   return (
     <>
-      <div className="mt-14 pl-12">
-        <span className="flex justify-start space-x-2">
+      <div className='mt-14 pl-12'>
+        <span className='flex justify-start space-x-2'>
           <p>Inicio</p>
           <img
             src={puntito}
-            alt="Imagen de un punto de separación color rosa"
+            alt='Imagen de un punto de separación color rosa'
           />
           <p>Adoptar</p>
         </span>
       </div>
-      <main className="mt-14 min-h-full w-full flex items-center justify-center flex-col">
-        <div className="max-w-[850px] w-full bg-[#7e5ad3] py-6 px-8 rounded-md">
-          <h1 className="text-center my-4 font-extrabold  text-2xl text-white">
+      <main className='mt-14 min-h-full w-full flex items-center justify-center flex-col'>
+        <div className='max-w-[850px] w-full bg-[#7e5ad3] py-6 px-8 rounded-md'>
+          <h1 className='text-center my-4 font-extrabold  text-2xl text-white'>
             Registrar una mascota
           </h1>
-          <div className="flex flex-col items-center justify-center gap-3">
+          <div className='flex flex-col items-center justify-center gap-3'>
             <form onSubmit={handleSubmit}>
-              <div className="flex flex-wrap justify-between my-4 mx-0">
+              <div className='flex flex-wrap justify-between my-4 mx-0'>
                 {/* NAME */}
-                <div className="createPetInputBox">
-                  <span className="inputTitle">Nombre</span>
+                <div className='createPetInputBox'>
+                  <span className='inputTitle'>Nombre</span>
                   {errors.name && (
-                    <span className="errorMsg">{errors.name} *</span>
+                    <span className='errorMsg'>{errors.name} *</span>
                   )}
                   <input
-                    className="text"
-                    type="text"
-                    name="name"
-                    placeholder="Ingresa un nombre"
+                    className='text'
+                    type='text'
+                    name='name'
+                    placeholder='Ingresa un nombre'
                     onBlur={handleBlur}
                     onChange={handleChange}
                     value={form.name}
@@ -174,16 +169,16 @@ export const CreatePetScreen = () => {
                   />
                 </div>
                 {/* IMAGE */}
-                <div className="createPetInputBox">
-                  <span className="inputTitle">Imagen</span>
+                <div className='createPetInputBox'>
+                  <span className='inputTitle'>Imagen</span>
                   {errors.image && (
-                    <span className="errorMsg">{errors.image} *</span>
+                    <span className='errorMsg'>{errors.image} *</span>
                   )}
                   <input
-                    className="text"
-                    type="text"
-                    name="image"
-                    placeholder="Ingresa una imagen"
+                    className='text'
+                    type='text'
+                    name='image'
+                    placeholder='Ingresa una imagen'
                     onBlur={handleBlur}
                     onChange={handleChange}
                     value={form.image}
@@ -191,16 +186,16 @@ export const CreatePetScreen = () => {
                   />
                 </div>
                 {/* VACUNAS */}
-                <div className="createPetInputBox">
-                  <span className="inputTitle">Vacunas</span>
+                <div className='createPetInputBox'>
+                  <span className='inputTitle'>Vacunas</span>
                   {errors.vaccine && (
-                    <span className="errorMsg">{errors.vaccine} *</span>
+                    <span className='errorMsg'>{errors.vaccine} *</span>
                   )}
                   <input
-                    className="text"
-                    type="text"
-                    name="vaccine"
-                    placeholder="Ingresa una vacuna"
+                    className='text'
+                    type='text'
+                    name='vaccine'
+                    placeholder='Ingresa una vacuna'
                     onBlur={handleBlur}
                     onChange={handleChange}
                     value={form.vaccine}
@@ -208,16 +203,16 @@ export const CreatePetScreen = () => {
                   />
                 </div>
                 {/* DISCAPACIDAD */}
-                <div className="createPetInputBox">
-                  <span className="inputTitle">Discapacidad</span>
+                <div className='createPetInputBox'>
+                  <span className='inputTitle'>Discapacidad</span>
                   {errors.disability && (
-                    <span className="errorMsg">{errors.disability} *</span>
+                    <span className='errorMsg'>{errors.disability} *</span>
                   )}
                   <input
-                    className="text"
-                    type="text"
-                    name="disability"
-                    placeholder="Ingresa una discapacidad"
+                    className='text'
+                    type='text'
+                    name='disability'
+                    placeholder='Ingresa una discapacidad'
                     onBlur={handleBlur}
                     onChange={handleChange}
                     value={form.disability}
@@ -225,16 +220,16 @@ export const CreatePetScreen = () => {
                   />
                 </div>
                 {/* EDAD */}
-                <div className="createPetInputBox">
-                  <span className="inputTitle">Edad</span>
+                <div className='createPetInputBox'>
+                  <span className='inputTitle'>Edad</span>
                   {errors.age && (
-                    <span className="errorMsg">{errors.age} *</span>
+                    <span className='errorMsg'>{errors.age} *</span>
                   )}
                   <input
-                    className="text"
-                    type="text"
-                    name="age"
-                    placeholder="Ingresa edad"
+                    className='text'
+                    type='text'
+                    name='age'
+                    placeholder='Ingresa edad'
                     onBlur={handleBlur}
                     onChange={handleChange}
                     value={form.age}
@@ -242,33 +237,33 @@ export const CreatePetScreen = () => {
                   />
                 </div>
                 {/* TAMAÑO */}
-                <div className="createPetInputBox">
-                  <span className="inputTitle">Tamaño</span>
+                <div className='createPetInputBox'>
+                  <span className='inputTitle'>Tamaño</span>
                   {errors.size && (
-                    <span className="errorMsg">{errors.size} *</span>
+                    <span className='errorMsg'>{errors.size} *</span>
                   )}
                   <select
-                    name="size"
+                    name='size'
                     onChange={handleChange}
                     onBlur={handleBlur}
                   >
-                    <option value="">- - -</option>
-                    <option value="Chico">Chico</option>
-                    <option value="Mediano">Mediano</option>
-                    <option value="Grande">Grande</option>
+                    <option value=''>- - -</option>
+                    <option value='Chico'>Chico</option>
+                    <option value='Mediano'>Mediano</option>
+                    <option value='Grande'>Grande</option>
                   </select>
                 </div>
                 {/* PESO */}
-                <div className="createPetInputBox">
-                  <span className="inputTitle">Peso</span>
+                <div className='createPetInputBox'>
+                  <span className='inputTitle'>Peso</span>
                   {errors.weight && (
-                    <span className="errorMsg">{errors.weight} *</span>
+                    <span className='errorMsg'>{errors.weight} *</span>
                   )}
                   <input
-                    className="text"
-                    type="text"
-                    name="weight"
-                    placeholder="Ingresar peso"
+                    className='text'
+                    type='text'
+                    name='weight'
+                    placeholder='Ingresar peso'
                     onBlur={handleBlur}
                     onChange={handleChange}
                     value={form.weight}
@@ -276,182 +271,184 @@ export const CreatePetScreen = () => {
                   />
                 </div>
                 {/* GÉNERO */}
-                <div className="createPetInputBox">
-                  <span className="inputTitle">Género</span>
+                <div className='createPetInputBox'>
+                  <span className='inputTitle'>Género</span>
                   {errors.genre && (
-                    <span className="errorMsg">{errors.genre} *</span>
+                    <span className='errorMsg'>{errors.genre} *</span>
                   )}
                   <select
-                    name="genre"
+                    name='genre'
                     onChange={handleChange}
                     onClick={handleBlur}
                   >
-                    <option value="">- - -</option>
-                    <option value="Macho">Macho</option>
-                    <option value="Hembra">Hembra</option>
+                    <option value=''>- - -</option>
+                    <option value='Macho'>Macho</option>
+                    <option value='Hembra'>Hembra</option>
                   </select>
                 </div>
                 {/* TIPO */}
-                <div className="createPetInputBox">
-                  <span className="inputTitle">Tipo</span>
+                <div className='createPetInputBox'>
+                  <span className='inputTitle'>Tipo</span>
                   {errors.type && (
-                    <span className="errorMsg">{errors.type} *</span>
+                    <span className='errorMsg'>{errors.type} *</span>
                   )}
 
                   <select
-                    name="type"
+                    name='type'
                     onChange={handleChange}
                     onClick={handleBlur}
                   >
-                    <option value="">- - -</option>
-                    <option value="dog">Perro</option>
-                    <option value="cat">Gato</option>
-                    <option value="other">Otro...</option>
+                    <option value=''>- - -</option>
+                    <option value='dog'>Perro</option>
+                    <option value='cat'>Gato</option>
+                    <option value='other'>Otro...</option>
                   </select>
                 </div>
                 {/* ESTADO */}
-                <div className="createPetInputBox">
-                  <span className="inputTitle">Estado</span>
+                <div className='createPetInputBox'>
+                  <span className='inputTitle'>Estado</span>
                   {errors.state && (
-                    <span className="errorMsg">{errors.state} *</span>
+                    <span className='errorMsg'>{errors.state} *</span>
                   )}
                   <select
-                    name="state"
+                    name='state'
                     onChange={handleChange}
                     onClick={handleBlur}
                   >
-                    <option value="">- - -</option>
-                    <option value="adopted">Adoptado</option>
-                    <option value="available">Disponible</option>
-                    <option value="fosterhome">Hogar adoptivo</option>
+                    <option value=''>- - -</option>
+                    <option value='adopted'>Adoptado</option>
+                    <option value='available'>Disponible</option>
+                    <option value='fosterhome'>Hogar adoptivo</option>
                   </select>
                 </div>
                 {/* CASTRADO */}
-                <div className="createPetInputBox">
-                  <span className="inputTitle">Castrado</span>
+                <div className='createPetInputBox'>
+                  <span className='inputTitle'>Castrado</span>
                   {errors.castrated && (
-                    <span className="errorMsg">{errors.castrated}*</span>
+                    <span className='errorMsg'>{errors.castrated}*</span>
                   )}
-                  <div className="radioBtns">
+                  <div className='radioBtns'>
                     <input
-                      className="inputCheckbox"
-                      type="radio"
-                      id="isCastrated"
-                      name="castrated"
+                      className='inputCheckbox'
+                      type='radio'
+                      id='isCastrated'
+                      name='castrated'
                       onChange={handleChange}
                       onBlur={handleBlur}
-                      value="true"
+                      value='true'
                     />
-                    <label htmlFor="isCastrated">Si</label>
+                    <label htmlFor='isCastrated'>Si</label>
                     <input
-                      className="inputCheckbox"
-                      type="radio"
-                      id="isNotCastrated"
-                      name="castrated"
+                      className='inputCheckbox'
+                      type='radio'
+                      id='isNotCastrated'
+                      name='castrated'
                       onChange={handleChange}
                       onBlur={handleBlur}
-                      value="false"
+                      value='false'
                     />
-                    <label htmlFor="isNotCastrated">No</label>
+                    <label htmlFor='isNotCastrated'>No</label>
                   </div>
                 </div>
 
                 {/* CONVIVENCIA CON OTRAS MASCOTAS */}
-                <div className="createPetInputBox">
-                  <span className="inputTitle">
+                <div className='createPetInputBox'>
+                  <span className='inputTitle'>
                     Buena convivencia con otras mascotas
                   </span>
                   {errors.coexistencePets && (
-                    <span className="errorMsg">{errors.coexistencePets} *</span>
+                    <span className='errorMsg'>{errors.coexistencePets} *</span>
                   )}
-                  <div className="radioBtns">
+                  <div className='radioBtns'>
                     <input
-                      className="inputCheckbox"
-                      type="radio"
-                      id="isFrienly"
-                      name="coexistencePets"
-                      value="true"
+                      className='inputCheckbox'
+                      type='radio'
+                      id='isFrienly'
+                      name='coexistencePets'
+                      value='true'
                       onChange={handleChange}
                       onBlur={handleBlur}
                     />
-                    <label htmlFor="isFrienly">Si</label>
+                    <label htmlFor='isFrienly'>Si</label>
                     <input
-                      className="inputCheckbox"
-                      type="radio"
-                      id="isNotFriendly"
-                      name="coexistencePets"
-                      value="false"
+                      className='inputCheckbox'
+                      type='radio'
+                      id='isNotFriendly'
+                      name='coexistencePets'
+                      value='false'
                       onChange={handleChange}
                       onBlur={handleBlur}
                     />
-                    <label htmlFor="isNotFriendly">No</label>
+                    <label htmlFor='isNotFriendly'>No</label>
                   </div>
                 </div>
 
                 {/* CONVIVENCIA CON NIÑOS PEQUEÑOS */}
-                <div className="createPetInputBox">
-                  <span className="inputTitle">
+                <div className='createPetInputBox'>
+                  <span className='inputTitle'>
                     Buena convivencia con niños
                   </span>
                   {errors.coexistenceKids && (
-                    <span className="errorMsg">{errors.coexistenceKids} *</span>
+                    <span className='errorMsg'>{errors.coexistenceKids} *</span>
                   )}
-                  <div className="radioBtns">
+                  <div className='radioBtns'>
                     <input
-                      className="inputCheckbox"
-                      type="radio"
-                      id="isReallyFrienly"
-                      name="coexistenceKids"
-                      value="true"
+                      className='inputCheckbox'
+                      type='radio'
+                      id='isReallyFrienly'
+                      name='coexistenceKids'
+                      value='true'
                       onChange={handleChange}
                       onBlur={handleBlur}
                     />
-                    <label htmlFor="isReallyFrienly">Si</label>
+                    <label htmlFor='isReallyFrienly'>Si</label>
                     <input
-                      className="inputCheckbox"
-                      type="radio"
-                      id="isNotReallyFrienly"
-                      name="coexistenceKids"
-                      value="false"
+                      className='inputCheckbox'
+                      type='radio'
+                      id='isNotReallyFrienly'
+                      name='coexistenceKids'
+                      value='false'
                       onChange={handleChange}
                       onBlur={handleBlur}
                     />
-                    <label htmlFor="isNotReallyFrienly">No</label>
+                    <label htmlFor='isNotReallyFrienly'>No</label>
                   </div>
                 </div>
               </div>
               {/* HISTORIA */}
-              <div className="createPetInputBox">
-                <span className="inputTitle">Historia</span>
+              <div className='createPetInputBox'>
+                <span className='inputTitle'>Historia</span>
                 {errors.history && (
-                  <span className="errorMsg">{errors.history} *</span>
+                  <span className='errorMsg'>{errors.history} *</span>
                 )}
                 <textarea
-                  className="petHistory"
-                  name="history"
-                  id=""
+                  className='petHistory'
+                  name='history'
+                  id=''
                   style={{ resize: 'none' }}
-                  placeholder="Historia de la mascota..."
+                  placeholder='Historia de la mascota...'
                   onChange={handleChange}
                   onBlur={handleBlur}
                   value={form.history}
                 />
               </div>
-              <div className="btn_container">
-                <Link to="/">
+              <div className='btn_container'>
+                <Link to='/'>
                   <div>
-                    <input type="submit" value="Volver" />
+                    <input type='submit' value='Volver' />
                   </div>
                 </Link>
-                {loading ? (
-                  <div className="w-14">
-                    <img className="w-full" src={spinner} alt="Loading..." />
-                  </div>
-                ) : (
-                  <div>
-                    <input type="submit" value="Crear" />
-                  </div>
-                )}
+                {loading
+                  ? (
+                    <div className='w-14'>
+                      <img className='w-full' src={spinner} alt='Loading...' />
+                    </div>
+                    )
+                  : (
+                    <div>
+                      <input type='submit' value='Crear' />
+                    </div>
+                    )}
               </div>
             </form>
           </div>
