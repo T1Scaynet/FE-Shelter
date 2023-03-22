@@ -75,6 +75,7 @@ export const DetailScreen = () => {
           Detalles
         </Link>
       </span>
+
       {pet === undefined ? (
         <div class='conteneinerLoading'>
           <div class='loader' id='loader'>
