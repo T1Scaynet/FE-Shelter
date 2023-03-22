@@ -1,9 +1,12 @@
+/* eslint-disable multiline-ternary */
+/* eslint-disable no-useless-escape */
 /* eslint-disable jsx-quotes */
 /* eslint-disable quotes */
 /* eslint-disable react/self-closing-comp */
 
 import { useForm } from '../../hooks/useForm';
 import puntito from '../../assets/PetsList/PuntitoRosa.svg';
+import spinner from '../../assets/CreatePet/spinner.gif';
 import './styles.css';
 import { Link } from 'react-router-dom';
 
@@ -22,11 +25,11 @@ const initialForm = {
   type: '',
   state: '',
   history: '',
-  galery: []
+  galery: [],
 };
 
 const validationsForm = (form) => {
-  const onlyLettersVal = new RegExp('^[A-Z]+$', 'i');
+  const noNumbersValidation = /^\D+$/;
   const urlVal = new RegExp(/^(ftp|http|https):[^ "]+$/);
   const numberValidation = new RegExp('^[0-9]+$', 'i');
 
@@ -37,7 +40,7 @@ const validationsForm = (form) => {
     errors.name = "El campo 'Nombre' es requerido";
   } else if (form.name.length < 3 || form.name.length > 20) {
     errors.name = 'Entre 3 y 20 carácteres';
-  } else if (!onlyLettersVal.test(form.name)) {
+  } else if (!noNumbersValidation.test(form.name)) {
     errors.name = "El campo 'Nombre' solo acepta letras";
   }
 
@@ -130,15 +133,8 @@ const validationsForm = (form) => {
 };
 
 export const CreatePetScreen = () => {
-  const {
-    form,
-    errors,
-    handleChange,
-    handleBlur,
-    handleSubmit
-    // loading,
-    // response,
-  } = useForm(initialForm, validationsForm);
+  const { form, errors, handleChange, handleBlur, handleSubmit, loading } =
+    useForm(initialForm, validationsForm);
 
   return (
     <>
@@ -153,7 +149,7 @@ export const CreatePetScreen = () => {
         </span>
       </div>
       <main className="mt-14 min-h-full w-full flex items-center justify-center flex-col">
-        <div className="max-w-[850px] w-full bg-[hsl(258,58%,59%)] py-6 px-8 rounded-md">
+        <div className="max-w-[850px] w-full bg-[#7e5ad3] py-6 px-8 rounded-md">
           <h1 className="text-center my-4 font-extrabold  text-2xl text-white">
             Registrar una mascota
           </h1>
@@ -251,16 +247,6 @@ export const CreatePetScreen = () => {
                   {errors.size && (
                     <span className="errorMsg">{errors.size} *</span>
                   )}
-                  {/* <input
-                    className="text"
-                    type="text"
-                    name="size"
-                    placeholder="Ingresar tamaño"
-                    onBlur={handleBlur}
-                    onChange={handleChange}
-                    value={form.size}
-                    required
-                  /> */}
                   <select
                     name="size"
                     onChange={handleChange}
@@ -282,7 +268,7 @@ export const CreatePetScreen = () => {
                     className="text"
                     type="text"
                     name="weight"
-                    placeholder="Ingresar tamaño"
+                    placeholder="Ingresar peso"
                     onBlur={handleBlur}
                     onChange={handleChange}
                     value={form.weight}
@@ -298,7 +284,7 @@ export const CreatePetScreen = () => {
                   <select
                     name="genre"
                     onChange={handleChange}
-                    onBlur={handleBlur}
+                    onClick={handleBlur}
                   >
                     <option value="">- - -</option>
                     <option value="Macho">Macho</option>
@@ -315,7 +301,7 @@ export const CreatePetScreen = () => {
                   <select
                     name="type"
                     onChange={handleChange}
-                    onBlur={handleBlur}
+                    onClick={handleBlur}
                   >
                     <option value="">- - -</option>
                     <option value="dog">Perro</option>
@@ -325,14 +311,14 @@ export const CreatePetScreen = () => {
                 </div>
                 {/* ESTADO */}
                 <div className="createPetInputBox">
-                  <span className="inpuPequeñotTitle">Estado</span>
+                  <span className="inputTitle">Estado</span>
                   {errors.state && (
                     <span className="errorMsg">{errors.state} *</span>
                   )}
                   <select
                     name="state"
                     onChange={handleChange}
-                    onBlur={handleBlur}
+                    onClick={handleBlur}
                   >
                     <option value="">- - -</option>
                     <option value="adopted">Adoptado</option>
@@ -448,6 +434,7 @@ export const CreatePetScreen = () => {
                   placeholder="Historia de la mascota..."
                   onChange={handleChange}
                   onBlur={handleBlur}
+                  value={form.history}
                 />
               </div>
               <div className="btn_container">
@@ -456,10 +443,15 @@ export const CreatePetScreen = () => {
                     <input type="submit" value="Volver" />
                   </div>
                 </Link>
-
-                <div>
-                  <input type="submit" value="Crear" />
-                </div>
+                {loading ? (
+                  <div className="w-14">
+                    <img className="w-full" src={spinner} alt="Loading..." />
+                  </div>
+                ) : (
+                  <div>
+                    <input type="submit" value="Crear" />
+                  </div>
+                )}
               </div>
             </form>
           </div>
