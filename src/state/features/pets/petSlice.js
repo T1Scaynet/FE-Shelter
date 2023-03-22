@@ -1,6 +1,3 @@
-/* eslint-disable quotes */
-// Las slice es una parte que puedo tener del estado
-
 import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 // import axios from 'axios';
