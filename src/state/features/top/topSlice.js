@@ -22,7 +22,6 @@ export const getTopList = () => {
     axios.get('http://localhost:3001/pet/firtsPets')
       .then(r => r.data)
       .then(response => {
-        console.log('response', response);
         dispatch(setTopList(response));
       }).catch(error => console.log(error));
   };
