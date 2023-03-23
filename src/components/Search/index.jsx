@@ -4,7 +4,6 @@ import { getAllPets, setFilters } from '../../state/features/pets/petSlice';
 
 export const Search = () => {
   const filters = useSelector(state => state.pets.filters);
-  console.log(filters);
   const [value, setValue] = useState('');
   const dispatch = useDispatch();
 

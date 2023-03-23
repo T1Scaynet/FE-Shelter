@@ -21,7 +21,8 @@
     "react-router-dom": "^6.9.0",
     "react-slick": "^0.29.0",
     "slick-carousel": "^1.8.1",
-    "styled-components": "^5.3.9"
+    "styled-components": "^5.3.9",
+    "sweetalert2": "^11.7.3"
   },
   "devDependencies": {
     "@types/react": "^18.0.27",

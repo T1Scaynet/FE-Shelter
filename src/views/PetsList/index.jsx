@@ -6,7 +6,7 @@ import linea from '../../assets/PetsList/Shape.svg';
 import { Cards } from '../../components/Cards';
 import { Link } from 'react-router-dom';
 import { Pagination } from '../../components/Pagination';
-import { CheckBox } from './Filters';
+import { CheckBox } from './CheckBox';
 import { Search } from '../../components/Search';
 
 const INITIAL_STATE = {
@@ -20,7 +20,6 @@ const INITIAL_STATE = {
 
 export const PetsList = () => {
   const filters = useSelector(state => state.pets.filters);
-  console.log(filters);
   const pets = useSelector((state) => state.pets);
   const dispatch = useDispatch();
   const pagination = useSelector(state => state.pets.pagination);
@@ -77,10 +76,10 @@ export const PetsList = () => {
         </Link>
         <div className=' rounded-[50%] bg-[#FF47A2] h-[0.4rem] w-[0.4rem]' />
         <Link
-          to='/creacion-de-mascota'
+          to='/listado'
           className='font-bold ml-[12.813rem] text-[#7C58D3] text-[0.9rem]'
         >
-          Adoptar
+          Listado
         </Link>
       </span>
       <section className='bg-[#FBF9FF] w-full h-[25.8rem] relative overflow-hidden'>
