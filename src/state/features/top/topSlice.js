@@ -19,7 +19,7 @@ export default topSlice.reducer;
 
 export const getTopList = () => {
   return async function (dispatch) {
-    axios.get('http://localhost:3001/pet/firtsPets')
+    axios.get('/pet/firtsPets')
       .then(r => r.data)
       .then(response => {
         dispatch(setTopList(response));
