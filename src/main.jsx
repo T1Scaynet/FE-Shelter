@@ -5,9 +5,9 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 import './index.css';
-import { Axios } from 'axios';
+import axios from 'axios';
 
-Axios.defaults.baseURL = process.env.REACT_APP_URL_BACKEND || 'http://localhost:3001';
+axios.defaults.baseURL = import.meta.env.REACT_APP_URL_BACKEND || 'http://localhost:3001';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
