@@ -22,7 +22,7 @@ export default detailSlice.reducer;
 
 /// Acá abajo van lo que vendrian a ser las funciones del action (funciones asíncronas)
 export const getDetailById = (id) => {
-  const urlDetail = `http://localhost:3001/pet/${id}`;
+  const urlDetail = `/pet/${id}`;
   return async function (dispatch) {
     if (id) {
       try {
