@@ -5,12 +5,13 @@ import { loginUser } from '../../../state/features/login/loginSlice';
 
 export const LoginForm = () => {
   const dispatch = useDispatch();
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const history = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(loginUser({ email, password }));
+    dispatch(loginUser({ name, email, password }));
     // history('/');
     setEmail('');
     setPassword('');
@@ -21,6 +22,18 @@ export const LoginForm = () => {
       <div className='mb-4'>
         <h3>Iniciar Sesión</h3>
         <h2>Utilice sus credenciales para acceder a su cuenta.</h2>
+        <label htmlFor='name' className='block mb-2 font-bold text-gray-700'>
+          Name
+        </label>
+        <input
+          type='name'
+          id='name'
+          className='w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline'
+          placeholder='Nombre'
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          required
+        />
         <label htmlFor='email' className='block mb-2 font-bold text-gray-700'>
           Email
         </label>

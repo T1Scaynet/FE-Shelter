@@ -1,25 +1,18 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import user from '../../../assets/userLogin.svg';
+import { logoutSuccess } from '../../../state/features/login/loginSlice';
 
-export function Profile () {
-  const userLogged = useSelector((state) => state.login.user);
-  console.log('soy el profile', userLogged);
-  const name = userLogged ? userLogged.name : null;
-  const lastName = userLogged ? userLogged.lastName : null;
-  const address = userLogged ? userLogged.address : null;
-
+export function Profile ({ name }) {
+  const dispatch = useDispatch();
+  const handleLogOut = () => {
+    dispatch(logoutSuccess());
+  };
   return (
     <div className='user-container'>
-      <div className='name-container'>
-        <h4 className='name'>
-          {userLogged ? `${name} ${lastName}` : 'Invitado'}
-        </h4>
-      </div>
-      {userLogged && (
-        <div className='address-container'>
-          <p className='address'>{address}</p>
-        </div>
-      )}
+      <img src={user} className='h-10' />
+      <h1>{name}</h1>
+      <button onClick={handleLogOut}>Salir</button>
     </div>
   );
 }

@@ -8,11 +8,12 @@ const loginSlice = createSlice({
     isAuthenticated: false,
     error: null,
     registering: false,
-    userLogged: {}
+    userLogged: false
   },
   reducers: {
     loginSuccess: (state, action) => {
       state.user = action.payload;
+      state.userLogged = true;
       state.isAuthenticated = true;
       state.error = null;
     },
@@ -22,7 +23,7 @@ const loginSlice = createSlice({
       state.error = action.payload;
     },
     logoutSuccess: (state) => {
-      state.userLogged = null;
+      state.userLogged = false;
     },
     registerSuccess: (state, action) => {
       state.user = action.payload;
@@ -42,10 +43,10 @@ const loginSlice = createSlice({
 
 export const { loginSuccess, loginFailure, logoutSuccess, registerSuccess, registerFailure } = loginSlice.actions;
 
-export const loginUser = ({ email, password }) => async (dispatch) => {
+export const loginUser = ({ name, email, password }) => async (dispatch) => {
   try {
-    const res = await axios.post('http://localhost:3001/user/login', { email, password });
-    const json = res.config.data;
+    const res = await axios.post('http://localhost:3001/user/login', { name, email, password });
+    const json = res.data.user;
     dispatch(loginSuccess(json));
   } catch (err) {
     dispatch(loginFailure(err.response.data.msg));

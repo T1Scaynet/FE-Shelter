@@ -2,7 +2,6 @@ import arrowLeft from '../../assets/arrow-left.svg';
 import arrowRight from '../../assets/arrow-right.svg';
 
 export const Pagination = ({ currentPage, totalPages, onPageChange }) => {
-  // console.log({ currentPage, totalPages, onPageChange });
   const pageNumbers = [];
 
   for (let i = 1; i <= totalPages; i++) {

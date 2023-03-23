@@ -1,4 +1,3 @@
-import React from 'react';
 import bark from '../../assets/Footer/bark.svg';
 import logo from '../../assets/Footer/Group.svg';
 import phone from '../../assets/Footer/phone.svg';
