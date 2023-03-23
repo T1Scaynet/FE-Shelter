@@ -62,7 +62,6 @@ export const PetsList = () => {
   return (
     <div className='w-full h-full'>
       <div className='grid justify-center m-2'>
-        <Search />
         {
           filters.search && <p>{`Mostrando resultados de ${filters.search}`}</p>
         }
@@ -106,7 +105,8 @@ export const PetsList = () => {
         />
       </section>
 
-      <section className='h-full w-[90%] 2xl:w-[80%] m-auto my-10 rounded-md relative'>
+      <section className='h-full w-[90%] 2xl:w-[80%] m-auto my-10 rounded-md relative flex items-center flex-col'>
+        <Search />
         <div className='flex justify-between'>
           <Cards pets={pets} />
           <div className='w-[15%] h-[30rem] border-[1px] border-[#EBE5F7] rounded-md flex flex-col items-center sticky top-8 py-2 space-y-4'>

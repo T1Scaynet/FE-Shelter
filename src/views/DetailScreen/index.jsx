@@ -53,7 +53,7 @@ export const DetailScreen = () => {
 
   return (
     <div className='flex justify-center items-center flex-col'>
-      <span className='flex justify-start items-center space-x-2 bg-[#EBE5F7] h-[4.875rem] w-full'>
+      <span className='flex justify-start items-center space-x-2 bg-[#FBF9FF] h-[4.875rem] w-full'>
         <Link
           to='/'
           className={linkStyle}
@@ -72,7 +72,7 @@ export const DetailScreen = () => {
           to={`/detalles/${pet._id}`}
           className={linkStyle}
         >
-          Detalles
+          {pet.name}
         </Link>
       </span>
 
