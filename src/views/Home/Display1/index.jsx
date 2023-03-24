@@ -6,8 +6,11 @@ import donate1 from '../../../assets/Display1/icon.svg';
 import dogs from '../../../assets/DO_dogleft.png';
 import dogTwo from '../../../assets/perroMestizotwo.svg';
 import cat from '../../../assets/DO_catright.png';
+import { useSelector } from 'react-redux';
 
 export const Display1 = () => {
+  const comments = useSelector((state) => state.comments);
+  console.log('este d1', comments);
   return (
     <section
       id="home"
