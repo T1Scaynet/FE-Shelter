@@ -62,6 +62,7 @@ export const getAllPets = ({
       )
       .then((r) => r.data)
       .then((response) => {
+        console.log("aslkjdaksjdklsjkdjkldsjka",response)
         dispatch(setPetsList(response.pets));
         dispatch(
           setPagination({
