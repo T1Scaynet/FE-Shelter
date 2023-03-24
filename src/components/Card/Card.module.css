@@ -1,0 +1,92 @@
+.card {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    width: 100%;
+  }
+  
+  .imageContainer {
+    height: 200px;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .image {
+    display: block;
+    height: 100%;
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+  }
+  
+  .cardBody {
+    padding: 16px;
+  }
+  
+  .expanded {
+    max-height: none;
+  }
+  
+  .title {
+    color: #333;
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0 0 8px 0;
+  }
+  
+  .subtitle {
+    color: #666;
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0 0 8px 0;
+  }
+  
+  .starRating {
+    display: flex;
+    margin-bottom: 8px;
+  }
+  
+  .star {
+    color: #f8d64e;
+    font-size: 20px;
+    margin-right: 4px;
+  }
+  
+  .comments {
+    margin-top: 8px;
+    position: relative;
+  }
+  
+  .commentText {
+    display: block;
+    line-height: 1.5;
+    max-height: 4.5em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .readMoreButton {
+    background-color: #f8d64e;
+    border: none;
+    border-radius: 4px;
+    bottom: 0;
+    color: #333;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 8px 16px;
+    position: absolute;
+    right: 0;
+    text-transform: uppercase;
+    transition: background-color 0.2s;
+  }
+  
+  .readMoreButton:hover {
+    background-color: #ffed9b;
+  }
+  

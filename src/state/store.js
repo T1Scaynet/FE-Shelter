@@ -3,7 +3,8 @@ import pets from './features/pets/petSlice';
 import petDetails from './features/details/detailSlice';
 import errorSlice from './features/error/errorSlice';
 import top from './features/top/topSlice';
-import users from './features/users/userSlice';
+import users from './features/users/userSlice'; 
+import comments from './features/comments/commentsSlice'
 
 export const store = configureStore({
   reducer: {
@@ -11,6 +12,7 @@ export const store = configureStore({
     pets,
     petDetails,
     error: errorSlice,
-    top
+    top,
+    comments
   }
 });
