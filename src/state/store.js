@@ -5,6 +5,7 @@ import errorSlice from './features/error/errorSlice';
 import top from './features/top/topSlice';
 import users from './features/users/userSlice'; 
 import comments from './features/comments/commentsSlice'
+import login from './features/login/loginSlice';
 
 export const store = configureStore({
   reducer: {
@@ -13,6 +14,7 @@ export const store = configureStore({
     petDetails,
     error: errorSlice,
     top,
-    comments
+    comments,
+    login
   }
 });
