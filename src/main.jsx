@@ -7,7 +7,10 @@ import App from './App';
 import './index.css';
 import axios from 'axios';
 
-axios.defaults.baseURL = import.meta.env.REACT_APP_URL_BACKEND || 'http://localhost:3001';
+const token = localStorage.getItem('token');
+
+axios.defaults.baseURL = 'http://localhost:3001';
+axios.defaults.headers.common['x-access-token'] = token || '';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
