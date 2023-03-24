@@ -5,6 +5,7 @@ import { logoutSuccess } from '../../../state/features/login/loginSlice';
 
 export function Profile ({ name }) {
   const dispatch = useDispatch();
+  
   const handleLogOut = () => {
     dispatch(logoutSuccess());
   };

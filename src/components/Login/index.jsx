@@ -4,8 +4,7 @@ import { LoginForm } from '../Login/LoginForm/index';
 import { Profile } from '../Login/Profile/index';
 
 const LoginPage = () => {
-  const user = useSelector((state) => state.login.user);
-  console.log('soy el user', user);
+  const token = useSelector((state) => state.login.user);
   const history = useNavigate();
   // if (user) {
   //   history('/perfil');

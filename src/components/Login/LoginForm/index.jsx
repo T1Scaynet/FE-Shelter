@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
@@ -8,13 +9,34 @@ export const LoginForm = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const history = useNavigate();
+  const navigate = useNavigate();
+  const token = useSelector((state) => state.login.user);
+  console.log(token);
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(loginUser({ name, email, password }));
     // history('/');
     setEmail('');
     setPassword('');
+    setName('');
+    navigate('/user/profile');
+    const instance = axios.create({
+      baseURL: 'https://localhost:3001',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`
+      }
+    });
+
+    instance.get('/user/profile')
+      .then(response => {
+        // procesar la respuesta exitosa
+        console.log('soy la rta', response);
+      })
+      .catch(error => {
+        // manejar el error de la petición
+        console.log('soy el error', error);
+      });
   };
 
   return (
@@ -63,6 +85,9 @@ export const LoginForm = () => {
           onChange={(e) => setPassword(e.target.value)}
           required
         />
+        <Link to='/recuperar-contraseña' className='text-blue-500 hover:text-blue-700'>
+          ¿Olvidaste tu contraseña?
+        </Link>
       </div>
       <div className='flex items-center justify-between'>
         <button

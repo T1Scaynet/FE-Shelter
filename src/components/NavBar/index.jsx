@@ -9,8 +9,8 @@ import Profile from '../Login/Profile';
 
 export const NavBar = () => {
   const user = useSelector((state) => state.login.user);
-  const logged = useSelector((state)=> state.login.userLogged);
-  console.log(logged);
+  const userLogged = useSelector((state) => state.login.userLogged);
+  console.log(userLogged);
   return (
     <nav className='bg-[#FFFEFD] h-[6.1rem] flex items-center '>
       <div className='w-full m-[12.8rem]'>
@@ -38,16 +38,16 @@ export const NavBar = () => {
           </div>
           {/* Sign up */}
           <div className='flex-shrink-0 flex items-center'>
-            {user.userLogged === false
-              ? (<button className='flex items-center bg-transparent text-[#0E081E] font-bold hover:bg-[#7C58D3] hover:text-white py-2 px-4 border border-[#7C58D3] rounded shadow transition duration-300 ease-in-out focus:outline-none'>
+            {userLogged
+              ? <Profile />
+              : <button className='flex items-center bg-transparent text-[#0E081E] font-bold hover:bg-[#7C58D3] hover:text-white py-2 px-4 border border-[#7C58D3] rounded shadow transition duration-300 ease-in-out focus:outline-none'>
                 <a href='/ingresar'>Ingresar</a>
                 <img
                   src={signUp}
                   alt='acceso'
                   className='w-4 h-4 ml-2 text-purple-500 hover:filter hover:hue-rotate-0'
                 />
-                 </button> )
-              : (<Profile name={user.name} />)}
+                </button>}
           </div>
           {/* Empty space to keep the links centered */}
           <div className='w-1/12' />

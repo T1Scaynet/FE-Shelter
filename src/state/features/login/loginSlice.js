@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { useNavigate } from 'react-router';
 
 const loginSlice = createSlice({
   name: 'login',
@@ -46,7 +47,7 @@ export const { loginSuccess, loginFailure, logoutSuccess, registerSuccess, regis
 export const loginUser = ({ name, email, password }) => async (dispatch) => {
   try {
     const res = await axios.post('http://localhost:3001/user/login', { name, email, password });
-    const json = res.data.user;
+    const json = res.data.token;
     dispatch(loginSuccess(json));
   } catch (err) {
     dispatch(loginFailure(err.response.data.msg));
