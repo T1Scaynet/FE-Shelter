@@ -1,22 +1,30 @@
 import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { useNavigate } from 'react-router';
 
 const loginSlice = createSlice({
   name: 'login',
   initialState: {
-    user: {},
+    user: [],
+    token: '',
     isAuthenticated: false,
     error: null,
     registering: false,
     userLogged: false
   },
   reducers: {
-    loginSuccess: (state, action) => {
-      state.user = action.payload;
-      state.userLogged = true;
-      state.isAuthenticated = true;
-      state.error = null;
+    setToken: (state, action) => {
+      console.log({ state });
+      console.log({ user: state?.user });
+      console.log({ login: state?.login });
+      console.log({ token: action });
+      // state.user = {
+      //   ...state.user,
+      //   token: action.payload
+      // };
+      state.token = action.payload;
+      // state.userLogged = true;
+      // state.isAuthenticated = true;
+      // state.error = null;
     },
     loginFailure: (state, action) => {
       state.user = null;
@@ -24,7 +32,7 @@ const loginSlice = createSlice({
       state.error = action.payload;
     },
     logoutSuccess: (state) => {
-      state.userLogged = false;
+      state.token = null;
     },
     registerSuccess: (state, action) => {
       state.user = action.payload;
@@ -42,16 +50,21 @@ const loginSlice = createSlice({
   }
 });
 
-export const { loginSuccess, loginFailure, logoutSuccess, registerSuccess, registerFailure } = loginSlice.actions;
+export const { setToken, loginFailure, logoutSuccess, registerSuccess, registerFailure } = loginSlice.actions;
 
-export const loginUser = ({ name, email, password }) => async (dispatch) => {
-  try {
-    const res = await axios.post('http://localhost:3001/user/login', { name, email, password });
-    const json = res.data.token;
-    dispatch(loginSuccess(json));
-  } catch (err) {
-    dispatch(loginFailure(err.response.data.msg));
-  }
+// export const loginUser = ({ name, email, password }) => async (dispatch) => {
+//   try {
+//     console.log('entre');
+//     const res = await axios.post('/user/login', { name, email, password });
+//     console.log(res);
+//     const json = res.data.token;
+//     dispatch(setToken(json));
+//   } catch (err) {
+//     dispatch(loginFailure(err.response.data.msg));
+//   }
+// };
+export const loginUser = () => {
+  console.log('voy a llorar');
 };
 
 export const loginRegister = (formValues) => async (dispatch) => {

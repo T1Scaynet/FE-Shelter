@@ -1,43 +1,39 @@
 import axios from 'axios';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
-import { loginUser } from '../../../state/features/login/loginSlice';
+import { loginUser, setToken } from '../../../state/features/login/loginSlice';
+
+const handleLoginUser = async ({ name, email, password }) => {
+    const { data } = await axios.post('/user/login', { name, email, password });
+    return data
+}
 
 export const LoginForm = () => {
   const dispatch = useDispatch();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [state, setState] =useState('');
   const navigate = useNavigate();
-  const token = useSelector((state) => state.login.user);
-  console.log(token);
-  const handleSubmit = (e) => {
+  const token = useSelector((state)=> state.login?.token);
+  console.log(token)
+  
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    dispatch(loginUser({ name, email, password }));
-    // history('/');
+    console.log('hola')
+    const userToken = await handleLoginUser({name, email, password})
+    console.log({ userToken })
+    // dispatch para actualizar el estado
+    dispatch(setToken(userToken?.token))
+    // guarden en localStorage
+    localStorage.setItem('token', userToken?.token)
     setEmail('');
     setPassword('');
     setName('');
-    navigate('/user/profile');
-    const instance = axios.create({
-      baseURL: 'https://localhost:3001',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`
-      }
-    });
-
-    instance.get('/user/profile')
-      .then(response => {
-        // procesar la respuesta exitosa
-        console.log('soy la rta', response);
-      })
-      .catch(error => {
-        // manejar el error de la petición
-        console.log('soy el error', error);
-      });
+    navigate('/perfil');
   };
+
 
   return (
     <form onSubmit={handleSubmit} className='w-full max-w-sm mx-auto mt-6'>

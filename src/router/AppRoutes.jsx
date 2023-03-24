@@ -10,9 +10,9 @@ import { DetailScreen } from '../views/DetailScreen';
 import { CreatePetScreen } from '../views/CreatePetScreen';
 
 export function AppRoutes () {
-  const user = useSelector(state => state.users);
+  const token = useSelector(state => state.login?.token);
   // const isAuth = user.user.token;
-  const isAdmin = user?.isAdmin;
+  const isAdmin = token;
   const routes = [
     {
       path: '/',
@@ -34,6 +34,11 @@ export function AppRoutes () {
       path: '/creacion-de-mascota',
       component: CreatePetScreen,
       public: isAdmin
+    },
+    {
+      path: '/perfil',
+      component: Profile,
+      public: isAdmin
     }
   ];
 
@@ -48,7 +53,6 @@ export function AppRoutes () {
       <Route path='*' element={<Error404 />} />
       <Route path='/ingresar' element={<LoginPage />} />
       <Route path='/registro' element={<RegisterUser />} />
-      <Route path='perfil' element={<Profile />} />
     </Routes>
   );
 };
