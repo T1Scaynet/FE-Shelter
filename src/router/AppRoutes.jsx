@@ -39,7 +39,7 @@ export function AppRoutes () {
     {
       path: '/adopta-una-mascota',
       component: AdoptionForm,
-      public: true,
+      public: true
     },
     {
       path: '/perfil',
