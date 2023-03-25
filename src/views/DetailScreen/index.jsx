@@ -53,7 +53,7 @@ export const DetailScreen = () => {
 
   return (
     <div className='flex justify-center items-center flex-col'>
-      <span className='flex justify-start items-center space-x-2 bg-[#EBE5F7] h-[4.875rem] w-full'>
+      <span className='flex justify-start items-center space-x-2 bg-[#FBF9FF] h-[4.875rem] w-full'>
         <Link
           to='/'
           className={linkStyle}
@@ -72,7 +72,7 @@ export const DetailScreen = () => {
           to={`/detalles/${pet._id}`}
           className={linkStyle}
         >
-          Detalles
+          {pet.name}
         </Link>
       </span>
 
@@ -130,7 +130,7 @@ export const DetailScreen = () => {
                 </span>
                 {/* <span className='flex flex-row text-[#7C58D3]'>Peso : <p className='text-[1.438rem] ml-[0.5rem]'>{pet.vaccine === true ? 'Si' : 'Ninguna'}</p></span> */}
                 <Link
-                  to='/donacion'
+                  to='/adopta-una-mascota'
                   className='rounded-[0.5rem] h-[4.375rem] w-[11.625rem] bg-[#7C58D3] hover:bg-[#5930b9] flex justify-center items-center mt-[3rem] ml-[3.125rem] text-[#FFFEFD] text-[1.5rem] font-extrabold transition-colors duration-500'
                 >
                   <img

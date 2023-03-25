@@ -1,6 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
-// import axios from 'axios';
 
 export const petSlice = createSlice({
   name: 'pets',
@@ -8,7 +7,7 @@ export const petSlice = createSlice({
     list: [],
     pagination: {
       totalPage: 1,
-      currentPage: 1,
+      currentPage: 1
     },
     filters: {
       size: '',
@@ -17,8 +16,8 @@ export const petSlice = createSlice({
       sort: '',
       totalPages: 1,
       currentPage: 1,
-      search: '',
-    },
+      search: ''
+    }
   },
   reducers: {
     // Acá van los reducers
@@ -32,16 +31,14 @@ export const petSlice = createSlice({
 
     setFilters: (state, action) => {
       state.filters = action.payload;
-    },
-  },
+    }
+  }
 });
 
 export const {
   setPetsList,
-  setPetByGenreList,
-  setPetByTypeList,
   setPagination,
-  setFilters,
+  setFilters
 } = petSlice.actions;
 
 export default petSlice.reducer;
@@ -53,12 +50,12 @@ export const getAllPets = ({
   genre = '',
   sort = '',
   currentPage = '',
-  search = '',
+  search = ''
 }) => {
   return async function (dispatch) {
     axios
       .get(
-        `http://localhost:3001/pet?search=${search}&page=${currentPage}&size=${size}&type=${type}&genre=${genre}&sort=${sort}`,
+        `/pet?search=${search}&page=${currentPage}&size=${size}&type=${type}&genre=${genre}&sort=${sort}`
       )
       .then((r) => r.data)
       .then((response) => {
@@ -66,8 +63,8 @@ export const getAllPets = ({
         dispatch(
           setPagination({
             totalPages: response.totalPages,
-            currentPage: response.currentPage,
-          }),
+            currentPage: response.currentPage
+          })
         );
       })
       .catch(() => dispatch(setPetsList({})));
@@ -78,8 +75,8 @@ export const PostPet = (payload) => {
   return async function () {
     try {
       const sendaxios = await axios.post(
-        'http://localhost:3001/pet/create',
-        payload,
+        '/pet/create',
+        payload
       );
 
       return sendaxios;

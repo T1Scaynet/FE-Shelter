@@ -75,7 +75,7 @@ export const DisplayFive = () => {
       id='nosotros'
       className='h-[39.75rem] w-[100%] flex flex-col items-center justify-center'
     >
-      <div className='flex flex-col items-center justify-center mb-[3.125rem]'>
+      <div c>
         <p className='text-[#7C58D3] text-[0.787rem]'>
           EQUIPO DE CUIDADO DE MASCOTAS
         </p>

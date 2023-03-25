@@ -20,8 +20,10 @@ export const Search = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input type='text' placeholder='Buscar por Género, Tamaño o Tipo' value={value} onChange={handleChange} className='bg-[#fbf9ff] appearance-none border-2 border-[#fbf9ff] rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500' />
-    </form>
+    <div className='my-5 w-96'>
+      <form onSubmit={handleSubmit}>
+        <input type='text' placeholder='Buscar por Género, Tamaño o Tipo' value={value} onChange={handleChange} className='bg-[#fbf9ff] appearance-none border-2 border-[#e1dee7] rounded-md w-full py-2 px-2 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500' />
+      </form>
+    </div>
   );
 };

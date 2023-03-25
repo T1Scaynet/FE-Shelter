@@ -2,15 +2,19 @@ import { Route, Routes } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { Home } from '../views/Home';
 import { PetsList } from '../views/PetsList';
+import { Error404 } from '../views/Error404';
+import LoginPage from '../components/Login/index';
+import RegisterUser from '../components/Login/LoginRegister/index';
+import Profile from '../components/Login/Profile';
 import { DetailScreen } from '../views/DetailScreen';
-import Error404 from '../views/Error404';
 import { CreatePetScreen } from '../views/CreatePetScreen';
 import { Contact } from '../views/Contact';
+import { AdoptionForm } from '../views/AdoptionForm';
 
 export function AppRoutes () {
-  const user = useSelector(state => state.users);
+  const token = useSelector(state => state.login?.token);
   // const isAuth = user.user.token;
-  const isAdmin = user?.isAdmin;
+  const isAdmin = token;
   const routes = [
     {
       path: '/',
@@ -36,6 +40,16 @@ export function AppRoutes () {
     {
       path: '/creacion-de-mascota',
       component: CreatePetScreen,
+      public: true
+    },
+    {
+      path: '/adopta-una-mascota',
+      component: AdoptionForm,
+      public: true
+    },
+    {
+      path: '/perfil',
+      component: Profile,
       public: isAdmin
     }
   ];
@@ -49,6 +63,8 @@ export function AppRoutes () {
         ))
       }
       <Route path='*' element={<Error404 />} />
+      <Route path='/ingresar' element={<LoginPage />} />
+      <Route path='/registro' element={<RegisterUser />} />
     </Routes>
   );
 };

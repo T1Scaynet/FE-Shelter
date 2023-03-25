@@ -24,7 +24,7 @@ export const DisplayOne = () => {
           </h1>
         </div>
 
-        <Link to="/">
+        <Link to="/donaciones">
           <div className="button flex items-center bg-[#7C58D3] h-[66px] px-[20px] w-[193px] rounded-md hover:cursor-pointer hover:bg-[#5930b9] transition-colors duration-500">
             <img src={footprint} alt="footprint" />
             <span className="ml-[30px] text-white font-bold text-2xl">
@@ -47,7 +47,11 @@ export const DisplayOne = () => {
         alt="dogspng"
         className="absolute left-[15%] h-[400px] bottom-[7rem]"
       />
-      <img src={dogTwo} alt="perro mestizo" className="absolute left-[6%] h-[400px] bottom-[8rem]" />
+      <img
+        src={dogTwo}
+        alt="perro mestizo"
+        className="absolute left-[6%] h-[400px] bottom-[8rem]"
+      />
       <img
         src={cat}
         alt="catpng"
