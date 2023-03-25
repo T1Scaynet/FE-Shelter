@@ -5,6 +5,7 @@ import { PetsList } from '../views/PetsList';
 import { DetailScreen } from '../views/DetailScreen';
 import Error404 from '../views/Error404';
 import { CreatePetScreen } from '../views/CreatePetScreen';
+import { Contact } from '../views/Contact';
 
 export function AppRoutes () {
   const user = useSelector(state => state.users);
@@ -14,6 +15,11 @@ export function AppRoutes () {
     {
       path: '/',
       component: Home,
+      public: true
+    },
+    {
+      path: '/contacto',
+      component: Contact,
       public: true
     },
     {
