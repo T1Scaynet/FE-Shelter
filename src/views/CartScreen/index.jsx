@@ -11,7 +11,7 @@ import {
   removeFromCart,
 } from '../../state/features/cartSlice';
 import './index.css';
-import { MercadoPago } from '../DonationsScreen/MercadoPago';
+// import { MercadoPago } from '../DonationsScreen/MercadoPago';
 import axios from 'axios';
 
 export const CartScreen = () => {
@@ -46,6 +46,7 @@ export const CartScreen = () => {
       .then((res) => (window.location.href = res.data.body.init_point));
 
     console.log(myId);
+    setDonating(false);
   };
 
   return (
