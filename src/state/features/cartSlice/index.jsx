@@ -6,6 +6,7 @@ const Toast = Swal.mixin({
   toast: true,
   position: 'bottom-left',
   showConfirmButton: false,
+  background: '#fffefd',
   timer: 2000,
   timerProgressBar: true,
   didOpen: (toast) => {
@@ -79,19 +80,9 @@ const cartSlice = createSlice({
         );
 
         state.cartItems = nextCartItems;
-        Swal.fire({
-          toast: true,
+        Toast.fire({
           icon: 'info',
-          title: `${action.payload.title} eliminado del carrito`,
-
-          position: 'bottom',
-          showConfirmButton: false,
-          timer: 3000,
-          timerProgressBar: true,
-          didOpen: (toast) => {
-            toast.addEventListener('mouseenter', Swal.stopTimer);
-            toast.addEventListener('mouseleave', Swal.resumeTimer);
-          },
+          title: ` ${action.payload.title} eliminado del carrito`,
         });
       }
       updateLocalStorage(state);
