@@ -38,7 +38,7 @@ export const useForm = (initialForm, validateForm) => {
     const { name, value } = e.target;
     setForm({
       ...form,
-      [name]: value
+      [name]: value,
     });
     setErrors(validateForm(form));
   };
@@ -68,18 +68,17 @@ export const useForm = (initialForm, validateForm) => {
           navigate('/');
         }
       });
-      
-    if (Object.keys(errors).length !== 0) {
-      window.alert(
-        'Existen errores. Por favor introduzca los datos correctamente'
-      );
 
-    } else {
-      showModal('errorform');
+      if (Object.keys(errors).length !== 0) {
+        window.alert(
+          'Existen errores. Por favor introduzca los datos correctamente',
+        );
+      } else {
+        showModal('errorform');
+      }
+      setLoading(false);
     }
-    setLoading(false);
   };
-
   return {
     form,
     errors,
