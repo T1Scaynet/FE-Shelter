@@ -10,7 +10,7 @@ import axios from 'axios';
 
 const token = localStorage.getItem('token');
 
-axios.defaults.baseURL = 'http://localhost:3001';
+axios.defaults.baseURL = import.meta.env.VITE_REACT_APP_URL_BACKEND;
 axios.defaults.headers.common['x-access-token'] = token || '';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
