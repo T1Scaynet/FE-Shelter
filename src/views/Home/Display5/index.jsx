@@ -35,7 +35,7 @@ const profiles = [
   },
   {
     id: 5,
-    name: 'Estanislao',
+    name: 'Estanilao',
     position: 'FrontEnd Team',
     image: profile3
   },
@@ -47,19 +47,19 @@ const profiles = [
   },
   {
     id: 7,
-    name: 'Joaquín',
+    name: 'Joaquin',
     position: 'BackEnd Team',
     image: profile1
   },
   {
     id: 8,
-    name: 'Iván',
+    name: 'Ivan',
     position: 'FrontEnd Team',
     image: profile3
   }
 ];
 
-export const DisplayFive = () => {
+export const Display5 = () => {
   const settings = {
     dots: true,
     lazyLoad: true,
@@ -75,7 +75,7 @@ export const DisplayFive = () => {
       id='nosotros'
       className='h-[39.75rem] w-[100%] flex flex-col items-center justify-center'
     >
-      <div c>
+      <div className='flex flex-col items-center justify-center mb-[3.125rem]'>
         <p className='text-[#7C58D3] text-[0.787rem]'>
           EQUIPO DE CUIDADO DE MASCOTAS
         </p>

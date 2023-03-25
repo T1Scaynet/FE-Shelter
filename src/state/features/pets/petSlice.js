@@ -55,7 +55,7 @@ export const getAllPets = ({
   return async function (dispatch) {
     axios
       .get(
-        `http://localhost:3001/pet?search=${search}&page=${currentPage}&size=${size}&type=${type}&genre=${genre}&sort=${sort}`
+        `/pet?search=${search}&page=${currentPage}&size=${size}&type=${type}&genre=${genre}&sort=${sort}`
       )
       .then((r) => r.data)
       .then((response) => {
@@ -75,7 +75,7 @@ export const PostPet = (payload) => {
   return async function () {
     try {
       const sendaxios = await axios.post(
-        'http://localhost:3001/pet/create',
+        '/pet/create',
         payload
       );
 

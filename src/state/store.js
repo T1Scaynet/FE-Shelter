@@ -6,6 +6,8 @@ import petDetails from './features/details/detailSlice';
 import errorSlice from './features/error/errorSlice';
 import top from './features/top/topSlice';
 import users from './features/users/userSlice';
+import comments from './features/comments/commentsSlice';
+import login from './features/login/loginSlice';
 
 const persistConfig = {
   key: 'root',
@@ -17,7 +19,9 @@ const rootReducer = combineReducers({
   pets,
   petDetails,
   error: errorSlice,
-  top
+  top,
+  comments,
+  login
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
