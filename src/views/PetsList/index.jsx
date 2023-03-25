@@ -55,7 +55,7 @@ export const PetsList = () => {
   };
 
   useEffect(() => {
-    dispatch(getAllPets(INITIAL_STATE));
+    dispatch(getAllPets(filters));
     window.scrollTo(0, 0);
   }, [dispatch]);
 
