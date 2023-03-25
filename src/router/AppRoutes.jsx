@@ -8,6 +8,7 @@ import RegisterUser from '../components/Login/LoginRegister/index';
 import Profile from '../components/Login/Profile';
 import { DetailScreen } from '../views/DetailScreen';
 import { CreatePetScreen } from '../views/CreatePetScreen';
+import { Contact } from '../views/Contact';
 import { AdoptionForm } from '../views/AdoptionForm';
 
 export function AppRoutes () {
@@ -18,6 +19,11 @@ export function AppRoutes () {
     {
       path: '/',
       component: Home,
+      public: true
+    },
+    {
+      path: '/contacto',
+      component: Contact,
       public: true
     },
     {
