@@ -18,18 +18,18 @@ export const useForm = (initialForm, validateForm) => {
       Swal.fire({
         icon: 'success',
         title: 'Mascota creada con éxito',
-        timer: '3000',
+        timer: '3000'
       });
     } else if (res === 'errorform') {
       Swal.fire({
         icon: 'error',
-        title: 'Ingrese los datos correctamente',
+        title: 'Ingrese los datos correctamente'
       });
     } else if (res === 'errorserver') {
       Swal.fire({
         icon: 'error',
         title: 'Ooops',
-        text: 'Servidor no responde, contacte con el equipo de desarrollo',
+        text: 'Servidor no responde, contacte con el equipo de desarrollo'
       });
     }
   };
@@ -38,7 +38,7 @@ export const useForm = (initialForm, validateForm) => {
     const { name, value } = e.target;
     setForm({
       ...form,
-      [name]: value,
+      [name]: value
     });
     setErrors(validateForm(form));
   };
@@ -52,9 +52,9 @@ export const useForm = (initialForm, validateForm) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setLoading(true);
 
     setErrors(validateForm(form));
+    setLoading(false);
     if (Object.keys(errors).length === 0) {
       dispatch(PostPet(form)).then((res) => {
         if (res.status === 200 || res.status === 201) {
@@ -71,13 +71,13 @@ export const useForm = (initialForm, validateForm) => {
 
       if (Object.keys(errors).length !== 0) {
         window.alert(
-          'Existen errores. Por favor introduzca los datos correctamente',
+          'Existen errores. Por favor introduzca los datos correctamente'
         );
       } else {
         showModal('errorform');
       }
       setLoading(false);
-    }
+    };
   };
   return {
     form,
@@ -85,8 +85,8 @@ export const useForm = (initialForm, validateForm) => {
     handleChange,
     handleBlur,
     handleSubmit,
-    loading,
-    // loading,
-    // response,
+    loading
+  // loading,
+  // response,
   };
 };
