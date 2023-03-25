@@ -1,6 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
-// import axios from 'axios';
 
 export const petSlice = createSlice({
   name: 'pets',
@@ -38,8 +37,6 @@ export const petSlice = createSlice({
 
 export const {
   setPetsList,
-  setPetByGenreList,
-  setPetByTypeList,
   setPagination,
   setFilters
 } = petSlice.actions;
@@ -62,7 +59,6 @@ export const getAllPets = ({
       )
       .then((r) => r.data)
       .then((response) => {
-        console.log("aslkjdaksjdklsjkdjkldsjka",response)
         dispatch(setPetsList(response.pets));
         dispatch(
           setPagination({

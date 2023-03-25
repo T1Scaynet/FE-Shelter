@@ -70,7 +70,7 @@ export const loginUser = () => {
 export const loginRegister = (formValues) => async (dispatch) => {
   dispatch({ type: 'registering' });
   try {
-    const res = await axios.post('http://localhost:3001/user/register', formValues);
+    const res = await axios.post('/user/register', formValues);
     dispatch(registerSuccess(res.data));
   } catch (err) {
     dispatch(registerFailure(err.response.data.msg));

@@ -8,6 +8,7 @@ import RegisterUser from '../components/Login/LoginRegister/index';
 import Profile from '../components/Login/Profile';
 import { DetailScreen } from '../views/DetailScreen';
 import { CreatePetScreen } from '../views/CreatePetScreen';
+import { AdoptionForm } from '../views/AdoptionForm';
 
 export function AppRoutes () {
   const token = useSelector(state => state.login?.token);
@@ -33,7 +34,12 @@ export function AppRoutes () {
     {
       path: '/creacion-de-mascota',
       component: CreatePetScreen,
-      public: isAdmin
+      public: true
+    },
+    {
+      path: '/adopta-una-mascota',
+      component: AdoptionForm,
+      public: true
     },
     {
       path: '/perfil',
