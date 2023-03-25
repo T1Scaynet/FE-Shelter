@@ -9,7 +9,7 @@ export const Pagination = ({ currentPage, totalPages, onPageChange }) => {
   }
 
   return (
-    <nav className='w-full flex justify-center mb-6 mt-24'>
+    <nav className='w-full flex justify-center my-12'>
       <ul className=' w-[300px] pagination flex justify-between '>
         <li
           className={`${

@@ -104,20 +104,22 @@ export const PetsList = () => {
           className='absolute bottom-0'
         />
       </section>
-
-      <section className='h-full w-[90%] 2xl:w-[80%] m-auto my-10 rounded-md relative flex items-center flex-col'>
+      <section className='mt-12 h-full w-[90%] 2xl:w-[80%] m-auto'>
         <Search />
-        <div className='flex justify-between'>
-          <Cards pets={pets} />
-          <div className='w-[15%] h-[30rem] border-[1px] border-[#EBE5F7] rounded-md flex flex-col items-center sticky top-8 py-2 space-y-4'>
-            <h1 className='text-xl font-bold'>Filtros</h1>
+        <div>
+          <div className='flex justify-between'>
+            <Cards pets={pets} />
+            <div className='w-[15%] h-[30rem] border-[1px] border-[#EBE5F7] rounded-md flex flex-col items-center sticky top-8 py-2 space-y-4'>
+              <h1 className='text-xl font-bold'>Filtros</h1>
 
-            <CheckBox title='Ordenar' param='sort' optionOne='A - Z' optionTwo='Z - A' handleFilter={handleFilter} filters={filters} />
-            <CheckBox title='Géneros' param='genre' optionOne='Hembra' optionTwo='Macho' handleFilter={handleFilter} filters={filters} />
-            <CheckBox title='Tamaños' param='size' optionOne='Grande' optionTwo='Mediano' optionThree='Chico' handleFilter={handleFilter} filters={filters} />
-            <CheckBox title='Tipos' param='type' optionOne='Gato' optionTwo='Perro' handleFilter={handleFilter} filters={filters} />
+              <CheckBox title='Ordenar' param='sort' optionOne='A - Z' optionTwo='Z - A' handleFilter={handleFilter} filters={filters} />
+              <CheckBox title='Géneros' param='genre' optionOne='Hembra' optionTwo='Macho' handleFilter={handleFilter} filters={filters} />
+              <CheckBox title='Tamaños' param='size' optionOne='Grande' optionTwo='Mediano' optionThree='Chico' handleFilter={handleFilter} filters={filters} />
+              <CheckBox title='Tipos' param='type' optionOne='Gato' optionTwo='Perro' handleFilter={handleFilter} filters={filters} />
 
-            <button onClick={() => handleFilter()} className='bg-[#7C58D3] text-[white] w-32 h-8 rounded-md hover:bg-[#FFDA47] hover:text-[#0E081E]'>Limpiar filtros</button>
+              <button onClick={() => handleFilter()} className='bg-[#7C58D3] text-[white] w-32 h-8 rounded-md hover:bg-[#FFDA47] hover:text-[#0E081E]'>Limpiar filtros</button>
+            </div>
+
           </div>
 
         </div>

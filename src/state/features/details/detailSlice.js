@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import axios from 'axios';
 
 export const detailSlice = createSlice({
   name: 'petDetails',
@@ -7,10 +8,16 @@ export const detailSlice = createSlice({
   },
   reducers: {
     // Acá van los reducers
-    setDetailList: (state, { payload }) => {
+    setDetailList: (state, action) => {
       return {
         ...state.value,
-        value: payload === undefined ? undefined : payload.pet
+        value: action.payload
+      };
+    },
+    clearDetailList: state => {
+      return {
+        ...state.value,
+        value: undefined
       };
     }
   }
@@ -26,8 +33,8 @@ export const getDetailById = (id) => {
   return async function (dispatch) {
     if (id) {
       try {
-        const r = await fetch(urlDetail);
-        const data = await r.json();
+        const r = await axios.get(urlDetail);
+        const data = r.data.pet;
         await dispatch(setDetailList(data));
       } catch (error) {
         dispatch(setDetailList(null));
