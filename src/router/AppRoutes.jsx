@@ -5,6 +5,7 @@ import { PetsList } from '../views/PetsList';
 import { DetailScreen } from '../views/DetailScreen';
 import Error404 from '../views/Error404';
 import { CreatePetScreen } from '../views/CreatePetScreen';
+import { AdoptionForm } from '../views/AdoptionForm';
 
 export function AppRoutes () {
   const user = useSelector(state => state.users);
@@ -30,7 +31,12 @@ export function AppRoutes () {
     {
       path: '/creacion-de-mascota',
       component: CreatePetScreen,
-      public: isAdmin
+      public: true
+    },
+    {
+      path: '/adopta-una-mascota',
+      component: AdoptionForm,
+      public: true
     }
   ];
 
