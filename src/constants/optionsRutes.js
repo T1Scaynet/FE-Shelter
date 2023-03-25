@@ -14,5 +14,9 @@ export const options = [
   {
     rute: '/listado',
     window: 'Adoptar'
+  },
+  {
+    rute: '/contacto',
+    window: 'Contacto'
   }
 ];
