@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 export const AdoptionForm = () => {
   const dispatch = useDispatch();
   const selectedPet = useSelector((state) => state.petDetails);
-  console.log({ selectedPet });
+  // console.log({ selectedPet });
   return (
     <div className='w-full h-full flex flex-col justify-center mt-4'>
       <h1 className=' h-[10%] text-center font-bold text-3xl'>Completá los datos para que nos contactemos con los pasos a seguir</h1>
