@@ -47,7 +47,7 @@ const cartSlice = createSlice({
       } else {
         const tempProduct = { ...action.payload, cartQuantity: 1 };
         state.cartItems.push(tempProduct);
-        console.log(action.payload);
+        // console.log(action.payload);
         Toast.fire({
           icon: 'success',
           title: `${action.payload.title} agregado al carrito`,
