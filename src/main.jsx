@@ -8,10 +8,7 @@ import App from './App';
 import './index.css';
 import axios from 'axios';
 
-const token = localStorage.getItem('token');
-
 axios.defaults.baseURL = import.meta.env.VITE_REACT_APP_URL_BACKEND;
-axios.defaults.headers.common['x-access-token'] = token || '';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
