@@ -9,8 +9,8 @@ export const Display2 = () => {
   const dispatch = useDispatch();
   const topList = useSelector((state) => state.top);
   const top = topList.list;
-  console.log(top);
-  console.log(topList.list);
+  // console.log(top);
+  // console.log(topList.list);
 
   useEffect(() => {
     dispatch(getTopList());

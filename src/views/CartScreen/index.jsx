@@ -45,7 +45,7 @@ export const CartScreen = () => {
       .post('http://localhost:3001/payment', cart.cartItems[0])
       .then((res) => (window.location.href = res.data.body.init_point));
 
-    console.log(myId);
+    // console.log(myId);
     setDonating(false);
   };
 

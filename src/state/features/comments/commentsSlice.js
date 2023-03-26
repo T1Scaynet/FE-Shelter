@@ -25,7 +25,7 @@ export const getCommentsList = () => {
     axios.get(`/comment`)
       .then((r) => r.data)
       .then((response) => {
-        console.log("aslkjdaksjdklsjkdjkldsjka",response)
+        // console.log("aslkjdaksjdklsjkdjkldsjka",response)
         dispatch(setCommentsList(response));
 
       })

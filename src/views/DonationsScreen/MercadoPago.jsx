@@ -8,7 +8,7 @@ export const MercadoPago = ({ product }) => {
   const [preferenceId, setPreferenceId] = useState(null);
 
   useEffect(() => {
-    console.log(product);
+    // console.log(product);
     axios.post('http://localhost:3001/payment', product).then((res) => {
       setPreferenceId(res.data.body.id);
     });
