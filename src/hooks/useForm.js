@@ -34,11 +34,10 @@ export const useForm = (initialForm, validateForm) => {
     }
   };
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
+  const handleChange = ({ target }) => {
     setForm({
       ...form,
-      [name]: value
+      [target.name]: target.value
     });
     setErrors(validateForm(form));
   };

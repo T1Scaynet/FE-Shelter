@@ -20,6 +20,7 @@ export const DetailScreen = () => {
   const dispatch = useDispatch();
   const pet = useSelector((state) => state.petDetails);
   const [galery, setGalery] = useState('');
+  console.log({ galery });
 
   const linkStyle = 'font-bold ml-[12.813rem] text-[#7C58D3] text-[0.9rem]';
 
@@ -32,7 +33,7 @@ export const DetailScreen = () => {
   }, [dispatch, id]);
 
   const settingsVertical = {
-    className: 'bg-[#FBF9FF] w-[10.188rem] h-[36.063rem]',
+    className: 'bg-[#FBF9FF] w-[10.188rem] h-[31rem]',
     dots: true,
     infinite: true,
     slidesToShow: 3,
@@ -90,12 +91,12 @@ export const DetailScreen = () => {
             <Slider {...settingsVertical}>
               {pet.galery?.map((img, i) => (
                 <div key={i}>
-                  <img src={img} alt='pet' className='object-cover rounded-[0.5rem] mt-[4rem] cursor-pointer' onClick={() => handleChange(img)} />
+                  <img src={img} alt='pet' className='object-cover rounded-[0.5rem] cursor-pointer' onClick={() => handleChange(img)} />
                 </div>
               ))}
             </Slider>
-            <div className='bg-[#FBF9FF] w-[31.313rem] h-[36.063rem] flex items-center justify-center rounded-md'>
-              <img src={galery.length === 0 ? pet.image : galery} alt={pet.image} className='h-96 rounded-md object-cover' />
+            <div className='bg-[#FBF9FF] w-[31.313rem] h-[31rem] flex items-center justify-center rounded-md'>
+              <img src={pet.image ? pet.image : galery || pet.galery?.[0]} alt={pet.image} className='h-96 rounded-md object-cover bg-slate-700' />
             </div>
             <div className='flex flex-col items-start w-[20.938rem]'>
               <h4 className='text-[4.125rem] font-bold'>{pet.name}</h4>
@@ -112,7 +113,7 @@ export const DetailScreen = () => {
                 <span className='flex flex-row items-center mt-[0.9rem] text-[#7C58D3]'>
                   <img className='mr-[0.5rem]' src={weight} alt='icon' />
                   Peso :{' '}
-                  <p className='text-[1.438rem] ml-[0.5rem]'>{pet.weight}</p>
+                  <p className='text-[1.438rem] ml-[0.5rem]'>{pet.weight} kg</p>
                 </span>
                 <span className='flex flex-row items-center mt-[0.9rem] text-[#7C58D3]'>
                   <img className='mr-[0.5rem]' src={vac} alt='icon' />

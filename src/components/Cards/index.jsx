@@ -19,6 +19,7 @@ export const Cards = ({ pets }) => {
                     size={p.size}
                     age={p.age}
                     image={p.image}
+                    galery={p.galery}
                     history={p.history}
                     db='true'
                   />
