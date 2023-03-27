@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 
 export const NavBar = () => {
   const { cartTotalQuantity } = useSelector((state) => state.cart);
+  const userLogged = useSelector((state) => state.login.userLogged.token);
 
   return (
     <nav className='bg-[#FFFEFD] h-[6.1rem] flex items-center '>
@@ -38,34 +39,33 @@ export const NavBar = () => {
           </div>
           {/* Sign up */}
           <div className='flex-shrink-0 flex items-center'>
-            <button className='flex items-center bg-transparent text-[#0E081E] font-bold hover:bg-[#7C58D3] hover:text-white py-2 px-4 border border-[#7C58D3] rounded shadow transition duration-300 ease-in-out focus:outline-none'>
-              Ingresar
-              <img
-                src={signUp}
-                alt='acceso'
-                className='w-4 h-4 ml-2 text-purple-500 hover:filter hover:hue-rotate-0'
-              />
-            </button>
+            {userLogged
+              ? (
+                <a href='/perfil'>Mi perfil</a>
+                )
+              : (
+                <a
+                  href='/ingresar'
+                  className='flex items-center bg-transparent text-[#0E081E] font-bold hover:bg-[#7C58D3] hover:text-white py-2 px-4 border border-[#7C58D3] rounded shadow transition duration-300 ease-in-out focus:outline-none'
+                >
+                  Ingresar
+                  <img
+                    src={signUp}
+                    alt='acceso'
+                    className='w-4 h-4 ml-2 text-purple-500 hover:filter hover:hue-rotate-0'
+                  />
+                </a>
+                )}
           </div>
 
-          <div className='flex justify-center items-center ml-6 font-medium'>
-            <Link to='/carrito' className='flex items-center justify-center'>
-              <i className='bx bx-shopping-bag  text-[32px] text-[#7e5ad3] ' />
-              <span>{cartTotalQuantity}</span>
-            </Link>
-          </div>
-          {/* <div className='flex-shrink-0 flex items-center'>
-            {userLogged
-              ? <Profile />
-              : <button className='flex items-center bg-transparent text-[#0E081E] font-bold hover:bg-[#7C58D3] hover:text-white py-2 px-4 border border-[#7C58D3] rounded shadow transition duration-300 ease-in-out focus:outline-none'>
-                <a href='/ingresar'>Ingresar</a>
-                <img
-                  src={signUp}
-                  alt='acceso'
-                  className='w-4 h-4 ml-2 text-purple-500 hover:filter hover:hue-rotate-0'
-                />
-                </button>}
-          </div> */}
+          {userLogged && (
+            <div className='flex justify-center items-center ml-6 font-medium'>
+              <Link to='/carrito' className='flex items-center justify-center'>
+                <i className='bx bx-shopping-bag  text-[32px] text-[#7e5ad3] ' />
+                <span>{cartTotalQuantity}</span>
+              </Link>
+            </div>
+          )}
           {/* Empty space to keep the links centered */}
           <div className='w-1/12' />
         </div>
