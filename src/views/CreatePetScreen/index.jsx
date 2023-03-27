@@ -1,13 +1,15 @@
 /* eslint-disable prefer-regex-literals */
 import { useForm } from '../../hooks/useForm';
+import Dropzone from 'react-dropzone';
+import { Link } from 'react-router-dom';
 import puntito from '../../assets/PetsList/PuntitoRosa.svg';
 import spinner from '../../assets/CreatePet/spinner.gif';
 import './styles.css';
-import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import axios from 'axios';
 
 const initialForm = {
   name: '',
-  image: '',
   vaccine: '',
   disability: '',
   age: '',
@@ -25,7 +27,7 @@ const initialForm = {
 
 const validationsForm = (form) => {
   const noNumbersValidation = /^\D+$/;
-  const urlVal = new RegExp(/^(ftp|http|https):[^ "]+$/);
+  // const urlVal = new RegExp(/^(ftp|http|https):[^ "]+$/);
   const numberValidation = new RegExp('^[0-9]+$', 'i');
 
   const errors = {};
@@ -41,9 +43,9 @@ const validationsForm = (form) => {
 
   // image url validation
 
-  if (!urlVal.test(form.image)) {
-    errors.image = 'Debe ingresar una URL válida';
-  }
+  // if (!urlVal.test(form.image)) {
+  //   errors.image = 'Debe ingresar una URL válida';
+  // }
 
   if (!form.vaccine.trim()) {
     errors.vaccine = "El campo 'Vacunas' es requerido";
@@ -128,9 +130,62 @@ const validationsForm = (form) => {
 };
 
 export const CreatePetScreen = () => {
-  const { form, errors, handleChange, handleBlur, handleSubmit, loading } =
-    useForm(initialForm, validationsForm);
+  const { form, errors, handleChange, handleBlur, handleSubmit, loading } = useForm(initialForm, validationsForm);
+  const [uploadedImages, setUploadedImages] = useState({ array: [] });
+  const [loadinng, setLoadinng] = useState('');
 
+  const handleDrop = (files) => {
+    console.log({ files });
+    const uploaders = files.map(file => {
+      console.log({ file });
+      const formData = new FormData();
+      formData.append('file', file);
+      formData.append('tags', 'codeinfuse, medium, gist');
+      formData.append('upload_preset', 'Refugio');
+      formData.append('api_key', '612164242237861');
+      formData.append('timestamp', (Date.now() / 1000 | 0));
+      setLoadinng('true');
+      return axios.post('https://api.cloudinary.com/v1_1/drccfecwy/image/upload', formData, {
+        headers: { 'X-Requested-With': 'XMLHttpRequest' }
+      })
+        .then((response) => {
+          const data = response.data;
+          const fileURL = data.secure_url;
+          const specificArrayInObject = uploadedImages.array;
+          specificArrayInObject.push(fileURL);
+          const newObj = { ...uploadedImages, specificArrayInObject };
+          setUploadedImages(newObj);
+          console.log(uploadedImages);
+        });
+    });
+    axios.all(uploaders).then(() => {
+      setLoadinng('false');
+    });
+  };
+
+  const imagePreview = () => {
+    if (loadinng === 'true') {
+      return <h3>Cargando imagenes...</h3>;
+    };
+    if (loadinng === 'false') {
+      return (
+        <h3>
+          {
+            uploadedImages.array.length <= 0
+              ? 'No hay imagenes'
+              : uploadedImages.array.map((item, index) => (
+                <img
+                  key={index}
+                  alt='imagenes subidas'
+                  className='w-32 h-52 p-3 bg-cover'
+                  src={item}
+                />
+              ))
+          }
+        </h3>
+      );
+    };
+  };
   return (
     <>
       <div className='mt-14 pl-12'>
@@ -165,23 +220,6 @@ export const CreatePetScreen = () => {
                     onBlur={handleBlur}
                     onChange={handleChange}
                     value={form.name}
-                    required
-                  />
-                </div>
-                {/* IMAGE */}
-                <div className='createPetInputBox'>
-                  <span className='inputTitle'>Imagen</span>
-                  {errors.image && (
-                    <span className='errorMsg'>{errors.image} *</span>
-                  )}
-                  <input
-                    className='text'
-                    type='text'
-                    name='image'
-                    placeholder='Ingresa una imagen'
-                    onBlur={handleBlur}
-                    onChange={handleChange}
-                    value={form.image}
                     required
                   />
                 </div>
@@ -416,21 +454,40 @@ export const CreatePetScreen = () => {
                 </div>
               </div>
               {/* HISTORIA */}
-              <div className='createPetInputBox'>
-                <span className='inputTitle'>Historia</span>
-                {errors.history && (
-                  <span className='errorMsg'>{errors.history} *</span>
-                )}
-                <textarea
-                  className='petHistory'
-                  name='history'
-                  id=''
-                  style={{ resize: 'none' }}
-                  placeholder='Historia de la mascota...'
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  value={form.history}
-                />
+              <div className='flex justify-between'>
+                <div className='createPetInputBox'>
+                  <span className='inputTitle'>Historia</span>
+                  {errors.history && (
+                    <span className='errorMsg'>{errors.history} *</span>
+                  )}
+                  <textarea
+                    className='petHistory'
+                    name='history'
+                    id=''
+                    style={{ resize: 'none' }}
+                    placeholder='Historia de la mascota...'
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={form.history}
+                  />
+                </div>
+                <Dropzone
+                  className='bg-slate-600'
+                  onDrop={handleDrop}
+                  onChange={(e) => setUploadedImages(e.target.value)}
+                  value={uploadedImages}
+                >
+                  {({ getRootProps, getInputProps }) => (
+                    <section>
+                      <div {...getRootProps({ className: 'dropzone' })}>
+                        <input {...getInputProps()} />
+                        <img src='https://icongr.am/fontawesome/folder-open.svg?size=80&color=currentColor' alt='img de carpeta' />
+                        <p>Coloca tus imagenes aqui, o clickea para seleccionar</p>
+                      </div>
+                    </section>
+                  )}
+                </Dropzone>
+                {imagePreview()}
               </div>
               <div className='btn_container'>
                 <Link to='/'>

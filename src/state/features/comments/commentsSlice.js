@@ -5,7 +5,7 @@ import axios from 'axios';
 export const commentSlice = createSlice({
   name: 'comments',
   initialState: {
-    list: [],
+    list: []
   },
   reducers: {
     // Acá van los reducers
@@ -22,12 +22,10 @@ export default commentSlice.reducer;
 /// Acá abajo van lo que vendrian a ser las funciones del action (funciones asíncronas)
 export const getCommentsList = () => {
   return async function (dispatch) {
-    axios.get(`/comment`)
+    axios.get('/comment')
       .then((r) => r.data)
       .then((response) => {
-        // console.log("aslkjdaksjdklsjkdjkldsjka",response)
         dispatch(setCommentsList(response));
-
       })
       .catch(() => dispatch(setCommentsList({})));
   };
