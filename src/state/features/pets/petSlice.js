@@ -72,13 +72,16 @@ export const getAllPets = ({
 };
 
 export const PostPet = (payload) => {
-  return async function () {
+  return async function (_dispatch, getState) {
+    const currentState = getState().login;
     try {
-      const sendaxios = await axios.post(
+      console.log(currentState.token);
+      const instance = axios.create();
+      instance.defaults.headers.common['x-access-token'] = currentState.token;
+      const sendaxios = await instance.post(
         '/pet/create',
         payload
       );
-
       return sendaxios;
     } catch (error) {
       console.warn("Error al enviar datos en función 'PostPet'");

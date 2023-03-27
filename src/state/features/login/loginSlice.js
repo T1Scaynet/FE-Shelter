@@ -5,6 +5,7 @@ const loginSlice = createSlice({
   name: 'login',
   initialState: {
     user: [],
+    token: '',
     isAuthenticated: false,
     error: null,
     registering: false,
@@ -12,7 +13,8 @@ const loginSlice = createSlice({
   },
   reducers: {
     loginSuccessful: (state, action) => {
-      state.user = action.payload;
+      state.user = action.payload.user;
+      state.token = action.payload.token;
       state.isAuthenticated = true;
       state.userLogged = true;
       state.error = null;
@@ -52,7 +54,7 @@ export const loginUser = ({ email, password }) => {
       const user = await instance.get('/user/profile', {
         timeout: 5000
       });
-      dispatch(loginSuccessful(user.data.user));
+      dispatch(loginSuccessful({ token: data.token, user: user.data.user }));
     } catch (error) {
       dispatch(loginFailure(error.response.data.msg));
     }
