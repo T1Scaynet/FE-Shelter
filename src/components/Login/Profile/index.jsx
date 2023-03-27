@@ -9,7 +9,7 @@ export function Profile () {
   const dispatch = useDispatch();
   async function dataUser() {
     const response = await axios.get('/user/profile')
-    console.log(response.data)
+    // console.log(response.data)
     setUserData({name: response.data.user.name, email: response.data.user.email})
   }
   useEffect(()=>{

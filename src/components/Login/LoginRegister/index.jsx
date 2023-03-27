@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import { loginRegister } from '../../../state/features/login/loginSlice';
 
 function validate (input) {
@@ -24,14 +24,16 @@ function validate (input) {
 }
 
 function RegistrationForm () {
-  const history = useNavigate();
+  // const history = useNavigate();
   const dispatch = useDispatch();
   const [input, setInput] = useState({
     name: '',
     email: '',
     password: ''
   });
+
   const [errors, setErrors] = useState({ firstTry: true });
+
   const handleRegister = (e) => {
     e.preventDefault();
     dispatch(loginRegister(input));
@@ -43,6 +45,7 @@ function RegistrationForm () {
     window.alert('¡Se registro correctamente! Ingresa con tus credenciales');
     // history('/');
   };
+
   useEffect(() => {
     setErrors(
       validate({
@@ -50,13 +53,14 @@ function RegistrationForm () {
       })
     );
   }, [input]);
-  const handleInputChange = (event) => {
-    const { name, value } = event.target;
+
+  const handleInputChange = ({ target }) => {
     setInput({
       ...input,
-      [name]: value
+      [target.name]: target.value
     });
   };
+
   function handleCheckErrors (e) {
     e.preventDefault();
     setErrors(validate({
