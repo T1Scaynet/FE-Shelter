@@ -3,8 +3,32 @@
 // import { useGetAllProductsQuery } from '../../state/features/products/productsApi';
 import { DonationCard } from './DonationCard';
 import { donations } from '../../utils/products';
+import Swal from 'sweetalert2';
+import { useLocation } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { clearCart } from '../../state/features/cartSlice';
 
 export const DonationsScreen = () => {
+  const dispatch = useDispatch();
+
+  const { search } = useLocation();
+
+  const query = new URLSearchParams(search);
+  const status = query.get('collection_status');
+  if (status === 'rejected') {
+    Swal.fire({
+      icon: 'error',
+      title: 'La transacción ha sido rechazada',
+      timer: '2000',
+    });
+  } else if (status === 'approved') {
+    Swal.fire({
+      icon: 'success',
+      title: 'La transacción ha sido exitosa',
+      timer: '2000',
+    });
+    dispatch(clearCart());
+  }
   // const { data, error, isLoading } = useGetAllProductsQuery();
 
   return (
