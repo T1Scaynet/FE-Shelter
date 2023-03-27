@@ -51,9 +51,9 @@ const validationsForm = (form) => {
     errors.vaccine = "El campo 'Vacunas' es requerido";
   }
 
-  if (!form.disability.trim()) {
-    errors.disability = "El campo 'Discapacidad' es requerido";
-  }
+  // if (!form.disability.trim()) {
+  //   errors.disability = "El campo 'Discapacidad' es requerido";
+  // }
 
   // age validation
 
@@ -131,13 +131,10 @@ const validationsForm = (form) => {
 
 export const CreatePetScreen = () => {
   const { form, errors, handleChange, handleBlur, handleSubmit, loading } = useForm(initialForm, validationsForm);
-  const [uploadedImages, setUploadedImages] = useState({ array: [] });
   const [loadinng, setLoadinng] = useState('');
 
   const handleDrop = (files) => {
-    console.log({ files });
     const uploaders = files.map(file => {
-      console.log({ file });
       const formData = new FormData();
       formData.append('file', file);
       formData.append('tags', 'codeinfuse, medium, gist');
@@ -151,11 +148,12 @@ export const CreatePetScreen = () => {
         .then((response) => {
           const data = response.data;
           const fileURL = data.secure_url;
-          const specificArrayInObject = uploadedImages.array;
+          const specificArrayInObject = form.galery;
           specificArrayInObject.push(fileURL);
-          const newObj = { ...uploadedImages, specificArrayInObject };
-          setUploadedImages(newObj);
-          console.log(uploadedImages);
+          // console.log('array que envio', specificArrayInObject);
+          // const newObj = { ...uploadedImages, specificArrayInObject };
+          // setUploadedImages(newObj);
+          // console.log(uploadedImages);
         });
     });
     axios.all(uploaders).then(() => {
@@ -169,15 +167,15 @@ export const CreatePetScreen = () => {
     };
     if (loadinng === 'false') {
       return (
-        <h3>
+        <h3 className='flex'>
           {
-            uploadedImages.array.length <= 0
+            form.galery.length <= 0
               ? 'No hay imagenes'
-              : uploadedImages.array.map((item, index) => (
+              : form.galery.map((item, index) => (
                 <img
                   key={index}
                   alt='imagenes subidas'
-                  className='w-32 h-52 p-3 bg-cover'
+                  className='w-52 h-40 p-3 bg-cover'
                   src={item}
                 />
               ))
@@ -337,9 +335,9 @@ export const CreatePetScreen = () => {
                     onClick={handleBlur}
                   >
                     <option value=''>- - -</option>
-                    <option value='dog'>Perro</option>
-                    <option value='cat'>Gato</option>
-                    <option value='other'>Otro...</option>
+                    <option value='Perro'>Perro</option>
+                    <option value='Gato'>Gato</option>
+                    <option value='Otro'>Otro...</option>
                   </select>
                 </div>
                 {/* ESTADO */}
@@ -354,9 +352,9 @@ export const CreatePetScreen = () => {
                     onClick={handleBlur}
                   >
                     <option value=''>- - -</option>
-                    <option value='adopted'>Adoptado</option>
-                    <option value='available'>Disponible</option>
-                    <option value='fosterhome'>Hogar adoptivo</option>
+                    <option value='Adoptado'>Adoptado</option>
+                    <option value='Disponible'>Disponible</option>
+                    <option value='Hogar Adoptivo'>Hogar adoptivo</option>
                   </select>
                 </div>
                 {/* CASTRADO */}
@@ -471,23 +469,28 @@ export const CreatePetScreen = () => {
                     value={form.history}
                   />
                 </div>
-                <Dropzone
-                  className='bg-slate-600'
-                  onDrop={handleDrop}
-                  onChange={(e) => setUploadedImages(e.target.value)}
-                  value={uploadedImages}
-                >
-                  {({ getRootProps, getInputProps }) => (
-                    <section>
-                      <div {...getRootProps({ className: 'dropzone' })}>
-                        <input {...getInputProps()} />
-                        <img src='https://icongr.am/fontawesome/folder-open.svg?size=80&color=currentColor' alt='img de carpeta' />
-                        <p>Coloca tus imagenes aqui, o clickea para seleccionar</p>
-                      </div>
-                    </section>
-                  )}
-                </Dropzone>
-                {imagePreview()}
+                <div className='w-[60%] flex flex-col justify-center items-center'>
+                  <Dropzone
+                    name='galery'
+                    onDrop={handleDrop}
+                    onChange={(e) => handleChange(e.target.value)}
+                    onBlur={handleBlur}
+                    value={form.galery}
+                  >
+                    {({ getRootProps, getInputProps }) => (
+                      <section className=' cursor-pointer'>
+                        <div {...getRootProps()}>
+                          <input
+                            {...getInputProps()}
+                          />
+                          <img src='https://icongr.am/fontawesome/folder-open.svg?size=80&color=currentColor' alt='img de carpeta' />
+                          <p className='text-center'>Clickea para seleccionar tus imagenes</p>
+                        </div>
+                      </section>
+                    )}
+                  </Dropzone>
+                  {imagePreview()}
+                </div>
               </div>
               <div className='btn_container'>
                 <Link to='/'>
