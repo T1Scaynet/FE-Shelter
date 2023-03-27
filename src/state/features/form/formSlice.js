@@ -16,9 +16,12 @@ export const formSlice = createSlice({
 export default formSlice.reducer;
 
 export const PostForm = (payload) => {
-  return async function () {
+  return async function (_dispatch, getState) {
+    const currentState = getState().login;
     try {
-      const formAxios = await axios.post('/form', payload);
+      const instance = axios.create();
+      instance.defaults.headers.common['x-access-token'] = currentState.token;
+      const formAxios = await instance.post('/form', payload);
       return formAxios;
     } catch (error) {
       console.warn("Error al enviar datos en función 'PostPet'");
