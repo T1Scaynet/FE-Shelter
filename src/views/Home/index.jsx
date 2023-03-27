@@ -17,7 +17,7 @@ export const Home = () => {
       <Display1 />
       <Display2 />
       <Display3 />
-      <DisplayFour/>
+      <DisplayFour />
       <Display5 />
     </div>
   );

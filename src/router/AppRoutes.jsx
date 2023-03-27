@@ -13,7 +13,7 @@ import { AdoptionForm } from '../views/AdoptionForm';
 import { CartScreen } from '../views/CartScreen';
 import { DonationsScreen } from '../views/DonationsScreen';
 
-export function AppRoutes() {
+export function AppRoutes () {
   const token = useSelector((state) => state.login?.token);
   // const isAuth = user.user.token;
   const isAdmin = token;
@@ -21,49 +21,49 @@ export function AppRoutes() {
     {
       path: '/',
       component: Home,
-      public: true,
+      public: true
     },
     {
       path: '/contacto',
       component: Contact,
-      public: true,
+      public: true
     },
     {
       path: '/listado',
       component: PetsList,
       // public: !isAuth
-      public: true,
+      public: true
     },
     {
       path: '/detalles/:id',
       component: DetailScreen,
-      public: true,
+      public: true
     },
     {
       path: '/creacion-de-mascota',
       component: CreatePetScreen,
-      public: true,
+      public: true
     },
     {
       path: '/adopta-una-mascota',
       component: AdoptionForm,
-      public: true,
+      public: true
     },
     {
       path: '/perfil',
       component: Profile,
-      public: isAdmin,
+      public: isAdmin
     },
     {
       path: '/carrito',
       component: CartScreen,
-      public: true,
+      public: true
     },
     {
       path: '/donaciones',
       component: DonationsScreen,
-      public: true,
-    },
+      public: true
+    }
   ];
 
   return (
@@ -72,11 +72,11 @@ export function AppRoutes() {
         (r) =>
           r.public && (
             <Route key={r.path} path={r.path} element={<r.component />} />
-          ),
+          )
       )}
-      <Route path="*" element={<Error404 />} />
-      <Route path="/ingresar" element={<LoginPage />} />
-      <Route path="/registro" element={<RegisterUser />} />
+      <Route path='*' element={<Error404 />} />
+      <Route path='/ingresar' element={<LoginPage />} />
+      <Route path='/registro' element={<RegisterUser />} />
     </Routes>
   );
 }

@@ -8,7 +8,7 @@ import {
   clearCart,
   decreaseCart,
   getTotals,
-  removeFromCart,
+  removeFromCart
 } from '../../state/features/cartSlice';
 import './index.css';
 // import { MercadoPago } from '../DonationsScreen/MercadoPago';
