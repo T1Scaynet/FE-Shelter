@@ -63,6 +63,16 @@ export function AppRoutes () {
       path: '/donaciones',
       component: DonationsScreen,
       public: true
+    },
+    {
+      path: '/ingresar',
+      component: LoginPage,
+      public: true
+    },
+    {
+      path: '/registro',
+      component: RegisterUser,
+      public: true
     }
   ];
 
@@ -75,8 +85,6 @@ export function AppRoutes () {
           )
       )}
       <Route path='*' element={<Error404 />} />
-      <Route path='/ingresar' element={<LoginPage />} />
-      <Route path='/registro' element={<RegisterUser />} />
     </Routes>
   );
 }

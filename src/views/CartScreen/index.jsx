@@ -7,6 +7,7 @@ import {
   addToCart,
   clearCart,
   decreaseCart,
+  donation,
   getTotals,
   removeFromCart
 } from '../../state/features/cartSlice';
@@ -40,10 +41,13 @@ export const CartScreen = () => {
   };
 
   const handleDonations = async () => {
+    // const currentState = getState().login;
+    // console.log(currentState.token);
+    dispatch(donation(cart.cartItems[0]));
     setDonating(true);
-    const myId = await axios
-      .post('http://localhost:3001/payment', cart.cartItems[0])
-      .then((res) => (window.location.href = res.data.body.init_point));
+    // const myId = await axios
+    //   .post('/payment', cart.cartItems[0])
+    //   .then((res) => (window.location.href = res.data.body.init_point));
 
     // console.log(myId);
     setDonating(false);
