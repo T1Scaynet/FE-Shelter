@@ -63,6 +63,16 @@ export function AppRoutes () {
       path: '/donaciones',
       component: DonationsScreen,
       public: true
+    },
+    {
+      path: '/ingresar',
+      component: LoginPage,
+      public: true
+    },
+    {
+      path: '/registro',
+      component: RegisterUser,
+      public: true
     }
   ];
 
