@@ -1,13 +1,15 @@
 /* eslint-disable prefer-regex-literals */
 import { useForm } from '../../hooks/useForm';
+import Dropzone from 'react-dropzone';
+import { Link } from 'react-router-dom';
 import puntito from '../../assets/PetsList/PuntitoRosa.svg';
 import spinner from '../../assets/CreatePet/spinner.gif';
 import './styles.css';
-import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import axios from 'axios';
 
 const initialForm = {
   name: '',
-  image: '',
   vaccine: '',
   disability: '',
   age: '',
@@ -25,7 +27,7 @@ const initialForm = {
 
 const validationsForm = (form) => {
   const noNumbersValidation = /^\D+$/;
-  const urlVal = new RegExp(/^(ftp|http|https):[^ "]+$/);
+  // const urlVal = new RegExp(/^(ftp|http|https):[^ "]+$/);
   const numberValidation = new RegExp('^[0-9]+$', 'i');
 
   const errors = {};
@@ -41,17 +43,17 @@ const validationsForm = (form) => {
 
   // image url validation
 
-  if (!urlVal.test(form.image)) {
-    errors.image = 'Debe ingresar una URL válida';
-  }
+  // if (!urlVal.test(form.image)) {
+  //   errors.image = 'Debe ingresar una URL válida';
+  // }
 
   if (!form.vaccine.trim()) {
     errors.vaccine = "El campo 'Vacunas' es requerido";
   }
 
-  if (!form.disability.trim()) {
-    errors.disability = "El campo 'Discapacidad' es requerido";
-  }
+  // if (!form.disability.trim()) {
+  //   errors.disability = "El campo 'Discapacidad' es requerido";
+  // }
 
   // age validation
 
@@ -128,9 +130,60 @@ const validationsForm = (form) => {
 };
 
 export const CreatePetScreen = () => {
-  const { form, errors, handleChange, handleBlur, handleSubmit, loading } =
-    useForm(initialForm, validationsForm);
+  const { form, errors, handleChange, handleBlur, handleSubmit, loading } = useForm(initialForm, validationsForm);
+  const [loadinng, setLoadinng] = useState('');
 
+  const handleDrop = (files) => {
+    const uploaders = files.map(file => {
+      const formData = new FormData();
+      formData.append('file', file);
+      formData.append('tags', 'codeinfuse, medium, gist');
+      formData.append('upload_preset', 'Refugio');
+      formData.append('api_key', '612164242237861');
+      formData.append('timestamp', (Date.now() / 1000 | 0));
+      setLoadinng('true');
+      return axios.post('https://api.cloudinary.com/v1_1/drccfecwy/image/upload', formData, {
+        headers: { 'X-Requested-With': 'XMLHttpRequest' }
+      })
+        .then((response) => {
+          const data = response.data;
+          const fileURL = data.secure_url;
+          const specificArrayInObject = form.galery;
+          specificArrayInObject.push(fileURL);
+          // console.log('array que envio', specificArrayInObject);
+          // const newObj = { ...uploadedImages, specificArrayInObject };
+          // setUploadedImages(newObj);
+          // console.log(uploadedImages);
+        });
+    });
+    axios.all(uploaders).then(() => {
+      setLoadinng('false');
+    });
+  };
+
+  const imagePreview = () => {
+    if (loadinng === 'true') {
+      return <h3>Cargando imagenes...</h3>;
+    };
+    if (loadinng === 'false') {
+      return (
+        <h3 className='flex'>
+          {
+            form.galery.length <= 0
+              ? 'No hay imagenes'
+              : form.galery.map((item, index) => (
+                <img
+                  key={index}
+                  alt='imagenes subidas'
+                  className='w-52 h-40 p-3 bg-cover'
+                  src={item}
+                />
+              ))
+          }
+        </h3>
+      );
+    };
+  };
   return (
     <>
       <div className='mt-14 pl-12'>
@@ -165,23 +218,6 @@ export const CreatePetScreen = () => {
                     onBlur={handleBlur}
                     onChange={handleChange}
                     value={form.name}
-                    required
-                  />
-                </div>
-                {/* IMAGE */}
-                <div className='createPetInputBox'>
-                  <span className='inputTitle'>Imagen</span>
-                  {errors.image && (
-                    <span className='errorMsg'>{errors.image} *</span>
-                  )}
-                  <input
-                    className='text'
-                    type='text'
-                    name='image'
-                    placeholder='Ingresa una imagen'
-                    onBlur={handleBlur}
-                    onChange={handleChange}
-                    value={form.image}
                     required
                   />
                 </div>
@@ -299,9 +335,9 @@ export const CreatePetScreen = () => {
                     onClick={handleBlur}
                   >
                     <option value=''>- - -</option>
-                    <option value='dog'>Perro</option>
-                    <option value='cat'>Gato</option>
-                    <option value='other'>Otro...</option>
+                    <option value='Perro'>Perro</option>
+                    <option value='Gato'>Gato</option>
+                    <option value='Otro'>Otro...</option>
                   </select>
                 </div>
                 {/* ESTADO */}
@@ -316,9 +352,9 @@ export const CreatePetScreen = () => {
                     onClick={handleBlur}
                   >
                     <option value=''>- - -</option>
-                    <option value='adopted'>Adoptado</option>
-                    <option value='available'>Disponible</option>
-                    <option value='fosterhome'>Hogar adoptivo</option>
+                    <option value='Adoptado'>Adoptado</option>
+                    <option value='Disponible'>Disponible</option>
+                    <option value='Hogar Adoptivo'>Hogar adoptivo</option>
                   </select>
                 </div>
                 {/* CASTRADO */}
@@ -416,21 +452,45 @@ export const CreatePetScreen = () => {
                 </div>
               </div>
               {/* HISTORIA */}
-              <div className='createPetInputBox'>
-                <span className='inputTitle'>Historia</span>
-                {errors.history && (
-                  <span className='errorMsg'>{errors.history} *</span>
-                )}
-                <textarea
-                  className='petHistory'
-                  name='history'
-                  id=''
-                  style={{ resize: 'none' }}
-                  placeholder='Historia de la mascota...'
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  value={form.history}
-                />
+              <div className='flex justify-between'>
+                <div className='createPetInputBox'>
+                  <span className='inputTitle'>Historia</span>
+                  {errors.history && (
+                    <span className='errorMsg'>{errors.history} *</span>
+                  )}
+                  <textarea
+                    className='petHistory'
+                    name='history'
+                    id=''
+                    style={{ resize: 'none' }}
+                    placeholder='Historia de la mascota...'
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={form.history}
+                  />
+                </div>
+                <div className='w-[60%] flex flex-col justify-center items-center'>
+                  <Dropzone
+                    name='galery'
+                    onDrop={handleDrop}
+                    onChange={(e) => handleChange(e.target.value)}
+                    onBlur={handleBlur}
+                    value={form.galery}
+                  >
+                    {({ getRootProps, getInputProps }) => (
+                      <section className=' cursor-pointer'>
+                        <div {...getRootProps()}>
+                          <input
+                            {...getInputProps()}
+                          />
+                          <img src='https://icongr.am/fontawesome/folder-open.svg?size=80&color=currentColor' alt='img de carpeta' />
+                          <p className='text-center'>Clickea para seleccionar tus imagenes</p>
+                        </div>
+                      </section>
+                    )}
+                  </Dropzone>
+                  {imagePreview()}
+                </div>
               </div>
               <div className='btn_container'>
                 <Link to='/'>

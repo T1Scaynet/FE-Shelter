@@ -12,19 +12,12 @@ const loginSlice = createSlice({
     userLogged: false
   },
   reducers: {
-    setToken: (state, action) => {
-      console.log({ state });
-      console.log({ user: state?.user });
-      console.log({ login: state?.login });
-      console.log({ token: action });
-      // state.user = {
-      //   ...state.user,
-      //   token: action.payload
-      // };
-      state.token = action.payload;
-      // state.userLogged = true;
-      // state.isAuthenticated = true;
-      // state.error = null;
+    loginSuccessful: (state, action) => {
+      state.user = action.payload.user;
+      state.token = action.payload.token;
+      state.isAuthenticated = true;
+      state.userLogged = true;
+      state.error = null;
     },
     loginFailure: (state, action) => {
       state.user = null;
@@ -32,6 +25,7 @@ const loginSlice = createSlice({
       state.error = action.payload;
     },
     logoutSuccess: (state) => {
+      state.user = null;
       state.token = null;
     },
     registerSuccess: (state, action) => {
@@ -50,21 +44,22 @@ const loginSlice = createSlice({
   }
 });
 
-export const { setToken, loginFailure, logoutSuccess, registerSuccess, registerFailure } = loginSlice.actions;
+export const { loginSuccessful, loginFailure, logoutSuccess, registerSuccess, registerFailure } = loginSlice.actions;
 
-// export const loginUser = ({ name, email, password }) => async (dispatch) => {
-//   try {
-//     console.log('entre');
-//     const res = await axios.post('/user/login', { name, email, password });
-//     console.log(res);
-//     const json = res.data.token;
-//     dispatch(setToken(json));
-//   } catch (err) {
-//     dispatch(loginFailure(err.response.data.msg));
-//   }
-// };
-export const loginUser = () => {
-  console.log('voy a llorar');
+export const loginUser = ({ email, password }) => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.post('/user/login', { email, password });
+      const instance = axios.create();
+      instance.defaults.headers.common['x-access-token'] = data.token;
+      const user = await instance.get('/user/profile', {
+        timeout: 5000
+      });
+      dispatch(loginSuccessful({ token: data.token, user: user.data.user }));
+    } catch (error) {
+      dispatch(loginFailure(error.response.data.msg));
+    }
+  };
 };
 
 export const loginRegister = (formValues) => async (dispatch) => {

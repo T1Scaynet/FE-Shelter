@@ -34,11 +34,10 @@ export const useForm = (initialForm, validateForm) => {
     }
   };
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
+  const handleChange = ({ target }) => {
     setForm({
       ...form,
-      [name]: value
+      [target.name]: target.value
     });
     setErrors(validateForm(form));
   };
@@ -59,11 +58,11 @@ export const useForm = (initialForm, validateForm) => {
       dispatch(PostPet(form)).then((res) => {
         if (res.status === 200 || res.status === 201) {
           showModal();
-          console.log(res.data);
+          // console.log(res.data);
           handleReset();
           navigate('/');
         } else {
-          console.log(res);
+          // console.log(res);
           showModal('errorserver');
           navigate('/');
         }
@@ -86,7 +85,6 @@ export const useForm = (initialForm, validateForm) => {
     handleBlur,
     handleSubmit,
     loading
-  // loading,
   // response,
   };
 };

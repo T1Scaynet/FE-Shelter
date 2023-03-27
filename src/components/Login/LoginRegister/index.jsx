@@ -1,7 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router';
+// import { useNavigate } from 'react-router-dom';
 import { loginRegister } from '../../../state/features/login/loginSlice';
+import register from '../../../assets/ingresar.svg';
+import { Link } from 'react-router-dom';
 
 function validate (input) {
   const errors = {};
@@ -24,25 +27,34 @@ function validate (input) {
 }
 
 function RegistrationForm () {
-  const history = useNavigate();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [input, setInput] = useState({
     name: '',
     email: '',
     password: ''
   });
+
   const [errors, setErrors] = useState({ firstTry: true });
+  const [formSubmitted, setFormSubmitted] = useState(false);
   const handleRegister = (e) => {
     e.preventDefault();
-    dispatch(loginRegister(input));
-    setInput({
-      name: '',
-      email: '',
-      password: ''
-    });
-    window.alert('¡Se registro correctamente! Ingresa con tus credenciales');
-    // history('/');
+    const errors = validate(input);
+    if (Object.keys(errors).length === 0) {
+      dispatch(loginRegister(input));
+      setInput({
+        name: '',
+        email: '',
+        password: ''
+      });
+      setFormSubmitted(true);
+      window.alert('¡Se registro correctamente! Ingresa con tus credenciales');
+      navigate('/ingresar');
+    } else {
+      setErrors(errors);
+    }
   };
+
   useEffect(() => {
     setErrors(
       validate({
@@ -50,13 +62,14 @@ function RegistrationForm () {
       })
     );
   }, [input]);
-  const handleInputChange = (event) => {
-    const { name, value } = event.target;
+
+  const handleInputChange = ({ target }) => {
     setInput({
       ...input,
-      [name]: value
+      [target.name]: target.value
     });
   };
+
   function handleCheckErrors (e) {
     e.preventDefault();
     setErrors(validate({
@@ -67,45 +80,79 @@ function RegistrationForm () {
   }
 
   return (
-    <form onSubmit={handleRegister}>
-      <label htmlFor='name'>Nombre</label>
-      <input
-        type='text'
-        id='name'
-        name='name'
-        value={input.name}
-        onChange={handleInputChange}
-        className='w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline'
-      />
-      {errors.name && (<div>{errors.name}</div>)}
-      <label htmlFor='email'>Correo electrónico</label>
-      <input
-        type='email'
-        id='email'
-        name='email'
-        value={input.email}
-        onChange={handleInputChange}
-        className='w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline'
-      />
-      {errors.email && (<div>{errors.email}</div>)}
-      <label htmlFor='password'>Contraseña</label>
-      <input
-        type='password'
-        id='password'
-        name='password'
-        value={input.password}
-        onChange={handleInputChange}
-        className='w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline'
-      />
-      {errors.password && (<div>{errors.password}</div>)}
-      <button
-        className='px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700 focus:outline-none focus:shadow-outline-blue active:bg-blue-800'
-        type='submit'
-        onClick={handleCheckErrors}
-      >
-        Registrarse
-      </button>
-    </form>
+    <div className='flex h-screen'>
+      <div className='w-1/2 flex justify-center items-center'>
+        <div>
+          <h1 className='text-4xl font-bold mb-4'>Crea una cuenta</h1>
+          <h2 className='text-m font-medium mb-8'>Crea una nueva cuenta en un minuto.</h2>
+          <form onSubmit={handleRegister} className='max-w-md'>
+            <div className='mb-4'>
+              <label htmlFor='name' className='block text-gray-700 font-bold mb-2'>
+                Nombre
+              </label>
+              <input
+                type='text'
+                id='name'
+                name='name'
+                value={input.name}
+                onChange={handleInputChange}
+                className='appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
+              />
+              {errors.name && <div className='text-red-500'>{errors.name}</div>}
+            </div>
+            <div className='mb-4'>
+              <label htmlFor='email' className='block text-gray-700 font-bold mb-2'>
+                Correo electrónico
+              </label>
+              <input
+                type='email'
+                id='email'
+                name='email'
+                value={input.email}
+                onChange={handleInputChange}
+                className='appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
+              />
+              {errors.email && <div className='text-red-500'>{errors.email}</div>}
+            </div>
+            <div className='mb-4'>
+              <label htmlFor='password' className='block text-gray-700 font-bold mb-2'>
+                Contraseña
+              </label>
+              <input
+                type='password'
+                id='password'
+                name='password'
+                value={input.password}
+                onChange={handleInputChange}
+                className='appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
+              />
+              {errors.password && <div className='text-red-500'>{errors.password}</div>}
+            </div>
+            <button
+              className='bg-[#7C58D3] hover:bg-purple-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline cursor-pointer'
+              type='submit'
+              disabled={Object.keys(errors).length !== 0}
+              onClick={handleCheckErrors}
+            >
+              Registrarse
+            </button>
+            {Object.keys(errors).length !== 0 && (
+              <p className='text-red-500'>Por favor, corrija los errores antes de enviar el formulario.</p>
+            )}
+          </form>
+          <p className='mt-4 text-center font-bold text-black'>
+            ¿Ya tienes cuenta? <Link to='/ingresar' className='text-pink-500'>Inicia sesión aquí</Link>
+          </p>
+        </div>
+      </div>
+      <div className='w-1/2 flex justify-center items-center'>
+        <img
+          src={register}
+          alt='Imagen de registro'
+          className='object-cover h-full w-full '
+        />
+      </div>
+    </div>
   );
 }
 

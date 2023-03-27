@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
+import { Fragment, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { getTopList } from '../../../state/features/top/topSlice';
 import { Card } from '../../../components/Card';
@@ -23,18 +23,19 @@ export const DisplayTwo = () => {
           top.length
             ? <div className='grid grid-cols-1 gap-6 lg:grid-cols-2 w-full gap-x-[5rem]'>
               {
-              top.map(t => (
-                <Link key={t.id} to={`/detalles/${t._id}`}>
-                  <Card
-                    key={t.id}
-                    name={t.name}
-                    genres={t.genre}
-                    size={t.size}
-                    age={t.age}
-                    image={t.image}
-                    history={t.history}
-                  />
-                </Link>
+              top.map((t, i) => (
+                <Fragment key={i}>
+                  <Link to={`/detalles/${t._id}`}>
+                    <Card
+                      name={t.name}
+                      genres={t.genre}
+                      size={t.size}
+                      age={t.age}
+                      image={t.image}
+                      history={t.history}
+                    />
+                  </Link>
+                </Fragment>
               ))
             } </div>
             : <PetsNotFound />

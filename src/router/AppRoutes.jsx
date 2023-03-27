@@ -8,16 +8,24 @@ import RegisterUser from '../components/Login/LoginRegister/index';
 import Profile from '../components/Login/Profile';
 import { DetailScreen } from '../views/DetailScreen';
 import { CreatePetScreen } from '../views/CreatePetScreen';
+import { Contact } from '../views/Contact';
 import { AdoptionForm } from '../views/AdoptionForm';
+import { CartScreen } from '../views/CartScreen';
+import { DonationsScreen } from '../views/DonationsScreen';
 
 export function AppRoutes () {
-  const token = useSelector(state => state.login?.token);
+  const token = useSelector((state) => state.login?.token);
   // const isAuth = user.user.token;
   const isAdmin = token;
   const routes = [
     {
       path: '/',
       component: Home,
+      public: true
+    },
+    {
+      path: '/contacto',
+      component: Contact,
       public: true
     },
     {
@@ -45,20 +53,40 @@ export function AppRoutes () {
       path: '/perfil',
       component: Profile,
       public: isAdmin
+    },
+    {
+      path: '/carrito',
+      component: CartScreen,
+      public: true
+    },
+    {
+      path: '/donaciones',
+      component: DonationsScreen,
+      public: true
+    },
+    {
+      path: '/ingresar',
+      component: LoginPage,
+      public: true
+    },
+    {
+      path: '/registro',
+      component: RegisterUser,
+      public: true
     }
   ];
 
   return (
     <Routes>
-      {
-        routes.map(r => (
-          r.public &&
+      {routes.map(
+        (r) =>
+          r.public && (
             <Route key={r.path} path={r.path} element={<r.component />} />
-        ))
-      }
+          )
+      )}
       <Route path='*' element={<Error404 />} />
       <Route path='/ingresar' element={<LoginPage />} />
-      <Route path='/registro' element={<RegisterUser />} />
+      <Route path='/perfil' element={<Profile />} />
     </Routes>
   );
-};
+}

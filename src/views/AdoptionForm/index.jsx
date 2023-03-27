@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 export const AdoptionForm = () => {
   const dispatch = useDispatch();
   const selectedPet = useSelector((state) => state.petDetails);
-  console.log({ selectedPet });
+  console.log(selectedPet.galery[0]);
   return (
     <div className='w-full h-full flex flex-col justify-center mt-4'>
       <h1 className=' h-[10%] text-center font-bold text-3xl'>Completá los datos para que nos contactemos con los pasos a seguir</h1>
@@ -178,7 +178,7 @@ export const AdoptionForm = () => {
               </div>
               <div className='w-[30%] h-full sticky top-8 flex flex-col mt-[4.6rem] space-y-2 mb-10 bg-[#EBE5F7] rounded-md'>
                 <div className='rounded-t-md overflow-hidden'>
-                  <img className='h-80 w-full object-cover' src={selectedPet.image} alt='imagen de la mascota seleccionada' />
+                  <img className='h-80 w-full object-cover' src={selectedPet.image ? selectedPet.image : selectedPet.galery[0]} alt='imagen de la mascota seleccionada' />
                 </div>
                 <h1 className='font-bold text-center text-3xl pb-2'>{selectedPet.name}</h1>
               </div>
