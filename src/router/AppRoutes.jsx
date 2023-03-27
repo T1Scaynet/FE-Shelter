@@ -76,7 +76,7 @@ export function AppRoutes () {
       )}
       <Route path='*' element={<Error404 />} />
       <Route path='/ingresar' element={<LoginPage />} />
-      <Route path='/registro' element={<RegisterUser />} />
+      <Route path='/perfil' element={<Profile />} />
     </Routes>
   );
 }

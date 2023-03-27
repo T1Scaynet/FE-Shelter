@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 
 export const NavBar = () => {
   const { cartTotalQuantity } = useSelector((state) => state.cart);
-  const userLogged = useSelector((state) => state.login.userLogged.token);
+  const userLogged = useSelector((state) => state.login.token);
 
   return (
     <nav className='bg-[#FFFEFD] h-[6.1rem] flex items-center '>

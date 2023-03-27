@@ -25,6 +25,7 @@ const loginSlice = createSlice({
       state.error = action.payload;
     },
     logoutSuccess: (state) => {
+      state.user = null;
       state.token = null;
     },
     registerSuccess: (state, action) => {
