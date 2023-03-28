@@ -6,8 +6,8 @@ import { addToCart, donation } from '../../state/features/cartSlice';
 export const DonationCard = ({ product }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const isLogged = useSelector((state) => state.login.user)
-  const cart = useSelector((state) => state.cart)
+  const isLogged = useSelector((state) => state.login.user);
+  // const cart = useSelector((state) => state.cart);
 
   const handleAddToCart = (product) => {
     if (isLogged) {

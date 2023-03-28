@@ -9,14 +9,16 @@ import {
   decreaseCart,
   donation,
   getTotals,
-  removeFromCart,
+  removeFromCart
 } from '../../state/features/cartSlice';
 import './index.css';
 // import { MercadoPago } from '../DonationsScreen/MercadoPago';
+// eslint-disable-next-line no-unused-vars
 import axios from 'axios';
 import Swal from 'sweetalert2';
 
 export const CartScreen = () => {
+  // eslint-disable-next-line no-unused-vars
   const [donating, setDonating] = useState(false);
   const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
@@ -29,13 +31,13 @@ export const CartScreen = () => {
     Swal.fire({
       icon: 'error',
       title: 'La transacción ha sido rechazada',
-      timer: '2000',
+      timer: '2000'
     });
   } else if (status === 'approved') {
     Swal.fire({
       icon: 'success',
       title: 'La transacción ha sido exitosa',
-      timer: '2000',
+      timer: '2000'
     });
     dispatch(clearCart());
   }

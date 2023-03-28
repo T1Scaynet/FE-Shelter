@@ -2,14 +2,16 @@ import { form, check } from '../../constants/inputsForm';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { PostForm } from '../../state/features/form/formSlice';
 import { useDispatch, useSelector } from 'react-redux';
+import { toast } from 'sonner';
+import { useNavigate } from 'react-router-dom';
 
 export const AdoptionForm = () => {
   const dispatch = useDispatch();
   const selectedPet = useSelector((state) => state.petDetails);
-  console.log(selectedPet.galery[0]);
+  const navigate = useNavigate();
+  // console.log(selectedPet.galery[0]);
   return (
-    <div className='w-full h-full flex flex-col justify-center mt-4'>
-      <h1 className=' h-[10%] text-center font-bold text-3xl'>Completá los datos para que nos contactemos con los pasos a seguir</h1>
+    <div className='w-full h-full flex flex-col'>
       <div>
         <Formik
           initialValues={{
@@ -53,7 +55,7 @@ export const AdoptionForm = () => {
               error.phone = 'Por favor solo ingrese solo números';
             }
             if (!dataSent.adoption) {
-              error.adoption = 'Por favor ingrese una respuesta';
+              error.adoption = 'Seleccione una respuesta';
             } else if (!/^[a-zA-ZÀ-ÿ\s]{1,40}$/.test(dataSent.adoption)) {
               error.adoption = 'La respuesta solo puede contener letras y espacios';
             }
@@ -78,7 +80,7 @@ export const AdoptionForm = () => {
             }
             return error;
           }}
-          onSubmit={(dataSent, { resetForm }) => {
+          onSubmit={async (dataSent, { resetForm }) => {
             if (dataSent.otherPets === 'Si') {
               dataSent.otherPets = true;
             } else if (dataSent.otherPets === 'No') {
@@ -94,16 +96,39 @@ export const AdoptionForm = () => {
             } else if (dataSent.children === 'No') {
               dataSent.children = false;
             }
-            dispatch(PostForm({
-              ...dataSent,
-              idPet: selectedPet._id
-            }));
-            resetForm();
+            try {
+              await dispatch(PostForm({
+                ...dataSent,
+                idPet: selectedPet._id
+              }));
+              toast.success('Formulario enviado correctamente', {
+                style: {
+                  height: '5rem',
+                  fontSize: '1rem',
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center'
+                }
+              });
+              resetForm();
+              navigate('/');
+            } catch (_error) {
+              toast.error('No se pudo enviar el formulario. Inténtelo más tarde', {
+                style: {
+                  height: '5rem',
+                  fontSize: '1rem',
+                  display: 'flex',
+                  justifyContent: 'space-evenly',
+                  paddingLeft: '2.5rem'
+                }
+              });
+            }
           }}
         >
           {({ errors }) => (
             <div className=' max-w-[1170px] h-full flex justify-between m-auto gap-8'>
               <div className='w-full md:h-[80%] 2xl:h-[95%] space-y-3 flex flex-col justify-evenly my-6'>
+                <h1 className=' h-[10%] text-center font-bold text-3xl mb-[-1rem] mt-2'>Completá tus datos y te contactaremos</h1>
                 <Form className='h-[90%] flex flex-col space-y-3 py-5'>
                   {
                     form.map(f => (
@@ -125,58 +150,68 @@ export const AdoptionForm = () => {
                       </div>
                     ))
                 }
-                  <div className='flex justify-between'>
+                  <div className='flex w-full gap-3'>
 
-                    <div>
+                    <div className='w-1/2 space-y-2'>
                       <label className='font-bold mr-3' htmlFor='age'>Edad:</label>
                       <Field
                         type='number'
                         id='age'
                         name='age'
-                        className='bg-[#EBE5F7] h-10 w-14 p-2 rounded-md'
+                        className='bg-[#EBE5F7] h-10 w-full p-3 rounded-md'
                       />
                       <ErrorMessage name='age' component={() => (<p className='text-red-500'>{errors.age}</p>)} />
                     </div>
 
-                    <div className='space-x-3'>
+                    <div className='w-1/2 space-y-2'>
                       <label htmlFor='familyMembers' className='font-bold'>¿Cuántas personas habitan en el hogar?</label>
                       <Field
                         type='number'
                         id='familyMembers'
                         name='familyMembers'
-                        className='bg-[#EBE5F7] h-10 w-12 p-1 rounded-md'
+                        className='bg-[#EBE5F7] h-10 w-full p-3 rounded-md'
                       />
                       <ErrorMessage
                         name='familyMembers' component={() => (
-                          <p className='text-red-500 text-end'>{errors.familyMembers}</p>
+                          <p className='text-red-500'>{errors.familyMembers}</p>
                         )}
                       />
                     </div>
 
                   </div>
-                  {
-                  check.map(c => (
-                    <div key={c.title} className='space-y-2 w-fit'>
-                      <p className='font-bold w-fit'>{c.title}</p>
-                      <Field name={c.name} id={c.name} as='select'>
-                        <option value=''>- - -</option>
-                        <option value='Si'>Si</option>
-                        <option value='No'>No</option>
-                      </Field>
-                      <ErrorMessage
-                        name={c.name} component={() => (
-                          <p className='text-red-500'>{errors[c.name]}</p>
-                        )}
-                      />
-                    </div>
-                  ))
-                }
+                  <div className='w-full grid grid-cols-2 gap-x-3 gap-y-5 pt-1'>
+                    {
+                    check.map(c => (
+                      <div key={c.title} className='w-full'>
+                        <p className='font-bold w-fit'>{c.title}</p>
+                        <div className='w-full flex flex-col mt-2 relative'>
+                          <Field name={c.name} id={c.name} as='select' className='bg-[#EBE5F7] text-gray-900 text-md rounded-lg focus:ring-[#EBE5F7] focus:border-[#EBE5F7] appearance-none block w-full py-2 px-3'>
+                            <option value=''>- - -</option>
+                            <option value={c.optionOne}>{c.optionOne}</option>
+                            <option value={c.optionTwo}>{c.optionTwo}</option>
+                          </Field>
+                          <div class='absolute inset-y-0 right-0 flex top-3 px-2 pointer-events-none'>
+                            <svg class='h-4 w-4 fill-current text-gray-500' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'><path d='M5 7l5 5 5-5z' /></svg>
+                          </div>
+                          <ErrorMessage
+                            name={c.name} component={() => (
+                              <p className='text-red-500 w-full mt-2'>{errors[c.name]}</p>
+                            )}
+                          />
+                        </div>
+                      </div>
+                    ))
+                  }
+                  </div>
                   <div className='w-full h-full flex justify-center pt-8'>
-                    <button type='submit' className='bg-[#7C58D3] text-[white] w-[14rem] h-12 rounded-lg'>Enviar Formulario</button>
+                    <button
+                      type='submit' className='bg-[#7C58D3] text-[white] w-[14rem] h-12 rounded-lg'
+                    >Enviar Formulario
+                    </button>
                   </div>
                 </Form>
               </div>
-              <div className='w-[30%] h-full sticky top-8 flex flex-col mt-[4.6rem] space-y-2 mb-10 bg-[#EBE5F7] rounded-md'>
+              <div className='w-[30%] h-full sticky top-8 flex flex-col mt-[7.2rem] space-y-2 mb-10 bg-[#EBE5F7] rounded-md'>
                 <div className='rounded-t-md overflow-hidden'>
                   <img className='h-80 w-full object-cover' src={selectedPet.image ? selectedPet.image : selectedPet.galery[0]} alt='imagen de la mascota seleccionada' />
                 </div>

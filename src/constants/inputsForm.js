@@ -27,24 +27,30 @@ export const form = [{
   name: 'phone',
   place: '1234567890',
   type: 'text'
-},
-{
-  title: '¿El animal que va a adoptar es para usted o para un tercero?',
-  name: 'adoption',
-  place: 'Aclaración',
-  type: 'text'
 }
 ];
 export const check = [{
+  title: '¿Adopta para usted o para un tercero?',
+  name: 'adoption',
+  optionOne: 'Es para mi',
+  optionTwo: 'Es para un tercero'
+},
+{
   title: '¿Tiene otras mascotas en su casa?',
-  name: 'otherPets'
+  name: 'otherPets',
+  optionOne: 'Si',
+  optionTwo: 'No'
 },
 {
   title: '¿Posee algún espacio al aire libre?',
-  name: 'garden'
+  name: 'garden',
+  optionOne: 'Si',
+  optionTwo: 'No'
 },
 {
   title: '¿Tiene niños/as chiquitos en su casa?',
-  name: 'children'
+  name: 'children',
+  optionOne: 'Si',
+  optionTwo: 'No'
 }
 ];

@@ -7,7 +7,7 @@ import 'slick-carousel/slick/slick-theme.css';
 import Slider from 'react-slick';
 import Cards from '../../../components/Card/CardComments';
 
-export const DisplayFour = () => {
+export const Display4 = () => {
   const dispatch = useDispatch();
   const commentsList = useSelector((state) => state.comments.list);
 

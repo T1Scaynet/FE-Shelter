@@ -12,19 +12,17 @@ export const donations = [
     id: 1,
     title: 'Apadrina una castración',
     category: 'Donacion',
-    description:
-      'Con esta donacion ayudas a llevar a cabo la castración de una mascota del refugio',
+    description: 'Con esta donacion ayudas a llevar a cabo la castración de una mascota del refugio',
     price: 100,
-    image: castracion,
+    image: castracion
   },
   {
     id: 2,
     title: 'Donación para alimentos',
     category: 'Donacion',
-    description:
-      'Esta es una donacion para proveer a nuestras mascotas de alimentos',
+    description: 'Esta es una donacion para proveer a nuestras mascotas de alimentos',
     price: 1000,
-    image: alimento,
+    image: alimento
   },
   {
     id: 3,
@@ -33,7 +31,7 @@ export const donations = [
     description:
       'Esta es una donacion para comprar medicamentos para nuestras mascotas',
     price: 5000,
-    image: medicamento,
+    image: medicamento
   },
   {
     id: 4,
@@ -61,7 +59,7 @@ export const donations = [
       'Esta es una donacion para proveer a nuestras mascotas de alimentos por un tiempo prolongado',
     price: 7000,
     image: alimento1
-   },
+  },
   {
     id: 7,
     title: 'Donación para transportes',
@@ -79,6 +77,5 @@ export const donations = [
       'Esta donación ayuda a proporcionar camas, cobijas y otros elementos de confort a las mascotas del refugio',
     price: 1000,
     image: cobijas
-  },
-  
+  }
 ];
