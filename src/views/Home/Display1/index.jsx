@@ -11,14 +11,14 @@ export const Display1 = () => {
   return (
     <section
       id="home"
-      className="h-[42rem] w-full flex justify-center items-center font-Nunito bg-[url('https://cdn.discordapp.com/attachments/1039259834379415572/1085599522715078656/shapes_overlay_1_1.png')] bg-contain relative"
+      className="h-[90vh] w-full flex justify-center items-center font-Nunito relative"
     >
       <div
         id="home-content"
         className=" flex flex-col gap-20 items-center justify-center"
       >
         <div id="home-text">
-          <h1 className="text-6xl font-extrabold text-[53px] leading-[73px] text-center">
+          <h1 className=" text-[53px] sm:text-6xl  font-extrabold  leading-[73px] text-center">
             CUANDO LA VOLUNTAD EXISTE <br />
             <span className="font-normal">HAY MIL RECURSOS</span>
           </h1>
@@ -35,7 +35,7 @@ export const Display1 = () => {
 
         <div className="flex justify-evenly w-[30rem]">
           <Link to="/donaciones/#insumos">
-            <div className="relative w-[13.271rem] h-[6.563rem] rounded-[0.394rem] bg-white flex justify-center items-center flex-col">
+            <div className="relative w-[8rem] sm:w-[13.271rem] h-[6.563rem] rounded-[0.394rem] bg-white flex justify-center items-center flex-col">
               <div className="bg-[#EBE5F7] h-[3.938rem] w-[3.938rem] flex justify-center items-center rounded-[50%] absolute top-0 mt-[-1.969rem] hover:scale-110 hover:bg-[#c5b4e69d] transition-all duration-500">
                 <img src={donate1} alt="donate2" />
               </div>
@@ -45,7 +45,7 @@ export const Display1 = () => {
             </div>
           </Link>
           <Link to="/donaciones/#castración">
-            <div className="relative w-[13.271rem] h-[6.563rem] rounded-[0.394rem] bg-white flex justify-center items-center flex-col">
+            <div className="relative w-[8rem] sm:w-[13.271rem] h-[6.563rem] rounded-[0.394rem] bg-white flex justify-center items-center flex-col">
               <div className="bg-[#EBE5F7] h-[3.938rem] w-[3.938rem] flex justify-center items-center rounded-[50%] absolute top-0 mt-[-1.969rem] hover:scale-110 hover:bg-[#c5b4e69d] transition-all duration-500">
                 <img src={donate2} alt="donate2" />
               </div>
@@ -59,17 +59,17 @@ export const Display1 = () => {
       <img
         src={dogs}
         alt="dogspng"
-        className="absolute left-[15%] h-[400px] bottom-[7rem]"
+        className="hidden lg:block absolute left-[15%] h-[400px] bottom-[7rem]"
       />
       <img
         src={dogTwo}
         alt="perro mestizo"
-        className="absolute left-[6%] h-[400px] bottom-[8rem]"
+        className=" hidden lg:block absolute left-[6%] h-[400px] bottom-[8rem]"
       />
       <img
         src={cat}
         alt="catpng"
-        className="absolute right-[6%] h-[250px] bottom-[133px]"
+        className=" hidden lg:block absolute right-[6%] h-[250px] bottom-[133px]"
       />
     </section>
   );

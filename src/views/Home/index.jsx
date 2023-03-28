@@ -9,6 +9,8 @@ import { DisplayFour } from './DisplayFour';
 import { useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import Swal from 'sweetalert2';
+import styles from '../../styles';
+import { clearCart } from '../../state/features/cartSlice';
 
 export const Home = () => {
   const { search } = useLocation();
@@ -37,7 +39,13 @@ export const Home = () => {
 
   return (
     <div>
-      <Display1 />
+      <div
+        className={`${styles.paddingX} ${styles.flexCenter} bg-cover bg-no-repeat bg-[url('https://cdn.discordapp.com/attachments/1039259834379415572/1085599522715078656/shapes_overlay_1_1.png')]`}
+      >
+        <div className={`${styles.boxWidth}`}>
+          <Display1 />
+        </div>
+      </div>
       <Display2 />
       <Display3 />
       <DisplayFour />
