@@ -13,9 +13,9 @@ import {
 } from '../../state/features/cartSlice';
 import './index.css';
 // import { MercadoPago } from '../DonationsScreen/MercadoPago';
-import axios from 'axios';
 
 export const CartScreen = () => {
+  // eslint-disable-next-line no-unused-vars
   const [donating, setDonating] = useState(false);
   const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
