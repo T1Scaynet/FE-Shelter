@@ -3,9 +3,9 @@ import '../../App.css';
 import { Display1 } from './Display1';
 import { Display2 } from './Display2';
 import { Display3 } from './Display3';
+import { Display4 } from './Display4';
 import { Display5 } from './Display5';
 import { useEffect } from 'react';
-import { DisplayFour } from './DisplayFour';
 
 export const Home = () => {
   useEffect(() => {
@@ -17,7 +17,7 @@ export const Home = () => {
       <Display1 />
       <Display2 />
       <Display3 />
-      <DisplayFour />
+      <Display4 />
       <Display5 />
     </div>
   );
