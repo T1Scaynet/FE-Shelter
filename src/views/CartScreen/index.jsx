@@ -2,7 +2,7 @@
 /* eslint-disable jsx-quotes */
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import {
   addToCart,
   clearCart,
@@ -13,12 +13,34 @@ import {
 } from '../../state/features/cartSlice';
 import './index.css';
 // import { MercadoPago } from '../DonationsScreen/MercadoPago';
+// eslint-disable-next-line no-unused-vars
+import axios from 'axios';
+import Swal from 'sweetalert2';
 
 export const CartScreen = () => {
   // eslint-disable-next-line no-unused-vars
   const [donating, setDonating] = useState(false);
   const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
+
+  const { search } = useLocation();
+
+  const query = new URLSearchParams(search);
+  const status = query.get('collection_status');
+  if (status === 'rejected') {
+    Swal.fire({
+      icon: 'error',
+      title: 'La transacción ha sido rechazada',
+      timer: '2000'
+    });
+  } else if (status === 'approved') {
+    Swal.fire({
+      icon: 'success',
+      title: 'La transacción ha sido exitosa',
+      timer: '2000'
+    });
+    dispatch(clearCart());
+  }
 
   useEffect(() => {
     dispatch(getTotals());

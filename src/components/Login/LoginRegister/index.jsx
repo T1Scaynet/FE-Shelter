@@ -1,147 +1,165 @@
-import { useEffect, useState } from 'react';
+/* eslint-disable prefer-const */
+/* eslint-disable react/jsx-props-no-multi-spaces */
+/* eslint-disable no-unneeded-ternary */
+// import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
-// import { useNavigate } from 'react-router-dom';
 import { loginRegister } from '../../../state/features/login/loginSlice';
-import register from '../../../assets/ingresar.svg';
+import register from '../../../assets/ingresar.png';
 import { Link } from 'react-router-dom';
-
-function validate (input) {
-  const errors = {};
-
-  if (!input.name || input.name.length < 4) {
-    errors.name = 'El nombre debe tener más de cuatro letras';
-  }
-
-  if (!input.email) {
-    errors.email = 'Por favor, ingrese su correo electrónico';
-  } else if (!/\S+@\S+\.\S+/.test(input.email)) {
-    errors.email = 'Por favor, ingrese un correo electrónico válido';
-  }
-
-  if (!input.password || input.password.length < 5) {
-    errors.password = 'La contraseña debe tener más de cinco caracteres';
-  }
-
-  return errors;
-}
+import { Formik } from 'formik';
+import { Button, TextField } from '@mui/material';
+import swal from 'sweetalert';
 
 function RegistrationForm () {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [input, setInput] = useState({
-    name: '',
-    email: '',
-    password: ''
-  });
-
-  const [errors, setErrors] = useState({ firstTry: true });
-  const [formSubmitted, setFormSubmitted] = useState(false);
-  const handleRegister = (e) => {
-    e.preventDefault();
-    const errors = validate(input);
-    if (Object.keys(errors).length === 0) {
-      dispatch(loginRegister(input));
-      setInput({
-        name: '',
-        email: '',
-        password: ''
-      });
-      setFormSubmitted(true);
-      window.alert('¡Se registro correctamente! Ingresa con tus credenciales');
-      navigate('/ingresar');
-    } else {
-      setErrors(errors);
-    }
-  };
-
-  useEffect(() => {
-    setErrors(
-      validate({
-        ...input
-      })
-    );
-  }, [input]);
-
-  const handleInputChange = ({ target }) => {
-    setInput({
-      ...input,
-      [target.name]: target.value
-    });
-  };
-
-  function handleCheckErrors (e) {
-    e.preventDefault();
-    setErrors(validate({
-      ...input,
-      [e.target.name]: e.target.value
-    }));
-    handleRegister(e);
-  }
+  // eslint-disable-next-line no-unused-vars
+  // const [formSubmitted, setFormSubmitted] = useState(false);
 
   return (
     <div className='flex h-screen'>
       <div className='w-1/2 flex justify-center items-center'>
         <div>
           <h1 className='text-4xl font-bold mb-4'>Crea una cuenta</h1>
-          <h2 className='text-m font-medium mb-8'>Crea una nueva cuenta en un minuto.</h2>
-          <form onSubmit={handleRegister} className='max-w-md'>
-            <div className='mb-4'>
-              <label htmlFor='name' className='block text-gray-700 font-bold mb-2'>
-                Nombre
-              </label>
-              <input
-                type='text'
-                id='name'
-                name='name'
-                value={input.name}
-                onChange={handleInputChange}
-                className='appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
-              />
-              {errors.name && <div className='text-red-500'>{errors.name}</div>}
-            </div>
-            <div className='mb-4'>
-              <label htmlFor='email' className='block text-gray-700 font-bold mb-2'>
-                Correo electrónico
-              </label>
-              <input
-                type='email'
-                id='email'
-                name='email'
-                value={input.email}
-                onChange={handleInputChange}
-                className='appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
-              />
-              {errors.email && <div className='text-red-500'>{errors.email}</div>}
-            </div>
-            <div className='mb-4'>
-              <label htmlFor='password' className='block text-gray-700 font-bold mb-2'>
-                Contraseña
-              </label>
-              <input
-                type='password'
-                id='password'
-                name='password'
-                value={input.password}
-                onChange={handleInputChange}
-                className='appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
-              />
-              {errors.password && <div className='text-red-500'>{errors.password}</div>}
-            </div>
-            <button
-              className='bg-[#7C58D3] hover:bg-purple-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline cursor-pointer'
-              type='submit'
-              disabled={Object.keys(errors).length !== 0}
-              onClick={handleCheckErrors}
-            >
-              Registrarse
-            </button>
-            {Object.keys(errors).length !== 0 && (
-              <p className='text-red-500'>Por favor, corrija los errores antes de enviar el formulario.</p>
+          <h2 className='text-m font-medium mb-8'>
+            Crea una nueva cuenta en un minuto.
+          </h2>
+          <Formik
+            initialValues={{
+              name: '',
+              email: '',
+              password: ''
+            }}
+
+            validate={(value) => {
+              let errors = {};
+
+              if (!value.name || value.name.length < 4) {
+                errors.name = 'El nombre debe tener más de 4 carácteres';
+              } else if (!/^[a-zA-Z]+$/.test(value.name)) {
+                errors.name = 'El nombre no es válido. Porfavor ingrese otro';
+              }
+
+              if (!value.email) {
+                errors.email = 'Por favor, ingrese su correo electrónico';
+              } else if (!/\S+@\S+\.\S+/.test(value.email)) {
+                errors.email = 'El correo electronico no es válido';
+              }
+
+              if (!value.password || value.password.length < 5) {
+                errors.password = 'La contraseña debe tener más de 5 carácteres';
+              } else if (/[\W_]+/.test(value.password) === false) {
+                errors.password = 'La contraseña debe tener al menos un caráracter especial';
+              } else if (/[A-Z]+/.test(value.password) === false) {
+                errors.password = 'La contraseña debe tener al menos un caráracter en mayúscula';
+              }
+
+              return errors;
+            }}
+
+            onSubmit={(value, { resetForm }) => {
+              dispatch(loginRegister(value));
+              // setFormSubmitted(true);
+              swal('¡Se registro correctamente!', 'Ingresa con tus credenciales', 'success');
+              navigate('/ingresar');
+              resetForm();
+            }}
+          >
+            {({ values, errors, touched, handleChange, handleSubmit, handleBlur }) => (
+              <form onSubmit={handleSubmit} className='flex flex-col gap-4'>
+                <TextField
+                  error={touched.name && errors.name ? true : false}
+                  id={
+                    touched.name && errors.name ? 'outlined-error-helper-text' : 'outlined-basic'
+                  }
+                  label='Nombre'
+                  variant='outlined'
+                  name='name'
+                  value={values.name}
+                  helperText={!touched.name && !errors.name ? undefined : errors.name}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  sx={{
+                    '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline':
+                      {
+                        borderColor: '#7C58D3'
+                      },
+                    '& label.Mui-focused': {
+                      color: '#7C58D3'
+                    }
+                  }}
+                />
+                <TextField
+                  error={touched.email && errors.email ? true : false}
+                  id={
+                    touched.email && errors.email ? 'outlined-error-helper-text' : 'outlined-basic'
+                  }
+                  label='Email'
+                  variant='outlined'
+                  name='email'
+                  value={values.email}
+                  helperText={!touched.email && !errors.email ? undefined : errors.email}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  sx={{
+                    '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline':
+                      {
+                        borderColor: '#7C58D3'
+                      },
+                    '& label.Mui-focused': {
+                      color: '#7C58D3'
+                    }
+                  }}
+                />
+                <TextField
+                  error={touched.password && errors.password ? true : false}
+                  id={
+                    touched.password && errors.password ? 'outlined-error-helper-text' : 'outlined-basic'
+                  }
+                  label='Contraseña'
+                  variant='outlined'
+                  name='password'
+                  value={values.password}
+                  helperText={!touched.password && !errors.password ? undefined : errors.password}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  type='password'
+                  sx={{
+                    '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline':
+                      {
+                        borderColor: '#7C58D3'
+                      },
+                    '& label.Mui-focused': {
+                      color: '#7C58D3'
+                    }
+                  }}
+                />
+                <Button
+                  type='submit'
+                  onClick={handleSubmit}
+                  variant='contained'
+                  style={{ backgroundColor: '#7C58D3', width: '30.438rem' }}
+                  sx={{
+                    '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline':
+                      {
+                        borderColor: '#7C58D3'
+                      },
+                    '& label.Mui-focused': {
+                      color: '#7C58D3'
+                    }
+                  }}
+                >
+                  Enviar
+                </Button>
+              </form>
             )}
-          </form>
+          </Formik>
           <p className='mt-4 text-center font-bold text-black'>
-            ¿Ya tienes cuenta? <Link to='/ingresar' className='text-pink-500'>Inicia sesión aquí</Link>
+            ¿Ya tienes cuenta?{' '}
+            <Link to='/ingresar' className='text-pink-500'>
+              Inicia sesión
+            </Link>
           </p>
         </div>
       </div>
@@ -149,7 +167,7 @@ function RegistrationForm () {
         <img
           src={register}
           alt='Imagen de registro'
-          className='object-cover h-full w-full '
+          className='object-cover h-[34.625rem] rounded-[0.5rem] mr-8'
         />
       </div>
     </div>
