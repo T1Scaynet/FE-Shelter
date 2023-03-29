@@ -16,7 +16,7 @@ export const CheckBox = ({
       <label className='flex justify-between'>
         <p>{optionOne}</p>
         <input
-          onClick={(e) => handleFilter(e, param)}
+          onChange={(e) => handleFilter(e, param)}
           type='checkbox'
           value={valueAz}
           checked={filters?.[param] === valueAz}
@@ -26,7 +26,7 @@ export const CheckBox = ({
       <label className='flex justify-between'>
         <p>{optionTwo}</p>
         <input
-          onClick={(e) => handleFilter(e, param)}
+          onChange={(e) => handleFilter(e, param)}
           type='checkbox'
           value={valueZa}
           checked={filters?.[param] === valueZa}
@@ -37,7 +37,7 @@ export const CheckBox = ({
         <label className='flex justify-between'>
           <p>{optionThree}</p>
           <input
-            onClick={(e) => handleFilter(e, param)}
+            onChange={(e) => handleFilter(e, param)}
             type='checkbox'
             value={optionThree}
             checked={filters?.[param] === optionThree}
