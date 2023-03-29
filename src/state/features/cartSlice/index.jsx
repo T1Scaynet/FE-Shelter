@@ -128,6 +128,7 @@ export const donation = (payload) => {
     try {
       const instance = axios.create();
       instance.defaults.headers.common['x-access-token'] = currentState.token;
+      //console.log(payload)
       const donations = await instance.post('/payment', payload);
       console.log(donations.data.body.init_point);
       // navigate(donations.data.body.init_point);
