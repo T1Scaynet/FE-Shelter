@@ -98,8 +98,8 @@ export const AdoptionForm = () => {
             }
             try {
               await dispatch(PostForm({
-                ...dataSent,
-                idPet: selectedPet._id
+                ...dataSent
+                // idPet: selectedPet._id
               }));
               toast.success('Formulario enviado correctamente', {
                 style: {
@@ -190,8 +190,8 @@ export const AdoptionForm = () => {
                             <option value={c.optionOne}>{c.optionOne}</option>
                             <option value={c.optionTwo}>{c.optionTwo}</option>
                           </Field>
-                          <div class='absolute inset-y-0 right-0 flex top-3 px-2 pointer-events-none'>
-                            <svg class='h-4 w-4 fill-current text-gray-500' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'><path d='M5 7l5 5 5-5z' /></svg>
+                          <div className='absolute inset-y-0 right-0 flex top-3 px-2 pointer-events-none'>
+                            <svg className='h-4 w-4 fill-current text-gray-500' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'><path d='M5 7l5 5 5-5z' /></svg>
                           </div>
                           <ErrorMessage
                             name={c.name} component={() => (

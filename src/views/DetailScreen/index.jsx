@@ -20,7 +20,7 @@ export const DetailScreen = () => {
   const dispatch = useDispatch();
   const pet = useSelector((state) => state.petDetails);
   const [galery, setGalery] = useState('');
-  console.log({ galery });
+  // console.log({ galery });
 
   const linkStyle = 'font-bold ml-[12.813rem] text-[#7C58D3] text-[0.9rem]';
 

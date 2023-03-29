@@ -71,7 +71,7 @@ export const donations = [
   },
   {
     id: 8,
-    title: 'Donación para la compra de camas y cobijas',
+    title: 'Donación para las camas y cobijas',
     category: 'Donacion',
     description:
       'Esta donación ayuda a proporcionar camas, cobijas y otros elementos de confort a las mascotas del refugio',
