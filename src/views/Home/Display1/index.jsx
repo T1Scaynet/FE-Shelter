@@ -1,6 +1,8 @@
 /* eslint-disable jsx-quotes */
 import { Link } from 'react-router-dom';
 import footprint from '../../../assets/DO_footprint.svg';
+import background from '../../../assets/Display1/FondoDogs.svg';
+import line from '../../../assets/Display1/lineaDog.png';
 import donate2 from '../../../assets/Display1/icon2.svg';
 import donate1 from '../../../assets/Display1/icon.svg';
 import dogs from '../../../assets/DO_dogleft.png';
@@ -11,11 +13,13 @@ export const Display1 = () => {
   return (
     <section
       id="home"
-      className="h-[42rem] w-full flex justify-center items-center font-Nunito bg-[url('https://cdn.discordapp.com/attachments/1039259834379415572/1085599522715078656/shapes_overlay_1_1.png')] bg-contain relative"
+      className="h-[42rem] w-full flex justify-center items-center font-Nunito bg-contain relative"
     >
+      <img src={line} alt="Linea punteada" className='absolute h-full w-full' />
+      <img src={background} alt="Fondo de pantalla de Home" className='absolute' />
       <div
         id="home-content"
-        className=" flex flex-col gap-20 items-center justify-center"
+        className=" flex flex-col gap-20 items-center justify-center absolute z-20"
       >
         <div id="home-text">
           <h1 className="text-6xl font-extrabold text-[53px] leading-[73px] text-center">

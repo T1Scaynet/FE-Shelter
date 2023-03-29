@@ -98,8 +98,8 @@ export const AdoptionForm = () => {
             }
             try {
               await dispatch(PostForm({
-                ...dataSent,
-                idPet: selectedPet._id
+                ...dataSent
+                // idPet: selectedPet._id
               }));
               toast.success('Formulario enviado correctamente', {
                 style: {
