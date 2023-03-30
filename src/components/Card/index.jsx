@@ -24,15 +24,15 @@ export const Card = ({ name, genres, size, age, image, history, db, galery }) =>
     }
   ];
   return (
-    <div className='bg-[#FFFEFD] w-[33rem] relative h-[15.4rem] flex rounded-lg border-2 border-[#EBE5F7] overflow-hidden'>
+    <div className='bg-[#FFFEFD] w-[20.4rem] h-[38rem] grid grid-cols-1 rounded-lg border-2 border-[#EBE5F7] overflow-hidden relative md:w-[33rem] md:h-[15.4rem] md:flex '>
 
-      <section className='w-[40%] h-full overflow-hidden'>
-        <div className='h-full w-[13rem]'>
-          <img className='h-full w-full rounded-l-md object-cover' src={image || galery[0]} alt='Photo de dogs' />
+      <section className='w-full md:h-full overflow-hidden h-[23rem] md:w-[40%] '>
+        <div className='w-full h-full md:w-[13rem] md:h-full'>
+          <img className='h-full w-full object-cover md:rounded-l-md' src={image || galery[0]} alt='Photo de dogs' />
         </div>
       </section>
 
-      <section className='w-[60%] h-full px-4 py-5 space-y-3 flex flex-col'>
+      <section className='p-4 h-full md:w-[60%] md:px-4 md:py-5 space-y-3 flex flex-col'>
 
         <div className=' space-y-2 w-[95%]'>
           <h1 className='text-[1rem] font-bold'>{name}</h1>
