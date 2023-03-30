@@ -1,60 +1,16 @@
 /* eslint-disable no-unneeded-ternary */
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import React from 'react';
+import { Link } from 'react-router-dom';
 import linea from '../../assets/PetsList/Shape.svg';
 import dog from '../../assets/Contact/dogbg.png';
 import phone from '../../assets/Contact/phone.svg';
 import email from '../../assets/Contact/email.svg';
 import time from '../../assets/Contact/time.svg';
 import addres from '../../assets/Contact/addres.svg';
-import { MapView } from '../../components/MapView';
-import { TextField, Button } from '@mui/material';
-import validation from './validation';
-import swal from 'sweetalert';
-// import { useDispatch } from 'react-redux';
+import { MapView } from './MapView';
+import { ContactForm } from './Form';
 
 export const Contact = () => {
-  const navigate = useNavigate();
-  // const dispatch = useDispatch();
-
-  const [error, setError] = useState({});
-  const [input, setInput] = useState({
-    name: '',
-    lastname: '',
-    email: '',
-    message: '',
-    phone: ''
-  });
-
-  function handelChange (e) {
-    setInput({
-      ...input,
-      [e.target.name]: e.target.value
-    });
-    setError(
-      validation({
-        ...input,
-        [e.target.name]: e.target.value
-      })
-    );
-  }
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setError(validation(input));
-    if (
-      error !== undefined &&
-      Object.entries(error).length === 0 &&
-      input.name.length
-    ) {
-      // dispatch(postRecipe(input));
-      swal('Se enviaron tus datos!', 'Nos estaremos comunicando pronto', 'success');
-      navigate('/');
-    } else {
-      swal('Ocurrió un Error', 'Vuelve a intentarlo', 'error');
-    }
-  };
-
   return (
     <div>
       <span className='flex justify-start items-center space-x-2 h-[4.875rem] w-full bg-[#FBF9FF]'>
@@ -166,147 +122,7 @@ export const Contact = () => {
               peludo y hacer una diferencia en la vida de un animal necesitado.
             </p>
           </div>
-          <form
-            onSubmit={(e) => handleSubmit(e)}
-            className='flex flex-col gap-10 w-[80%] mt-[2.8rem] mb-[2.8rem]'
-          >
-            <div className='flex justify-between'>
-              <TextField
-                error={error.name ? true : false}
-                id={
-                  error.name ? 'outlined-error-helper-text' : 'outlined-basic'
-                }
-                label='Nombre'
-                variant='outlined'
-                name='name'
-                value={input.name}
-                onChange={(e) => handelChange(e)}
-                helperText={!error.name ? undefined : error.name}
-                sx={{
-                  '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline':
-                    {
-                      borderColor: '#7C58D3'
-                    },
-                  '& label.Mui-focused': {
-                    color: '#7C58D3'
-                  }
-                }}
-              />
-              <TextField
-                error={error.lastname ? true : false}
-                id={
-                  error.lastname
-                    ? 'outlined-error-helper-text'
-                    : 'outlined-basic'
-                }
-                label='Apellido'
-                variant='outlined'
-                name='lastname'
-                value={input.lastname}
-                onChange={(e) => handelChange(e)}
-                helperText={!error.lastname ? undefined : error.lastname}
-                sx={{
-                  '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline':
-                    {
-                      borderColor: '#7C58D3'
-                    },
-                  '& label.Mui-focused': {
-                    color: '#7C58D3'
-                  }
-                }}
-              />
-            </div>
-            <div className='flex justify-between'>
-              <TextField
-                error={error.name ? true : false}
-                id={
-                  error.name ? 'outlined-error-helper-text' : 'outlined-basic'
-                }
-                label='Número de teléfono'
-                type='number'
-                variant='outlined'
-                name='phone'
-                value={input.phone}
-                onChange={(e) => handelChange(e)}
-                InputLabelProps={{
-                  shrink: true,
-                  endAdornment: null
-                }}
-                helperText={!error.phone ? undefined : error.phone}
-                sx={{
-                  '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline':
-                    {
-                      borderColor: '#7C58D3'
-                    },
-                  '& label.Mui-focused': {
-                    color: '#7C58D3'
-                  }
-                }}
-              />
-              <TextField
-                error={error.email ? true : false}
-                id={
-                  error.name ? 'outlined-error-helper-text' : 'outlined-basic'
-                }
-                label='E-mail'
-                variant='outlined'
-                name='email'
-                value={input.email}
-                onChange={(e) => handelChange(e)}
-                helperText={!error.email ? undefined : error.email}
-                sx={{
-                  '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline':
-                    {
-                      borderColor: '#7C58D3'
-                    },
-                  '& label.Mui-focused': {
-                    color: '#7C58D3'
-                  }
-                }}
-              />
-            </div>
-            <TextField
-              error={error.message ? true : false}
-              id={
-                error.name
-                  ? 'filled-textarea-error-helper-text'
-                  : 'filled-textarea'
-              }
-              label='Tu mensaje'
-              name='message'
-              value={input.message}
-              onChange={(e) => handelChange(e)}
-              fullWidth
-              multiline
-              helperText={!error.message ? undefined : error.message}
-              sx={{
-                '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline':
-                  {
-                    borderColor: '#7C58D3'
-                  },
-                '& label.Mui-focused': {
-                  color: '#7C58D3'
-                }
-              }}
-            />
-          </form>
-          <Button
-            type='submit'
-            onClick={handleSubmit}
-            variant='contained'
-            style={{ backgroundColor: '#7C58D3', width: '30.438rem' }}
-            sx={{
-              '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline':
-                {
-                  borderColor: '#7C58D3'
-                },
-              '& label.Mui-focused': {
-                color: '#7C58D3'
-              }
-            }}
-          >
-            Enviar
-          </Button>
+          <ContactForm />
         </div>
         <div className='h-[42.25rem] flex justify-end items-end'>
           <MapView />

@@ -1,7 +1,6 @@
 /* eslint-disable prefer-const */
 /* eslint-disable react/jsx-props-no-multi-spaces */
 /* eslint-disable no-unneeded-ternary */
-// import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { loginRegister } from '../../../state/features/login/loginSlice';
@@ -14,8 +13,6 @@ import swal from 'sweetalert';
 function RegistrationForm () {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  // eslint-disable-next-line no-unused-vars
-  // const [formSubmitted, setFormSubmitted] = useState(false);
 
   return (
     <div className='flex h-screen'>
@@ -60,7 +57,6 @@ function RegistrationForm () {
 
             onSubmit={(value, { resetForm }) => {
               dispatch(loginRegister(value));
-              // setFormSubmitted(true);
               swal('¡Se registro correctamente!', 'Ingresa con tus credenciales', 'success');
               navigate('/ingresar');
               resetForm();
@@ -77,7 +73,7 @@ function RegistrationForm () {
                   variant='outlined'
                   name='name'
                   value={values.name}
-                  helperText={!touched.name && !errors.name ? undefined : errors.name}
+                  helperText={touched.name && errors.name ? errors.name : undefined}
                   onChange={handleChange}
                   onBlur={handleBlur}
                   sx={{
@@ -99,7 +95,7 @@ function RegistrationForm () {
                   variant='outlined'
                   name='email'
                   value={values.email}
-                  helperText={!touched.email && !errors.email ? undefined : errors.email}
+                  helperText={touched.email && errors.name ? errors.email : undefined}
                   onChange={handleChange}
                   onBlur={handleBlur}
                   sx={{
@@ -121,7 +117,7 @@ function RegistrationForm () {
                   variant='outlined'
                   name='password'
                   value={values.password}
-                  helperText={!touched.password && !errors.password ? undefined : errors.password}
+                  helperText={touched.password && errors.name ? errors.password : undefined}
                   onChange={handleChange}
                   onBlur={handleBlur}
                   type='password'
@@ -150,7 +146,7 @@ function RegistrationForm () {
                     }
                   }}
                 >
-                  Enviar
+                  Registrar
                 </Button>
               </form>
             )}
