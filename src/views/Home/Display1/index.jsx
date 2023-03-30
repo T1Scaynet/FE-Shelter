@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-closing-tag-location */
 /* eslint-disable jsx-quotes */
 import { Link } from 'react-router-dom';
 import footprint from '../../../assets/DO_footprint.svg';
@@ -8,15 +9,30 @@ import donate1 from '../../../assets/Display1/icon.svg';
 import dogs from '../../../assets/DO_dogleft.png';
 import dogTwo from '../../../assets/perroMestizotwo.svg';
 import cat from '../../../assets/DO_catright.png';
+import { useState } from 'react';
 
 export const Display1 = () => {
+  const [showMenu, setShowMenu] = useState(false);
   return (
     <section
       id="home"
-      className="h-[48rem] md:h-[42rem] w-full flex justify-center items-center font-Nunito bg-contain relative overflow-hidden"
+      className="h-[48rem] w-full flex justify-center items-center font-Nunito bg-contain relative overflow-hidden md:h-[42rem]"
     >
       <img src={line} alt="Linea punteada" className='absolute h-full w-full' />
       <img src={background} alt="Fondo de pantalla de Home" className='absolute' />
+      <div className={`md:hidden flex flex-col justify-center ${showMenu ? ' w-36 h-full rounded-md' : 'w-8 bg-transparent'} ' fixed right-0 bg-[#EBE5F7] h-[40rem] transition-all z-50 duration-300 '`}>
+        <div onClick={() => setShowMenu(!showMenu)} style={{ writingMode: !showMenu && 'vertical-lr' }} className='text-[1.5rem] bg-[#EBE5F7] rounded-md font-bold'>
+          {!showMenu
+            ? <p className='cursor-pointer py-5'>Menú</p>
+            : <div className='flex flex-col justify-center items-center'>
+              <button onClick={() => setShowMenu(false)} className='absolute w-10 top-0 left-0  rounded-md'>x</button>
+              <Link to='/' className='hover:text-[#7C58D3]'>Inicio</Link>
+              <Link to='/nosotros' className='hover:text-[#7C58D3]'>Nosotros</Link>
+              <Link to='/listado' className='hover:text-[#7C58D3]'>Adoptar</Link>
+              <Link to='/contacto' className='hover:text-[#7C58D3]'>Contacto</Link>
+            </div>}
+        </div>
+      </div>
       <div
         id="home-content"
         className=" flex flex-col gap-20 items-center justify-center absolute z-20"
