@@ -5,19 +5,22 @@ import { useNavigate } from 'react-router-dom';
 import { clearError } from '../../state/features/error/errorSlice';
 import img from '../../assets/404.svg';
 
-export const Error404 = () => {
+export const Error404 = ({ setShowLayout }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const errorMessage = useSelector((state) => state.error.message);
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
   const handleClick = () => {
+    setShowLayout(true);
     dispatch(clearError());
     navigate('/');
   };
+
+  useEffect(() => {
+    setShowLayout(false);
+    window.scrollTo(0, 0);
+    return () => setShowLayout(true);
+  }, []);
 
   return (
     <div className='min-h-screen grid grid-rows-[300px]  place-content-center bg-[#FFDA47] py-12 px-4 sm:px-6 lg:px-8'>
