@@ -73,7 +73,7 @@ export const Display5 = () => {
   return (
     <section
       id='nosotros'
-      className='h-[39.75rem] w-[100%] flex flex-col items-center justify-center'
+      className='hidden h-[39.75rem] w-full md:flex flex-col items-center justify-center'
     >
       <div className='flex flex-col items-center justify-center mb-[3.125rem]'>
         <p className='text-[#7C58D3] text-[0.787rem]'>

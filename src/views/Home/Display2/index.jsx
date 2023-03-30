@@ -14,10 +14,10 @@ export const Display2 = () => {
     dispatch(getTopList());
   }, [dispatch]);
   return (
-    <div className='w-full h-screen bg-[#FFFEFD] flex flex-col items-center space-y-3 py-2'>
-      <p className='text-[#7C58D3] font-bold text-[1.2rem] font-[Nunito]'>Mascotas disponibles para adopción</p>
-      <h1 className=' text-[3rem] font-[Nunito]'>Encontrar un nuevo amigo peludo</h1>
-      <span>Las mascotas adoptables se actualizan continuamente. Visitanos con frecuencia para encontrar tu pareja perfecta</span>
+    <div className='w-full h-full bg-[#FFFEFD] flex flex-col items-center space-y-6 py-2'>
+      <p className='text-[#7C58D3] text-[1.2rem] font-bold md:text-[1.5rem]'>Mascotas disponibles para adopción</p>
+      <h1 className='text-[1.4rem] md:text-[3rem]'>Encuentra un nuevo amigo peludo</h1>
+      <span className='text-center'>Las mascotas adoptables se actualizan continuamente. Visitanos con frecuencia para encontrar tu pareja perfecta</span>
       <div>
         {
           top.length

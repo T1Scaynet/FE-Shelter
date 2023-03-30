@@ -16,7 +16,7 @@ export const Display4 = () => {
   }, [dispatch]);
 
   return (
-    <section className='w-[90%] m-auto'>
+    <section className='hidden md:block w-[90%] m-auto'>
       <div className='flex flex-col items-center justify-center mb-[3.125rem]'>
         <p className='text-[#7C58D3] font-bold text-[1.2rem] font-[Nunito]'>Nuestras opiniones</p>
         <h1 className=' text-[3rem] font-[Nunito]'>Lo que dice la gente</h1>

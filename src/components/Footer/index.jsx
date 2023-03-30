@@ -45,7 +45,7 @@ export const Footer = () => {
             </div>
           </div>
         </div>
-        <div className='flex flex-col mt-[2rem] w-[22rem] bg-[#8b0d0d00]'>
+        <div className='hidden md:flex flex-col mt-[2rem] w-[22rem] bg-[#8b0d0d00]'>
           <b>Newsletter</b>
           <p>¡Sé el primero en la cola! Reciba nuestras últimas noticias directamente en su bandeja de entrada.</p>
           <div className='flex flex-row'>

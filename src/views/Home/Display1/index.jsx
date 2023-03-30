@@ -13,7 +13,7 @@ export const Display1 = () => {
   return (
     <section
       id="home"
-      className="h-[42rem] w-full flex justify-center items-center font-Nunito bg-contain relative"
+      className="h-[48rem] md:h-[42rem] w-full flex justify-center items-center font-Nunito bg-contain relative overflow-hidden"
     >
       <img src={line} alt="Linea punteada" className='absolute h-full w-full' />
       <img src={background} alt="Fondo de pantalla de Home" className='absolute' />
@@ -22,14 +22,14 @@ export const Display1 = () => {
         className=" flex flex-col gap-20 items-center justify-center absolute z-20"
       >
         <div id="home-text">
-          <h1 className="text-6xl font-extrabold text-[53px] leading-[73px] text-center">
+          <h1 className=" text-xl md:text-6xl md:text-[53px] md:leading-[73px] text-center">
             CUANDO LA VOLUNTAD EXISTE <br />
-            <span className="font-normal">HAY MIL RECURSOS</span>
+            <span className=" text-2xl font-extrabold md:text-6xl">HAY MIL RECURSOS</span>
           </h1>
         </div>
 
-        <Link to="/donaciones">
-          <div className="button flex items-center bg-[#7C58D3] h-[66px] px-[20px] w-[193px] rounded-md hover:cursor-pointer hover:bg-[#5930b9] transition-colors duration-500">
+        <Link to="/donaciones" className='mb-12 md:mb-0'>
+          <div className="flex items-center bg-[#7C58D3] h-[66px] px-[20px] w-[193px] rounded-md hover:cursor-pointer hover:bg-[#5930b9] transition-colors duration-500">
             <img src={footprint} alt="footprint" />
             <span className="ml-[30px] text-white font-bold text-2xl">
               Donar
@@ -37,7 +37,7 @@ export const Display1 = () => {
           </div>
         </Link>
 
-        <div className="flex justify-evenly w-[30rem]">
+        <div className=" space-y-4 pt-10 h-72 flex flex-col justify-evenly md:space-y-0 md:flex md:pt-0 md:flex-row md:justify-evenly md:w-[30rem] md:h-full">
           <Link to="/donaciones/#insumos">
             <div className="relative w-[13.271rem] h-[6.563rem] rounded-[0.394rem] bg-white flex justify-center items-center flex-col">
               <div className="bg-[#EBE5F7] h-[3.938rem] w-[3.938rem] flex justify-center items-center rounded-[50%] absolute top-0 mt-[-1.969rem] hover:scale-110 hover:bg-[#c5b4e69d] transition-all duration-500">
@@ -63,17 +63,17 @@ export const Display1 = () => {
       <img
         src={dogs}
         alt="dogspng"
-        className="absolute left-[15%] h-[400px] bottom-[7rem]"
+        className="hidden absolute md:block left-[15%] h-[400px] bottom-[7rem]"
       />
       <img
         src={dogTwo}
         alt="perro mestizo"
-        className="absolute left-[6%] h-[400px] bottom-[8rem]"
+        className="absolute left-[6%] h-[400px] bottom-[7rem] md:bottom-[8rem]"
       />
       <img
         src={cat}
         alt="catpng"
-        className="absolute right-[6%] h-[250px] bottom-[133px]"
+        className="absolute right-[-0.5rem] bottom-36 md:right-[6%] h-[250px] md:bottom-[133px]"
       />
     </section>
   );

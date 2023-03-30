@@ -74,7 +74,7 @@ export const Display3 = () => {
           </Collapse>
         </div>
       </div>
-      <div className="w-[600px]">
+      <div className="w-full md:w-[600px]">
         <img src={aboutimg} alt="" className=" max-w-full h-auto" />
       </div>
     </section>
