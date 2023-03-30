@@ -7,6 +7,7 @@ import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 import './index.css';
 import axios from 'axios';
+import './satoshi.css';
 
 axios.defaults.baseURL = import.meta.env.VITE_REACT_APP_URL_BACKEND;
 
