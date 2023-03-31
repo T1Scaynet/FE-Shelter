@@ -73,9 +73,9 @@ export const Display5 = () => {
   return (
     <section
       id='nosotros'
-      className='hidden h-[39.75rem] w-full md:flex flex-col items-center justify-center'
+      className='bg-[#FFFEFD] hidden h-[39.75rem] w-full md:flex flex-col items-center justify-center'
     >
-      <div className='flex flex-col items-center justify-center mb-[3.125rem]'>
+      <div className='flex flex-col items-center space-y-4 justify-center mb-[3.125rem]'>
         <p className='text-[#7C58D3] text-[0.787rem]'>
           EQUIPO DE CUIDADO DE MASCOTAS
         </p>
@@ -83,7 +83,7 @@ export const Display5 = () => {
           Bienvenido a nuestra familia
         </h2>
       </div>
-      <div className='flex flex-row items-center justify-center mb-[2.438rem]'>
+      <div className='flex flex-row items-center justify-center mb-[4rem]'>
         <Slider {...settings} className='w-[90rem] bg-[#FBF9FF] rounded-t-lg'>
           {profiles.map((profile) => (
             <div

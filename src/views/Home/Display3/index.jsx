@@ -23,7 +23,7 @@ export const Display3 = () => {
   };
 
   return (
-    <section className="w-full grid grid-cols-1 md:grid-cols-2 gap-32 items-center py-[120px] md:px-[14%]">
+    <section className=" bg-[#FFFEFD] w-full grid grid-cols-1 md:grid-cols-2 gap-32 items-center py-[120px] md:px-[14%]">
       <div className="w-[90%] m-auto flex flex-col gap-6">
         <div className=' space-y-5'>
           <h2 className="text-center text-2xl md:text-start font-bold md:text-4xl md:leading-[48px]">
