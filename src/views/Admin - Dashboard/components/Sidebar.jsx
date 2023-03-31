@@ -18,6 +18,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
   const trigger = useRef(null);
   const sidebar = useRef(null);
 
+  // eslint-disable-next-line no-undef
   const storedSidebarExpanded = localStorage.getItem('sidebar-expanded');
   const [sidebarExpanded, setSidebarExpanded] = useState(
     storedSidebarExpanded === null ? false : storedSidebarExpanded === 'true'
@@ -49,6 +50,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
   });
 
   useEffect(() => {
+    // eslint-disable-next-line no-undef
     localStorage.setItem('sidebar-expanded', sidebarExpanded);
     if (sidebarExpanded) {
       document.querySelector('body').classList.add('sidebar-expanded');
@@ -492,7 +494,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                         to='#'
                         className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
                           (pathname === '/adopciones' ||
-                            pathname.includes('donacion')) &&
+                            pathname.includes('adopciones')) &&
                           'bg-graydark dark:bg-meta-4'
                         }`}
                         onClick={(e) => {
