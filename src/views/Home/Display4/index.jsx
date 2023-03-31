@@ -16,10 +16,10 @@ export const Display4 = () => {
   }, [dispatch]);
 
   return (
-    <section className='hidden md:block w-[90%] m-auto'>
-      <div className='flex flex-col items-center justify-center mb-[3.125rem]'>
+    <section className='bg-[#FFFEFD] hidden md:block w-[90%] m-auto'>
+      <div className='flex flex-col items-center justify-center md:space-y-5 py-5'>
         <p className='text-[#7C58D3] font-bold text-[1.2rem] font-[Nunito]'>Nuestras opiniones</p>
-        <h1 className=' text-[3rem] font-[Nunito]'>Lo que dice la gente</h1>
+        <h1 className='text-[3rem] font-[Nunito]'>Lo que dice la gente</h1>
         <span>Estos son los comentarios que recibimos de la gente que adoptó nuestros amigos peludos</span>
       </div>
       <div>
