@@ -12,7 +12,7 @@ import { Search } from '../../components/Search';
 const INITIAL_STATE = {
   size: '',
   type: '',
-  genre: '', 
+  genre: '',
   sort: '',
   totalPages: 1,
   currentPage: 1

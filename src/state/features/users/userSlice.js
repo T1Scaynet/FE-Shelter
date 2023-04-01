@@ -1,16 +1,17 @@
 import { createSlice } from '@reduxjs/toolkit';
+import axios from 'axios';
 
 export const userSlice = createSlice({
   name: 'users',
   initialState: {
-    //name, email, roles, sortBy, search, page, limit
+    // name, email, roles, sortBy, search, page, limit
     list: [],
     logged: false,
-    allUsers:[],
+    allUsers: [],
     pagination: {
       totalPage: 1,
       currentPage: 1
-    },  
+    },
     filters: {
       name: '',
       email: '',
@@ -29,7 +30,7 @@ export const userSlice = createSlice({
       state.user = null;
     },
     setAllUsers: (state, action) => {
-      state.allUsers = action.payload
+      state.allUsers = action.payload;
     },
     setPagination: (state, action) => {
       state.pagination = action.payload;
@@ -39,37 +40,28 @@ export const userSlice = createSlice({
       state.filters = action.payload;
     }
   }
-}); 
-export const { setUser, setUserLogout, setAllUsers , setPagination, setFilters} = userSlice.actions;
+});
+export const { setUser, setUserLogout, setAllUsers, setPagination, setFilters } = userSlice.actions;
 
 export default userSlice.reducer;
 
 // name, email, roles, sortBy, search, page, limit
-export const getAllUsers = ({
-  name = '',
-  email = '',
-  roles = '',
-  sortBy = '',
-  currentPage = '',
-  search = ''
-}) => {
+export const getAllUsers = () => {
   return async function (dispatch) {
-    axios
-      .get( 
-        `/user?search=${search}&page=${currentPage}&name=${name}&email=${email}&roles=${roles}&sort=${sortBy}`
-      )
-      .then((r) => r.data)
-      .then((response) => {
-        console.log("este console log que trae",response)
-        dispatch(setAllUsers(response.users));
-        dispatch(
-          setPagination({
-            totalPages: response.totalPages,
-            currentPage: response.currentPage
-          })
-        );
-      })
-      .catch((e) => console.log(e) );
+    axios.get('/user').then(r => r.data).then(response => dispatch(setAllUsers(response.users)));
+    // axios.get(`/user?search=${search}&page=${currentPage}&name=${name}&email=${email}&roles=${roles}&sort=${sortBy}`)
+    //   .then((r) => r.data)
+    //   .then((response) => {
+    //     console.log('este console log que trae', response);
+    //     dispatch(setAllUsers(response.users));
+    //     dispatch(
+    //       setPagination({
+    //         totalPages: response.totalPages,
+    //         currentPage: response.currentPage
+    //       })
+    //     );
+    //   })
+    //   .catch((e) => console.log(e));
   };
 };
 
@@ -123,9 +115,3 @@ export const getAllUsers = ({
 //     }
 //   };
 // };
-
-
-
-
-
-
