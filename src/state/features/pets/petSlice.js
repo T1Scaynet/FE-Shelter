@@ -72,13 +72,9 @@ export const getAllPets = ({
 };
 
 export const PostPet = (payload) => {
-  return async function (_dispatch, getState) {
-    const currentState = getState().login;
+  return async function () {
     try {
-      // console.log(currentState.token);
-      const instance = axios.create();
-      instance.defaults.headers.common['x-access-token'] = currentState.token;
-      const sendaxios = await instance.post(
+      const sendaxios = await axios.post(
         '/pet/create',
         payload
       );
