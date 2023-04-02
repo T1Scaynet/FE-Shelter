@@ -29,13 +29,13 @@ export const ContactForm = () => {
         const emailRegExpression = /^[^@]+@[^@]+\.[a-zA-Z]{2,}$/;
 
         if (!value.name || value.name.length < 4) {
-          errors.name = 'El nombre debe tener más de 4 carácteres';
+          errors.name = 'El nombre debe tener más de 4 carácteres*';
         } else if (!/^[a-zA-Z]+$/.test(value.name)) {
           errors.name = 'El nombre no es válido. Porfavor ingrese otro';
         }
 
         if (!value.lastName || value.lastName.length < 4) {
-          errors.lastName = 'El apellido debe tener más de 4 carácteres';
+          errors.lastName = 'El apellido debe tener más de 4 carácteres*';
         } else if (!/^[a-zA-Z]+$/.test(value.lastName)) {
           errors.lastName = 'El apellido no es válido. Porfavor ingrese otro';
         }
@@ -69,9 +69,9 @@ export const ContactForm = () => {
       }}
     >
       {({ values, errors, touched, handleChange, handleSubmit, handleBlur }) => (
-        <form onSubmit={handleSubmit} className='flex flex-col gap-4 w-[39rem] mt-8'>
+        <form onSubmit={handleSubmit} className='flex flex-col gap-4 md:w-[39rem] w-[17.5rem] mt-8'>
           {/* {console.log(touched)} */}
-          <div className='flex justify-between'>
+          <div className='flex justify-between md:flex-row flex-col md:gap-0 gap-6'>
             <TextField
               error={errors.name && touched.name ? true : false}
               id={errors.name && touched.name ? 'outlined-error-helper-text' : 'outlined-basic'}
@@ -119,7 +119,7 @@ export const ContactForm = () => {
               }}
             />
           </div>
-          <div className='flex justify-between mt-6 mb-6'>
+          <div className='flex justify-between md:mt-6 md:mb-6 md:flex-row flex-col md:gap-0 gap-6'>
             <TextField
               error={errors.email && touched.email ? true : false}
               id={

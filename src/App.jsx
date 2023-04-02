@@ -4,8 +4,20 @@ import { Footer } from './components/Footer';
 import { Toaster } from 'sonner';
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import axios from 'axios';
+import { useSelector } from 'react-redux';
 
 function App () {
+  const login = useSelector(state => state.login);
+
+  axios.defaults.baseURL = import.meta.env.VITE_REACT_APP_URL_BACKEND;
+  axios.interceptors.request.use((request) => {
+    if (!request.url.includes('cloudinary')) {
+      request.headers['x-access-token'] = login.token;
+    }
+    return request;
+  });
+
   const [showLayout, setShowLayout] = useState(true);
   const location = useLocation();
   const currentPath = location.pathname;

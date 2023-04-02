@@ -30,6 +30,7 @@ export const petSlice = createSlice({
     },
 
     setFilters: (state, action) => {
+      console.log('dentro de slice', action);
       state.filters = action.payload;
     },
   },
@@ -45,13 +46,14 @@ export const getAllPets = ({
   type = '',
   genre = '',
   sort = '',
+  state = '',
   currentPage = '',
   search = '',
 }) => {
   return async function (dispatch) {
     axios
       .get(
-        `/pet?search=${search}&page=${currentPage}&size=${size}&type=${type}&genre=${genre}&sort=${sort}`,
+        `/pet?search=${search}&page=${currentPage}&size=${size}&type=${type}&genre=${genre}&sort=${sort}&state=${state}`
       )
       .then((r) => r.data)
       .then((response) => {
@@ -68,13 +70,12 @@ export const getAllPets = ({
 };
 
 export const PostPet = (payload) => {
-  return async function (_dispatch, getState) {
-    const currentState = getState().login;
+  return async function () {
     try {
-      // console.log(currentState.token);
-      const instance = axios.create();
-      instance.defaults.headers.common['x-access-token'] = currentState.token;
-      const sendaxios = await instance.post('/pet/create', payload);
+      const sendaxios = await axios.post(
+        '/pet/create',
+        payload
+      );
       return sendaxios;
     } catch (error) {
       console.warn("Error al enviar datos en función 'PostPet'");
