@@ -44,7 +44,7 @@ export const Display3 = () => {
           <Collapse in={open} timeout="auto" unmountOnExit>
             <List component="div" disablePadding>
               <ListItemButton sx={{ pl: 4 }}>
-                <ListItemText sx={{ color: 'red', fontSize: '20px' }} primary="Un grupo de amigos preocupados por el bienestar de los animales sin hogar decidieron crear su propio refugio de animales. Con donaciones y trabajo voluntario, construyeron un refugio que proporcionaba hogares temporales y atención médica a los animales. Con el tiempo, se expandieron y muchos animales encontraron hogares amorosos gracias a su trabajo." />
+                <ListItemText primary="Un grupo de amigos preocupados por el bienestar de los animales sin hogar decidieron crear su propio refugio de animales. Con donaciones y trabajo voluntario, construyeron un refugio que proporcionaba hogares temporales y atención médica a los animales. Con el tiempo, se expandieron y muchos animales encontraron hogares amorosos gracias a su trabajo." />
               </ListItemButton>
             </List>
           </Collapse>
