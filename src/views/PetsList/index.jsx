@@ -24,7 +24,7 @@ export const PetsList = () => {
   const dispatch = useDispatch();
   const pagination = useSelector(state => state.pets.pagination);
 
-  const handleFilter = (e, type) => {
+  const handleFilter = (e, type) => { 
     if (!e) {
       dispatch(setFilters(INITIAL_STATE));
       dispatch(getAllPets(INITIAL_STATE));

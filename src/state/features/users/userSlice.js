@@ -48,7 +48,14 @@ export default userSlice.reducer;
 // name, email, roles, sortBy, search, page, limit
 export const getAllUsers = () => {
   return async function (dispatch) {
-    axios.get('/user').then(r => r.data).then(response => dispatch(setAllUsers(response.users)));
+    axios.get('/user?search=${search}&page=${currentPage}&name=${name}&email=${email}&roles=${roles}&sort=${sortBy}')
+      .then(r => r.data)
+      .then(response => {
+        dispatch(setAllUsers(response.users))
+      });
+    };
+  };    
+      
     // axios.get(`/user?search=${search}&page=${currentPage}&name=${name}&email=${email}&roles=${roles}&sort=${sortBy}`)
     //   .then((r) => r.data)
     //   .then((response) => {
@@ -62,8 +69,7 @@ export const getAllUsers = () => {
     //     );
     //   })
     //   .catch((e) => console.log(e));
-  };
-};
+
 
 // export const getAllUsers = ({
 //   name = '',
