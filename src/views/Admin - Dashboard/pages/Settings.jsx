@@ -7,14 +7,14 @@ const Settings = () => {
   return (
     <DefaultLayout>
       <div className='mx-auto max-w-270'>
-        <Breadcrumb pageName='Settings' />
+        <Breadcrumb pageName='Ajustes' />
 
         <div className='grid grid-cols-5 gap-8'>
           <div className='col-span-5 xl:col-span-3'>
             <div className='rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark'>
               <div className='border-b border-stroke py-4 px-7 dark:border-strokedark'>
                 <h3 className='font-medium text-black dark:text-white'>
-                  Personal Information
+                  Información Personal
                 </h3>
               </div>
               <div className='p-7'>
@@ -25,7 +25,7 @@ const Settings = () => {
                         className='mb-3 block text-sm font-medium text-black dark:text-white'
                         htmlFor='fullName'
                       >
-                        Full Name
+                        Nombre Completo
                       </label>
                       <div className='relative'>
                         <span className='absolute left-4.5 top-4'>
