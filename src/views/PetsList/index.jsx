@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 import { Pagination } from '../../components/Pagination';
 import { CheckBox } from './CheckBox';
 import { Search } from '../../components/Search';
+import { ButtonResetFilters } from '../../components/ButtonResetFilters';
 import { Collapse } from '@mui/material';
 
 const INITIAL_STATE = {
@@ -36,21 +37,22 @@ export const PetsList = () => {
       dispatch(getAllPets(INITIAL_STATE));
       return;
     }
+    // console.log('event', e.target.value);
+    console.log('type', type);
     const newValue = filters[type] === e.target.value ? '' : e.target.value;
-    dispatch(
-      setFilters({
-        ...filters,
-        [type]: newValue,
-        currentPage: 1
-      })
-    );
-    dispatch(
-      getAllPets({
-        ...filters,
-        [type]: newValue,
-        currentPage: 1
-      })
-    );
+
+    console.log('newValue', newValue);
+    dispatch(setFilters({
+      ...filters,
+      [type]: newValue, // genre : hembra
+      currentPage: 1
+    }));
+    dispatch(getAllPets({
+      ...filters,
+      [type]: newValue,
+      currentPage: 1
+    }));
+
   };
 
   const handlePageChange = (pageNumber) => {
@@ -236,12 +238,8 @@ export const PetsList = () => {
                 filters={filters}
               />
 
-              <button
-                onClick={() => handleFilter()}
-                className='h-8 w-32 rounded-md bg-[#7C58D3] text-[white] hover:bg-[#FFDA47] hover:text-[#0E081E]'
-              >
-                Limpiar filtros
-              </button>
+              <ButtonResetFilters handleFilter={handleFilter} />
+
             </div>
           </div>
         </div>
