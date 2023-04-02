@@ -10,11 +10,11 @@ export const CheckBox = ({
   const valueAz = optionOne === 'A - Z' ? 'alphabetical' : optionOne;
   const valueZa = optionTwo === 'Z - A' ? 'alphabetical_desc' : optionTwo;
   return (
-    <div className='w-[80%] mx-auto'>
-      <label className='font-bold text-[#7C58D3]'>{title}:</label>
+    <div className='md:w-[80%] md:mx-auto w-full'>
+      <label className='font-bold text-[#7C58D3] text-[0.875rem] md:text-[1rem]'>{title}:</label>
 
-      <label className='flex justify-between'>
-        <p>{optionOne}</p>
+      <label className='flex justify-between md:w-auto w-[5.4rem]'>
+        <p className='text-[0.875rem] md:text-[1rem]'>{optionOne}</p>
         <input
           onChange={(e) => handleFilter(e, param)}
           type='checkbox'
@@ -23,8 +23,8 @@ export const CheckBox = ({
         />
       </label>
 
-      <label className='flex justify-between'>
-        <p>{optionTwo}</p>
+      <label className='flex justify-between md:w-auto w-[5.4rem]'>
+        <p className='text-[0.875rem] md:text-[1rem]'>{optionTwo}</p>
         <input
           onChange={(e) => handleFilter(e, param)}
           type='checkbox'
@@ -34,8 +34,8 @@ export const CheckBox = ({
       </label>
 
       {optionThree && (
-        <label className='flex justify-between'>
-          <p>{optionThree}</p>
+        <label className='flex justify-between md:w-auto w-[5.4rem]'>
+          <p className='text-[0.875rem] md:text-[1rem]'>{optionThree}</p>
           <input
             onChange={(e) => handleFilter(e, param)}
             type='checkbox'

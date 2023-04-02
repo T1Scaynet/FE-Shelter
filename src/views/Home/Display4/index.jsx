@@ -31,6 +31,7 @@ export const Display4 = () => {
               speed={500}
               slidesToShow={3}
               slidesToScroll={3}
+              className='bg-[#FBF9FF] rounded-t-lg'
             >
               {commentsList.map((t, i) => (
                 <Fragment key={i}>
