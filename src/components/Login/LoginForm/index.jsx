@@ -28,8 +28,8 @@ export const LoginForm = () => {
   };
 
   return (
-    <div className='flex h-screen'>
-      <div className='w-1/2 flex justify-center items-center'>
+    <div className='flex h-screen '>
+      <div className='md:w-1/2 md:flex md:justify-center md:items-center'>
         <div>
           <h3 className='text-4xl font-bold mb-4'>Iniciar Sesión</h3>
           <h2 className='text-m font-medium mb-8'>Utilice sus credenciales para acceder a su cuenta.</h2>
@@ -91,7 +91,7 @@ export const LoginForm = () => {
 
         </div>
       </div>
-      <div className='w-1/2  flex justify-center items-center'>
+      <div className='hidden sm:block md:w-1/2 md:flex justify-center items-center'>
         <img
           src={ingresar}
           alt='Imagen de ingreso'
