@@ -36,7 +36,7 @@ export const Contact = () => {
           <div className='flex flex-col justify-evenly ml-[2.5rem]'>
             <div className='md:w-[35rem]'>
               <h1 className='md:text-7xl text-[2.5rem] font-extrabold mb-[2.02rem]'>Contáctenos</h1>
-              <p className='md:text-[1rem] text-[0.7rem]'>
+              <p className='md:text-[1rem] text-[0.875rem]'>
                 ¿Quieres marcar la <b>diferencia</b> en la vida de un animal
                 necesitado? ¡Contacta con nuestra fundación de rescate de
                 animales hoy mismo y sé parte del cambio positivo!
