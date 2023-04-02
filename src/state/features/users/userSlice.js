@@ -31,6 +31,7 @@ export const userSlice = createSlice({
     },
     setAllUsers: (state, action) => {
       state.allUsers = action.payload;
+      state.list = action.payload;
     },
     setPagination: (state, action) => {
       state.pagination = action.payload;
@@ -48,28 +49,27 @@ export default userSlice.reducer;
 // name, email, roles, sortBy, search, page, limit
 export const getAllUsers = () => {
   return async function (dispatch) {
-    axios.get('/user?search=${search}&page=${currentPage}&name=${name}&email=${email}&roles=${roles}&sort=${sortBy}')
+    axios.get('/user')
       .then(r => r.data)
       .then(response => {
-        dispatch(setAllUsers(response.users))
+        dispatch(setAllUsers(response.users));
       });
-    };
-  };    
-      
-    // axios.get(`/user?search=${search}&page=${currentPage}&name=${name}&email=${email}&roles=${roles}&sort=${sortBy}`)
-    //   .then((r) => r.data)
-    //   .then((response) => {
-    //     console.log('este console log que trae', response);
-    //     dispatch(setAllUsers(response.users));
-    //     dispatch(
-    //       setPagination({
-    //         totalPages: response.totalPages,
-    //         currentPage: response.currentPage
-    //       })
-    //     );
-    //   })
-    //   .catch((e) => console.log(e));
+  };
+};
 
+// axios.get(`/user?search=${search}&page=${currentPage}&name=${name}&email=${email}&roles=${roles}&sort=${sortBy}`)
+//   .then((r) => r.data)
+//   .then((response) => {
+//     console.log('este console log que trae', response);
+//     dispatch(setAllUsers(response.users));
+//     dispatch(
+//       setPagination({
+//         totalPages: response.totalPages,
+//         currentPage: response.currentPage
+//       })
+//     );
+//   })
+//   .catch((e) => console.log(e));
 
 // export const getAllUsers = ({
 //   name = '',
