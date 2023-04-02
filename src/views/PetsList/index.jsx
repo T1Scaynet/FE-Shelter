@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 import { Pagination } from '../../components/Pagination';
 import { CheckBox } from './CheckBox';
 import { Search } from '../../components/Search';
+import { ButtonResetFilters } from '../../components/ButtonResetFilters';
 
 const INITIAL_STATE = {
   size: '',
@@ -30,10 +31,13 @@ export const PetsList = () => {
       dispatch(getAllPets(INITIAL_STATE));
       return;
     }
+    // console.log('event', e.target.value);
+    console.log('type', type);
     const newValue = filters[type] === e.target.value ? '' : e.target.value;
+    console.log('newValue', newValue);
     dispatch(setFilters({
       ...filters,
-      [type]: newValue,
+      [type]: newValue, // genre : hembra
       currentPage: 1
     }));
     dispatch(getAllPets({
@@ -117,7 +121,7 @@ export const PetsList = () => {
               <CheckBox title='Tamaños' param='size' optionOne='Grande' optionTwo='Mediano' optionThree='Chico' handleFilter={handleFilter} filters={filters} />
               <CheckBox title='Tipos' param='type' optionOne='Gato' optionTwo='Perro' handleFilter={handleFilter} filters={filters} />
 
-              <button onClick={() => handleFilter()} className='bg-[#7C58D3] text-[white] w-32 h-8 rounded-md hover:bg-[#FFDA47] hover:text-[#0E081E]'>Limpiar filtros</button>
+              <ButtonResetFilters handleFilter={handleFilter} />
             </div>
 
           </div>
