@@ -24,6 +24,7 @@ import login from './features/login/loginSlice';
 import products from './features/products/productSlice';
 import cartSlice from './features/cartSlice';
 import { productsApi } from './features/products/productsApi';
+import donations from './features/donations/donationSlice';
 
 const persistConfig = {
   key: 'root',
@@ -40,7 +41,8 @@ const rootReducer = combineReducers({
   login,
   products,
   cart: cartSlice,
-  [productsApi.reducerPath]: productsApi.reducer
+  [productsApi.reducerPath]: productsApi.reducer,
+  donations
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
