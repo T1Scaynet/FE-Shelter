@@ -25,6 +25,7 @@ import products from './features/products/productSlice';
 import cartSlice from './features/cartSlice';
 import { productsApi } from './features/products/productsApi';
 import donations from './features/donations/donationSlice';
+import formRequest from './features/formDashAdopciones';
 
 const persistConfig = {
   key: 'root',
@@ -42,7 +43,8 @@ const rootReducer = combineReducers({
   products,
   cart: cartSlice,
   [productsApi.reducerPath]: productsApi.reducer,
-  donations
+  donations,
+  formRequest
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
