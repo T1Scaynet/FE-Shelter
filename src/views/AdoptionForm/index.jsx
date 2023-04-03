@@ -144,7 +144,7 @@ export const AdoptionForm = () => {
                         />
                         <ErrorMessage
                           name={f.name} component={() => (
-                            <p className='text-red-500'>{errors[f.name]}</p>
+                            <p className='text-[red]'>{errors[f.name]}</p>
                           )}
                         />
                       </div>
@@ -160,7 +160,7 @@ export const AdoptionForm = () => {
                         name='age'
                         className='bg-[#EBE5F7] h-10 w-full p-3 rounded-md'
                       />
-                      <ErrorMessage name='age' component={() => (<p className='text-red-500'>{errors.age}</p>)} />
+                      <ErrorMessage name='age' component={() => (<p className='text-[red]'>{errors.age}</p>)} />
                     </div>
 
                     <div className='w-1/2 space-y-2'>
@@ -173,7 +173,7 @@ export const AdoptionForm = () => {
                       />
                       <ErrorMessage
                         name='familyMembers' component={() => (
-                          <p className='text-red-500'>{errors.familyMembers}</p>
+                          <p className='text-[red]'>{errors.familyMembers}</p>
                         )}
                       />
                     </div>
@@ -195,7 +195,7 @@ export const AdoptionForm = () => {
                           </div>
                           <ErrorMessage
                             name={c.name} component={() => (
-                              <p className='text-red-500 w-full mt-2'>{errors[c.name]}</p>
+                              <p className='text-[red] w-full mt-2'>{errors[c.name]}</p>
                             )}
                           />
                         </div>

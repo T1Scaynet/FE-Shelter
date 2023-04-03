@@ -5,10 +5,12 @@ import { RowTitles } from '../../components/RowTitles';
 import { Row } from '../../components/Row';
 import { Pagination } from '../../../../components/Pagination';
 import { titlesPet } from '../../constants/titlePet';
-import { getAllPets, setFilters } from '../../../../state/features/pets/petSlice';
+import { getAllPetsAdmin, setFilters, deletePet } from '../../../../state/features/pets/petSlice';
 import { Filters } from '../../components/Filters';
 import { filtersValues } from '../../constants/filtersValues';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { toast } from 'sonner';
+import { Modal } from '../../components/Modal';
 
 const INITIAL_STATE = {
   size: '',
@@ -25,11 +27,13 @@ export const ListadeMascotas = () => {
   const pets = useSelector((state) => state.pets);
   const filters = useSelector((state) => state.pets.filters);
   const pagination = useSelector(state => state.pets.pagination);
+  const [modal, setModal] = useState(false);
+  const [dataEdit, setDataEdit] = useState({});
 
   const handleFilter = (e, type) => {
     if (!e) {
       dispatch(setFilters(INITIAL_STATE));
-      dispatch(getAllPets(INITIAL_STATE));
+      dispatch(getAllPetsAdmin(INITIAL_STATE));
       return;
     }
     console.log('type', type);
@@ -37,10 +41,10 @@ export const ListadeMascotas = () => {
     console.log('newValue', newValue);
     dispatch(setFilters({
       ...filters,
-      [type]: newValue, // genre: macho
+      [type]: newValue,
       currentPage: 1
     }));
-    dispatch(getAllPets({
+    dispatch(getAllPetsAdmin({
       ...filters,
       [type]: newValue,
       currentPage: 1
@@ -52,14 +56,24 @@ export const ListadeMascotas = () => {
       ...filters,
       currentPage: pageNumber
     }));
-    dispatch(getAllPets({
+    dispatch(getAllPetsAdmin({
       ...filters,
       currentPage: pageNumber
     }));
   };
 
+  const handleDelete = (id) => {
+    dispatch(deletePet(id));
+    toast.success('Mascota eliminada correctamente');
+  };
+
+  const handleEdit = (data) => {
+    setDataEdit(data);
+    setModal(true);
+  };
+
   useEffect(() => {
-    dispatch(getAllPets(filters));
+    dispatch(getAllPetsAdmin(filters));
     window.scrollTo(0, 0);
   }, [dispatch]);
 
@@ -68,7 +82,8 @@ export const ListadeMascotas = () => {
       <Breadcrumb pageName='Lista de Mascotas' />
       <Filters filtersValues={filtersValues} handleFilter={handleFilter} filters={filters} />
       <RowTitles titles={titlesPet} />
-      <Row info={pets.list} />
+      <Row info={pets.list} handleDelete={handleDelete} handleEdit={handleEdit} />
+      <Modal data={dataEdit} setModal={setModal} modal={modal} />
       <Pagination
         isDashboard
         currentPage={pagination.currentPage}

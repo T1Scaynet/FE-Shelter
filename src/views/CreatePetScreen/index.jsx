@@ -131,6 +131,7 @@ export const CreatePetScreen = () => {
   };
   const { form, errors, handleChange, handleBlur, handleSubmit, loading } = useForm(initialForm, validationsForm);
   const [loadinng, setLoadinng] = useState('');
+  const [uploadedImages, setUploadedImages] = useState({ array: [] });
 
   const handleDrop = (files) => {
     const uploaders = files.map(file => {
@@ -149,10 +150,10 @@ export const CreatePetScreen = () => {
           const fileURL = data.secure_url;
           const specificArrayInObject = form.galery;
           specificArrayInObject.push(fileURL);
-          // console.log('array que envio', specificArrayInObject);
-          // const newObj = { ...uploadedImages, specificArrayInObject };
-          // setUploadedImages(newObj);
-          // console.log(uploadedImages);
+          console.log('array que envio', specificArrayInObject);
+          const newObj = { ...uploadedImages, specificArrayInObject };
+          setUploadedImages(newObj);
+          console.log(uploadedImages);
         });
     });
     axios.all(uploaders).then(() => {
@@ -168,9 +169,9 @@ export const CreatePetScreen = () => {
       return (
         <h3 className='flex'>
           {
-            form.galery.length <= 0
+            uploadedImages.length <= 0
               ? 'No hay imagenes'
-              : form.galery.map((item, index) => (
+              : uploadedImages.map((item, index) => (
                 <img
                   key={index}
                   alt='imagenes subidas'

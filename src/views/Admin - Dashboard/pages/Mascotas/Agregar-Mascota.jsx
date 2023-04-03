@@ -3,7 +3,7 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import {
   inputText,
   inputSelect,
-  inputNumber,
+  inputNumber
 } from '../../../../constants/createPetInputs';
 import Breadcrumb from '../../components/Breadcrumb';
 import DefaultLayout from '../../layout/DefaultLayout';
@@ -29,7 +29,7 @@ const initialForm = {
   type: '',
   state: '',
   history: '',
-  galery: [],
+  galery: []
 };
 
 const showModal = (res = 'success') => {
@@ -37,18 +37,18 @@ const showModal = (res = 'success') => {
     Swal.fire({
       icon: 'success',
       title: 'Mascota creada con éxito',
-      timer: '3000',
+      timer: '3000'
     });
   } else if (res === 'errorform') {
     Swal.fire({
       icon: 'error',
-      title: 'Ingrese los datos correctamente',
+      title: 'Ingrese los datos correctamente'
     });
   } else if (res === 'errorserver') {
     Swal.fire({
       icon: 'error',
       title: 'Ooops',
-      text: 'Servidor no responde',
+      text: 'Servidor no responde'
     });
   }
 };
@@ -56,6 +56,7 @@ const showModal = (res = 'success') => {
 const validationsForm = (form) => {
   const noNumbersValidation = /^\D+$/;
   // const urlVal = new RegExp(/^(ftp|http|https):[^ "]+$/);
+  // eslint-disable-next-line prefer-regex-literals
   const numberValidation = new RegExp('^[0-9]+$', 'i');
 
   const errors = {};
@@ -168,7 +169,7 @@ const validationsForm = (form) => {
   return errors;
 };
 
-export const AgregarMascota = () => {
+export const AgregarMascota = ({ updateData }) => {
   const dispatch = useDispatch();
   const [loadinng, setLoadinng] = useState('');
 
@@ -178,13 +179,13 @@ export const AgregarMascota = () => {
         // window.alert('Enviado con éxito');
         showModal();
         console.log(res);
-        actions.resetForm()
+        actions.resetForm();
       } else {
         // window.alert('Error al enviar');
         Swal.fire({
           icon: 'error',
           title: 'Ooops',
-          text: res.response.data.msg,
+          text: res.response.data.msg
         });
       }
     });
@@ -204,8 +205,8 @@ export const AgregarMascota = () => {
           'https://api.cloudinary.com/v1_1/drccfecwy/image/upload',
           formData,
           {
-            headers: { 'X-Requested-With': 'XMLHttpRequest' },
-          },
+            headers: { 'X-Requested-With': 'XMLHttpRequest' }
+          }
         )
         .then((response) => {
           const data = response.data;
@@ -224,6 +225,9 @@ export const AgregarMascota = () => {
   };
 
   const imagePreview = (values) => {
+    if (values.galery.length) {
+      setLoadinng('false');
+    };
     if (loadinng === 'true') {
       return <h3>Cargando imagenes...</h3>;
     }
@@ -233,200 +237,203 @@ export const AgregarMascota = () => {
           {values.galery.length <= 0
             ? 'No hay imagenes'
             : values.galery.map((item, index) => (
-                <div
-                  className="relative w-[30%] overflow-hidden rounded-sm"
-                  key={index}
-                >
-                  <img
-                    alt="imagenes subidas"
-                    className="h-40 w-full bg-cover "
-                    src={item}
-                  />
-                </div>
-              ))}
+              <div
+                className="relative w-[30%] m-auto overflow-hidden rounded-sm space-x-2"
+                key={index}
+              >
+                <img
+                  alt="imagenes subidas"
+                  className="h-40 w-full bg-cover "
+                  src={item}
+                />
+              </div>
+            ))}
         </h3>
       );
     }
   };
-
+  const Wrapper = ({ children }) => {
+    if (!updateData) return <DefaultLayout>{children}</DefaultLayout>;
+    else return <div className='relative'>{children}</div>;
+  };
   return (
-    <DefaultLayout>
-      <Breadcrumb pageName="Agregar Mascota" />
-      <div className="flex min-h-full items-center justify-center bg-whiter p-6">
-        <Formik
-          initialValues={initialForm}
-          validate={validationsForm}
-          onSubmit={handleSubmit}
-        >
-          {(props) => {
-            // console.log(props);
-            // console.log(props.values);
-            const validateModal = (errors) => {
-              if (Object.keys(errors).length > 0) {
-                showModal('errorform');
-              }
-            };
-            return (
-              <Form className="w-[750px] bg-[#fff] p-5 shadow ">
-                <h3 className="pb-1 text-xl uppercase text-[#333]">
-                  Detalles de mascota
-                </h3>
-                <div className="flex flex-wrap gap-6">
-                  {/* LEFT SIDE */}
-                  <div className="col flex-shrink-1 min-w-0 max-w-full flex-1">
-                    {inputText?.map((input, i) => (
-                      <div className="mx-0 my-6" key={i}>
-                        <span className="bold mb-2 font-semibold">
-                          {' '}
-                          {input.title} :
-                        </span>
-                        <ErrorMessage
-                          name={input.name}
-                          component={() => (
-                            <span className="ml-4 text-xs text-danger">
-                              {props.errors[input.name]}
-                            </span>
-                          )}
-                        />
-                        <Field
-                          type="text"
-                          name={input.name}
-                          placeholder={input.placeholder}
-                          className="w-full border border-solid border-[#ccc]  px-4 py-2 text-sm normal-case outline-none transition-all duration-200 ease-linear focus:border-[#000]"
-                        />
-                      </div>
-                    ))}
-
-                    <div className="mx-0 my-6">
-                      <span className="mb-2 font-semibold"> Castrado :</span>
-                      <Field
-                        name="castrated"
-                        as="select"
-                        className="w-full border border-solid border-[#ccc] px-4 py-2 text-sm normal-case outline-none transition-all duration-200 ease-linear focus:border-[#000]"
-                      >
-                        <option value="">¿Está castrado?</option>
-                        <option value="true">Si</option>
-                        <option value="false">No</option>
-                      </Field>
-                    </div>
-
-                    <div className="mx-0 mt-4 flex gap-4">
-                      {inputNumber?.map((el) => (
-                        <div className="inputBox" key={el.name}>
-                          <span className="mb-2 font-semibold">
-                            {el.title} :
+    <Wrapper>
+      <>
+        {!updateData && <Breadcrumb pageName="Agregar Mascota" />}
+        <div className="flex min-h-full items-center justify-center bg-whiter p-6">
+          <Formik
+            initialValues={updateData || initialForm}
+            validate={validationsForm}
+            onSubmit={handleSubmit}
+          >
+            {(props) => {
+              const validateModal = (errors) => {
+                if (Object.keys(errors).length > 0) {
+                  showModal('errorform');
+                }
+              };
+              return (
+                <Form className="w-[750px] bg-[#fff] p-5 shadow ">
+                  <h3 className="pb-1 text-xl uppercase text-[#333]">
+                    Detalles de mascota
+                  </h3>
+                  <div className="flex flex-wrap gap-6">
+                    {/* LEFT SIDE */}
+                    <div className="col flex-shrink-1 min-w-0 max-w-full flex-1">
+                      {inputText?.map((input, i) => (
+                        <div className="mx-0 my-6" key={i}>
+                          <span className="bold mb-2 font-semibold">
+                            {' '}
+                            {input.title} :
                           </span>
                           <ErrorMessage
-                            name={el.name}
+                            name={input.name}
                             component={() => (
                               <span className="ml-4 text-xs text-danger">
-                                {props.errors[el.name]}
+                                {props.errors[input.name]}
                               </span>
                             )}
                           />
                           <Field
-                            name={el.name}
-                            type="number"
-                            placeholder=""
-                            className="w-full border border-solid border-[#ccc] px-4 py-2 text-sm normal-case outline-none transition-all duration-200 ease-linear focus:border-[#000]"
+                            type="text"
+                            name={input.name}
+                            placeholder={input.placeholder}
+                            className="w-full border border-solid border-[#ccc]  px-4 py-2 text-sm normal-case outline-none transition-all duration-200 ease-linear focus:border-[#000]"
                           />
+                        </div>
+                      ))}
+
+                      <div className="mx-0 my-6">
+                        <span className="mb-2 font-semibold"> Castrado :</span>
+                        <Field
+                          name="castrated"
+                          as="select"
+                          className="w-full border border-solid border-[#ccc] px-4 py-2 text-sm normal-case outline-none transition-all duration-200 ease-linear focus:border-[#000]"
+                        >
+                          <option value="">¿Está castrado?</option>
+                          <option value="true">Si</option>
+                          <option value="false">No</option>
+                        </Field>
+                      </div>
+
+                      <div className="mx-0 mt-4 flex gap-4">
+                        {inputNumber?.map((el) => (
+                          <div className="inputBox" key={el.name}>
+                            <span className="mb-2 font-semibold">
+                              {el.title} :
+                            </span>
+                            <ErrorMessage
+                              name={el.name}
+                              component={() => (
+                                <span className="ml-4 text-xs text-danger">
+                                  {props.errors[el.name]}
+                                </span>
+                              )}
+                            />
+                            <Field
+                              name={el.name}
+                              type="number"
+                              placeholder=""
+                              className="w-full border border-solid border-[#ccc] px-4 py-2 text-sm normal-case outline-none transition-all duration-200 ease-linear focus:border-[#000]"
+                            />
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* RIGHT SIDE */}
+                    <div className="col flex-shrink-1 min-w-0 max-w-full flex-1">
+                      {inputSelect?.map((input) => (
+                        <div className="mx-0 my-6" key={input.name}>
+                          <span className="mb-2 font-semibold">
+                            {input.title} :
+                          </span>
+                          <ErrorMessage
+                            name={input.name}
+                            component={() => (
+                              <span className="ml-4 text-xs text-danger">
+                                {props.errors[input.name]}
+                              </span>
+                            )}
+                          />
+                          <Field
+                            name={input.name}
+                            as={input.type}
+                            className="w-full border border-solid border-[#ccc] px-4 py-2 text-sm normal-case outline-none transition-all duration-200 ease-linear focus:border-[#000]"
+                          >
+                            {input.options?.map((op, i) => (
+                              <option value={input.values[i]} key={i}>
+                                {op}
+                              </option>
+                            ))}
+                          </Field>
                         </div>
                       ))}
                     </div>
                   </div>
-
-                  {/* RIGHT SIDE */}
-                  <div className="col flex-shrink-1 min-w-0 max-w-full flex-1">
-                    {inputSelect?.map((input) => (
-                      <div className="mx-0 my-6" key={input.name}>
-                        <span className="mb-2 font-semibold">
-                          {input.title} :
+                  <div className="">
+                    <span className="mb-2 font-semibold">Historia: </span>
+                    <ErrorMessage
+                      name="history"
+                      component={() => (
+                        <span className="ml-4 text-xs text-danger">
+                          {props.errors.history}
                         </span>
-                        <ErrorMessage
-                          name={input.name}
-                          component={() => (
-                            <span className="ml-4 text-xs text-danger">
-                              {props.errors[input.name]}
-                            </span>
-                          )}
-                        />
-                        <Field
-                          name={input.name}
-                          as={input.type}
-                          className="w-full border border-solid border-[#ccc] px-4 py-2 text-sm normal-case outline-none transition-all duration-200 ease-linear focus:border-[#000]"
-                        >
-                          {input.options?.map((op, i) => (
-                            <option value={input.values[i]} key={i}>
-                              {op}
-                            </option>
-                          ))}
-                        </Field>
-                      </div>
-                    ))}
+                      )}
+                    />
+                    <Field
+                      as="textarea"
+                      className="w-full resize-none border border-solid border-[#ccc] px-4 py-2 text-sm normal-case outline-none transition-all duration-200 ease-linear focus:border-[#000]"
+                      name="history"
+                    />
                   </div>
-                </div>
-                <div className="">
-                  <span className="mb-2 font-semibold">Historia: </span>
-                  <ErrorMessage
-                    name="history"
-                    component={() => (
-                      <span className="ml-4 text-xs text-danger">
-                        {props.errors.history}
-                      </span>
-                    )}
-                  />
-                  <Field
-                    as="textarea"
-                    className="w-full resize-none border border-solid border-[#ccc] px-4 py-2 text-sm normal-case outline-none transition-all duration-200 ease-linear focus:border-[#000]"
-                    name="history"
-                  />
-                </div>
 
-                <div className="mt-4 border border-dashed border-[#ccc] p-2">
-                  <h3 className="mb-2 font-semibold">Imágenes :</h3>
-                  <Dropzone
-                    name="galery"
-                    onDrop={handleDrop}
-                    // onChange={(e) => handleChange(e.target.value)}
-                    // onBlur={handleBlur}
-                    // value={form.galery}
-                  >
-                    {({ getRootProps, getInputProps }) => (
-                      <section className=" cursor-pointer">
-                        <div {...getRootProps()}>
-                          <input {...getInputProps()} />
-                          <img
-                            src="https://icongr.am/fontawesome/folder-open.svg?size=80&color=currentColor"
-                            alt="img de carpeta"
-                          />
-                          <p className="text-center">
-                            Clickea para seleccionar tus imagenes
-                          </p>
-                        </div>
-                      </section>
-                    )}
-                  </Dropzone>
-                  {imagePreview(props.values)}
-                </div>
-                <div className="mt-6 flex gap-10">
-                  <input
-                    type="reset"
-                    value="Descartar"
-                    className="submit-btn text- mt-1 w-full cursor-pointer bg-[#27ae60] p-3 text-[#fff] outline-none transition-all duration-200 ease-linear hover:bg-[#2ecc71]"
-                  />
+                  <div className="mt-4 border border-dashed border-[#ccc] p-2">
+                    <h3 className="mb-2 font-semibold">Imágenes :</h3>
+                    <Dropzone
+                      name="galery"
+                      onDrop={handleDrop}
+                      // onChange={(e) => handleChange(e.target.value)}
+                      // onBlur={handleBlur}
+                      // value={form.galery}
+                    >
+                      {({ getRootProps, getInputProps }) => (
+                        <section className=" cursor-pointer">
+                          <div {...getRootProps()}>
+                            <input {...getInputProps()} />
+                            <img
+                              src="https://icongr.am/fontawesome/folder-open.svg?size=80&color=currentColor"
+                              alt="img de carpeta"
+                            />
+                            <p className="text-center">
+                              Clickea para seleccionar tus imagenes
+                            </p>
+                          </div>
+                        </section>
+                      )}
+                    </Dropzone>
+                    {imagePreview(props.values)}
+                  </div>
+                  <div className="mt-6 flex gap-10">
+                    <input
+                      type="reset"
+                      value="Descartar"
+                      className="submit-btn text- mt-1 w-full cursor-pointer bg-[#27ae60] p-3 text-[#fff] outline-none transition-all duration-200 ease-linear hover:bg-[#2ecc71]"
+                    />
 
-                  <input
-                    type="submit"
-                    onClick={() => validateModal(props.errors)}
-                    value="Guardar"
-                    className="submit-btn text- mt-1 w-full cursor-pointer bg-[#27ae60] p-3 text-[#fff] outline-none transition-all duration-200 ease-linear hover:bg-[#2ecc71]"
-                  />
-                </div>
-              </Form>
-            );
-          }}
-        </Formik>
-      </div>
-    </DefaultLayout>
+                    <input
+                      type="submit"
+                      onClick={() => validateModal(props.errors)}
+                      value="Guardar"
+                      className="submit-btn text- mt-1 w-full cursor-pointer bg-[#27ae60] p-3 text-[#fff] outline-none transition-all duration-200 ease-linear hover:bg-[#2ecc71]"
+                    />
+                  </div>
+                </Form>
+              );
+            }}
+          </Formik>
+        </div>
+      </>
+    </Wrapper>
   );
 };
