@@ -5,7 +5,7 @@ import dog from '../../../../assets/Dashboard/dog.svg';
 import cat from '../../../../assets/Dashboard/cat.svg';
 const style = 'py-3 px-3 border-[1px] border-solid border-[#f0f0f0] w-full truncate';
 
-export const Row = ({ info, handleDelete }) => {
+export const Row = ({ info, handleDelete, handleEdit }) => {
   return (
     <div>
       {
@@ -27,7 +27,7 @@ export const Row = ({ info, handleDelete }) => {
                 <p className={`${data.state === 'Disponible' ? 'bg-[#BDF5D3] text-[#187d44]' : 'bg-[#ffc4cd] text-[#e00b2b]'} w-fit px-2 rounded-md`}>{data.state}</p>
               </div>
               <div className={`${style} flex justify-center space-x-2`}>
-                <button className='bg-[#BDF5D3] w-7 px-1 rounded-md'>
+                <button className='bg-[#BDF5D3] w-7 px-1 rounded-md' onClick={() => handleEdit(data)}>
                   <img src={pencil} alt='Lapiz para editar' />
                 </button>
                 <button className='bg-[#ffc4cd] w-7 px-1 rounded-md' onClick={() => handleDelete(data._id)}>
