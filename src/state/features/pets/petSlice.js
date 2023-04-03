@@ -6,7 +6,7 @@ export const petSlice = createSlice({
   initialState: {
     list: [],
     pagination: {
-      totalPage: 1,
+      totalPage: 1, 
       currentPage: 1
     },
     filters: {
@@ -16,8 +16,8 @@ export const petSlice = createSlice({
       sort: '',
       totalPages: 1,
       currentPage: 1,
-      search: ''
-    }
+      search: '',
+    },
   },
   reducers: {
     // Acá van los reducers
@@ -30,16 +30,13 @@ export const petSlice = createSlice({
     },
 
     setFilters: (state, action) => {
+      console.log('dentro de slice', action);
       state.filters = action.payload;
-    }
-  }
+    },
+  },
 });
 
-export const {
-  setPetsList,
-  setPagination,
-  setFilters
-} = petSlice.actions;
+export const { setPetsList, setPagination, setFilters } = petSlice.actions;
 
 export default petSlice.reducer;
 
@@ -49,13 +46,14 @@ export const getAllPets = ({
   type = '',
   genre = '',
   sort = '',
+  state = '',
   currentPage = '',
-  search = ''
+  search = '',
 }) => {
   return async function (dispatch) {
     axios
       .get(
-        `/pet?search=${search}&page=${currentPage}&size=${size}&type=${type}&genre=${genre}&sort=${sort}`
+        `/pet?search=${search}&page=${currentPage}&size=${size}&type=${type}&genre=${genre}&sort=${sort}&state=${state}`
       )
       .then((r) => r.data)
       .then((response) => {
@@ -63,8 +61,8 @@ export const getAllPets = ({
         dispatch(
           setPagination({
             totalPages: response.totalPages,
-            currentPage: response.currentPage
-          })
+            currentPage: response.currentPage,
+          }),
         );
       })
       .catch(() => dispatch(setPetsList({})));
@@ -72,13 +70,9 @@ export const getAllPets = ({
 };
 
 export const PostPet = (payload) => {
-  return async function (_dispatch, getState) {
-    const currentState = getState().login;
+  return async function () {
     try {
-      // console.log(currentState.token);
-      const instance = axios.create();
-      instance.defaults.headers.common['x-access-token'] = currentState.token;
-      const sendaxios = await instance.post(
+      const sendaxios = await axios.post(
         '/pet/create',
         payload
       );

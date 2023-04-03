@@ -1,6 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
 // Toast message Config
@@ -123,12 +122,9 @@ export const { addToCart, removeFromCart, decreaseCart, clearCart, getTotals } =
   cartSlice.actions;
 
 export const donation = (payload) => {
-  return async (_dispatch, getState) => {
-    const currentState = getState().login;
+  return async () => {
     try {
-      const instance = axios.create();
-      instance.defaults.headers.common['x-access-token'] = currentState.token;
-      const donations = await instance.post('/payment', payload);
+      const donations = await axios.post('/payment', payload);
       console.log(donations.data.body.init_point);
       // navigate(donations.data.body.init_point);
       window.location.href = donations.data.body.init_point;

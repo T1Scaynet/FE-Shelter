@@ -20,9 +20,9 @@ export const DetailScreen = () => {
   const dispatch = useDispatch();
   const pet = useSelector((state) => state.petDetails);
   const [galery, setGalery] = useState('');
-  console.log({ galery });
+  // console.log({ galery });
 
-  const linkStyle = 'font-bold ml-[12.813rem] text-[#7C58D3] text-[0.9rem]';
+  const linkStyle = 'font-bold ml-[2rem] text-[#7C58D3] text-[0.9rem] md:font-bold md:ml-[12.813rem] md:text-[#7C58D3] md:text-[0.9rem]';
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -53,7 +53,7 @@ export const DetailScreen = () => {
   };
 
   return (
-    <div className='flex justify-center items-center flex-col'>
+    <div className='flex justify-center items-center flex-col overflow-x-auto '>
       <span className='flex justify-start items-center space-x-2 bg-[#FBF9FF] h-[4.875rem] w-full'>
         <Link
           to='/'
@@ -87,19 +87,21 @@ export const DetailScreen = () => {
         <></>
       ) : (
         <>
-          <section className='flex flex-row items-center space-x-10 mt-[0.9rem]'>
-            <Slider {...settingsVertical}>
-              {pet.galery?.map((img, i) => (
-                <div key={i}>
-                  <img src={img} alt='pet' className='object-cover rounded-[0.5rem] cursor-pointer' onClick={() => handleChange(img)} />
-                </div>
-              ))}
-            </Slider>
-            <div className='bg-[#FBF9FF] w-[31.313rem] h-[31rem] flex items-center justify-center rounded-md'>
+          <section className='grid grid-cols-1 lg:flex lg:flex-row lg:items-center lg:space-x-10 lg:mt-[0.9rem]'>
+            <div className='hidden lg:block'>
+              <Slider {...settingsVertical}>
+                {pet.galery?.map((img, i) => (
+                  <div key={i}>
+                    <img src={img} alt='pet' className='object-cover rounded-[0.5rem] cursor-pointer' onClick={() => handleChange(img)} />
+                  </div>
+                ))}
+              </Slider>
+            </div>
+            <div className='bg-[#FBF9FF] [20rem] h-[30rem] md:w-[31.313rem] md:h-[31rem] flex items-center justify-center rounded-md'>
               <img src={pet.image ? pet.image : galery || pet.galery?.[0]} alt={pet.image} className='h-96 rounded-md object-cover bg-slate-700' />
             </div>
             <div className='flex flex-col items-start w-[20.938rem]'>
-              <h4 className='text-[4.125rem] font-bold'>{pet.name}</h4>
+              <h4 className='text-[4.125rem] font-bold mt-[1.5rem]'>{pet.name}</h4>
               <div className='text-[1.625rem] font-bold flex flex-col justify-center text-left'>
                 <span className='flex flex-row items-center mt-[2rem] text-[#7C58D3]'>
                   <img className='mr-[0.5rem]' src={size} alt='icon' /> Tamaño :{' '}
@@ -145,36 +147,36 @@ export const DetailScreen = () => {
             </div>
           </section>
           {pet.history === undefined ? (
-            <div className='bg-[#FBF9FF] rounded-[0.5rem] mt-[6.875rem] w-[68.875rem] h-[10rem] flex items-center justify-center border-solid border-black '>
-              <div className='text-center'>
+            <div className='bg-[#FBF9FF] rounded-[0.5rem] mt-[3rem] w-[5rem] h-[6rem] p-[6rem] md:mt-[6.875rem] md:w-[68.875rem] md:h-[10rem] flex items-center justify-center border-solid border-black '>
+              <div className='text-left md:text-center'>
                 <h4 className='text-[1.5rem] font-bold'>
                   ¡Adopta un amigo peludo y cambia su vida para siempre!
                 </h4>
               </div>
             </div>
           ) : (
-            <div className='bg-[#FBF9FF] rounded-[0.5rem] mt-[6.875rem] w-[68.875rem] h-[10rem] flex items-center justify-center border-solid border-black'>
+            <div className='bg-[#FBF9FF] flex items-center justify-center rounded-[0.5rem] mt-[5rem] w-[20rem] md:w-[45rem] h-[20rem] lg:mt-[6.875rem] lg:w-[68.875rem] lg:h-[10rem] border-solid border-black'>
               <div className='text-center'>
                 <h4 className='text-[1.5rem] font-bold'>
                   Descripción de la mascota
                 </h4>
-                <p className='text-left'>{pet.history}</p>
+                <p className='text-left pt-4'>{pet.history}</p>
               </div>
             </div>
           )}
           <section
-            className='h-[35.813rem] w-[68.875rem] bg-local bg-repeat mt-[6.875rem] mb-[7.5rem] rounded-[0.5rem]'
+            className='h-[15rem] w-[20rem] bg-local bg-repeat mt-[3rem] mb-[7.5rem] mr-[0.5rem]  lg:h-[35.813rem] lg:w-[68.875rem] lg:bg-local lg:bg-repeat lg:mt-[6.875rem] lg:mb-[7.5rem] lg:mr-[5rem] rounded-[0.5rem] overflow-x-auto'
             style={{ backgroundImage: `url(${bg})` }}
           >
-            <div className='w-[29.375rem] mt-[6.25rem] ml-[3.125rem]'>
-              <p className='text-[2.875rem] font-extrabold'>
+            <div className='w-[10rem] mt-[1rem] ml-[3.125rem] lg:w-[29.375rem] lg:mt-[6.25rem] lg:ml-[3.125rem] '>
+              <p className=' text-[1.5rem] lg:text-[2.875rem] font-extrabold lg:leading-[2.5rem]'>
                 El apoyo que brindas alimenta a más{' '}
                 <b className='text-[#FF47A2]'>mascotas</b>
               </p>
             </div>
             <Link
               to='/donacion'
-              className='rounded-[0.5rem] h-[4.375rem] w-[11.625rem] bg-[#7C58D3] hover:bg-[#5930b9] flex justify-center items-center mt-[3rem] ml-[3.125rem] text-[#FFFEFD] text-[1.5rem] font-extrabold transition-colors duration-500'
+              className='rounded-[0.5rem] h-[4.375rem] w-[11.625rem] bg-[#7C58D3] hover:bg-[#5930b9] flex justify-center items-center mt-[1.5rem] ml-[3.125rem] text-[#FFFEFD] text-[1.5rem] font-extrabold transition-colors duration-500'
             >
               Donación
             </Link>

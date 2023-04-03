@@ -8,23 +8,6 @@ import './styles.css';
 import { useState } from 'react';
 import axios from 'axios';
 
-const initialForm = {
-  name: '',
-  vaccine: '',
-  disability: '',
-  age: '',
-  size: '',
-  weight: '',
-  genre: '',
-  castrated: '',
-  coexistencePets: '',
-  coexistenceKids: '',
-  type: '',
-  state: '',
-  history: '',
-  galery: []
-};
-
 const validationsForm = (form) => {
   const noNumbersValidation = /^\D+$/;
   // const urlVal = new RegExp(/^(ftp|http|https):[^ "]+$/);
@@ -130,6 +113,22 @@ const validationsForm = (form) => {
 };
 
 export const CreatePetScreen = () => {
+  const initialForm = {
+    name: '',
+    vaccine: '',
+    disability: '',
+    age: '',
+    size: '',
+    weight: '',
+    genre: '',
+    castrated: '',
+    coexistencePets: '',
+    coexistenceKids: '',
+    type: '',
+    state: '',
+    history: '',
+    galery: []
+  };
   const { form, errors, handleChange, handleBlur, handleSubmit, loading } = useForm(initialForm, validationsForm);
   const [loadinng, setLoadinng] = useState('');
 
