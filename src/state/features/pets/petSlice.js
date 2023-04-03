@@ -6,8 +6,8 @@ export const petSlice = createSlice({
   initialState: {
     list: [],
     pagination: {
-      totalPage: 1,
-      currentPage: 1,
+      totalPage: 1, 
+      currentPage: 1
     },
     filters: {
       size: '',
