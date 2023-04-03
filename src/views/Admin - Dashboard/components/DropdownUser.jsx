@@ -1,7 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
-import UserOne from '../images/user/user-01.png';
 import { useSelector } from 'react-redux';
 
 const DropdownUser = () => {
