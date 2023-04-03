@@ -7,20 +7,7 @@ export const userSlice = createSlice({
     // name, email, roles, sortBy, search, page, limit
     list: [],
     logged: false,
-    allUsers: [],
-    pagination: {
-      totalPage: 1,
-      currentPage: 1
-    },
-    filters: {
-      name: '',
-      email: '',
-      roles: '',
-      sortBy: '',
-      totalPages: 1,
-      currentPage: 1,
-      search: ''
-    }
+    allUsers: []
   },
   reducers: {
     setUser: (state, action) => {
@@ -32,24 +19,17 @@ export const userSlice = createSlice({
     setAllUsers: (state, action) => {
       state.allUsers = action.payload;
       state.list = action.payload;
-    },
-    setPagination: (state, action) => {
-      state.pagination = action.payload;
-    },
-
-    setFilters: (state, action) => {
-      state.filters = action.payload;
     }
   }
 });
-export const { setUser, setUserLogout, setAllUsers, setPagination, setFilters } = userSlice.actions;
+export const { setUser, setUserLogout, setAllUsers } = userSlice.actions;
 
 export default userSlice.reducer;
 
 // name, email, roles, sortBy, search, page, limit
 export const getAllUsers = () => {
   return async function (dispatch) {
-    axios.get('/user')
+    axios.get(`/user`)
       .then(r => r.data)
       .then(response => {
         dispatch(setAllUsers(response.users));
