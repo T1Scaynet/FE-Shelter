@@ -21,8 +21,7 @@ export const PostForm = (payload) => {
       const formAxios = await axios.post('/form', payload);
       return formAxios;
     } catch (error) {
-      console.warn("Error al enviar datos en función 'PostPet'");
-      return error;
+      console.warn("Error al enviar datos en función 'PostForm'");
     }
   };
 };

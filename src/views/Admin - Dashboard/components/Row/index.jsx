@@ -5,7 +5,7 @@ import dog from '../../../../assets/Dashboard/dog.svg';
 import cat from '../../../../assets/Dashboard/cat.svg';
 const style = 'py-3 px-3 border-[1px] border-solid border-[#f0f0f0] w-full truncate';
 
-export const Row = ({ info }) => {
+export const Row = ({ info, handleDelete }) => {
   return (
     <div>
       {
@@ -30,7 +30,7 @@ export const Row = ({ info }) => {
                 <button className='bg-[#BDF5D3] w-7 px-1 rounded-md'>
                   <img src={pencil} alt='Lapiz para editar' />
                 </button>
-                <button className='bg-[#ffc4cd] w-7 px-1 rounded-md'>
+                <button className='bg-[#ffc4cd] w-7 px-1 rounded-md' onClick={() => handleDelete(data._id)}>
                   <img src={trash} alt='Tacho de basura para eliminar' />
                 </button>
               </div>

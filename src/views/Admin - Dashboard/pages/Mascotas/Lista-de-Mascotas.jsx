@@ -5,10 +5,11 @@ import { RowTitles } from '../../components/RowTitles';
 import { Row } from '../../components/Row';
 import { Pagination } from '../../../../components/Pagination';
 import { titlesPet } from '../../constants/titlePet';
-import { getAllPets, setFilters } from '../../../../state/features/pets/petSlice';
+import { getAllPetsAdmin, setFilters, deletePet } from '../../../../state/features/pets/petSlice';
 import { Filters } from '../../components/Filters';
 import { filtersValues } from '../../constants/filtersValues';
 import { useEffect } from 'react';
+import { toast } from 'sonner';
 
 const INITIAL_STATE = {
   size: '',
@@ -29,7 +30,7 @@ export const ListadeMascotas = () => {
   const handleFilter = (e, type) => {
     if (!e) {
       dispatch(setFilters(INITIAL_STATE));
-      dispatch(getAllPets(INITIAL_STATE));
+      dispatch(getAllPetsAdmin(INITIAL_STATE));
       return;
     }
     console.log('type', type);
@@ -37,10 +38,10 @@ export const ListadeMascotas = () => {
     console.log('newValue', newValue);
     dispatch(setFilters({
       ...filters,
-      [type]: newValue, // genre: macho
+      [type]: newValue,
       currentPage: 1
     }));
-    dispatch(getAllPets({
+    dispatch(getAllPetsAdmin({
       ...filters,
       [type]: newValue,
       currentPage: 1
@@ -52,14 +53,19 @@ export const ListadeMascotas = () => {
       ...filters,
       currentPage: pageNumber
     }));
-    dispatch(getAllPets({
+    dispatch(getAllPetsAdmin({
       ...filters,
       currentPage: pageNumber
     }));
   };
 
+  const handleDelete = (id) => {
+    dispatch(deletePet(id));
+    toast.success('Mascota eliminada correctamente');
+  };
+
   useEffect(() => {
-    dispatch(getAllPets(filters));
+    dispatch(getAllPetsAdmin(filters));
     window.scrollTo(0, 0);
   }, [dispatch]);
 
@@ -68,7 +74,7 @@ export const ListadeMascotas = () => {
       <Breadcrumb pageName='Lista de Mascotas' />
       <Filters filtersValues={filtersValues} handleFilter={handleFilter} filters={filters} />
       <RowTitles titles={titlesPet} />
-      <Row info={pets.list} />
+      <Row info={pets.list} handleDelete={handleDelete} />
       <Pagination
         isDashboard
         currentPage={pagination.currentPage}

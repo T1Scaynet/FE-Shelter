@@ -30,7 +30,17 @@ function App () {
 
   return (
     <>
-      <Toaster position='bottom-left' richColors closeButton />
+      <Toaster
+        toastOptions={{
+          style: {
+            height: '5rem',
+            fontSize: '1rem',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center'
+          }
+        }} position='bottom-left' richColors closeButton
+      />
       {showLayout && <NavBar />}
       <AppRoutes setShowLayout={setShowLayout} />
       {showLayout && <Footer />}
