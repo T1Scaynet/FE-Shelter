@@ -16,8 +16,8 @@ export const petSlice = createSlice({
       sort: '',
       totalPages: 1,
       currentPage: 1,
-      search: ''
-    }
+      search: '',
+    },
   },
   reducers: {
     // Acá van los reducers
@@ -32,15 +32,11 @@ export const petSlice = createSlice({
     setFilters: (state, action) => {
       console.log('dentro de slice', action);
       state.filters = action.payload;
-    }
-  }
+    },
+  },
 });
 
-export const {
-  setPetsList,
-  setPagination,
-  setFilters
-} = petSlice.actions;
+export const { setPetsList, setPagination, setFilters } = petSlice.actions;
 
 export default petSlice.reducer;
 
@@ -52,7 +48,7 @@ export const getAllPets = ({
   sort = '',
   state = '',
   currentPage = '',
-  search = ''
+  search = '',
 }) => {
   return async function (dispatch) {
     axios
@@ -65,8 +61,8 @@ export const getAllPets = ({
         dispatch(
           setPagination({
             totalPages: response.totalPages,
-            currentPage: response.currentPage
-          })
+            currentPage: response.currentPage,
+          }),
         );
       })
       .catch(() => dispatch(setPetsList({})));
