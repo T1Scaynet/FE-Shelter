@@ -36,11 +36,7 @@ export const petSlice = createSlice({
   }
 });
 
-export const {
-  setPetsList,
-  setPagination,
-  setFilters
-} = petSlice.actions;
+export const { setPetsList, setPagination, setFilters } = petSlice.actions;
 
 export default petSlice.reducer;
 
