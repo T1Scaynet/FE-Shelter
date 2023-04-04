@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { toast } from 'sonner';
 
 const loginSlice = createSlice({
   name: 'login',
@@ -40,11 +41,14 @@ const loginSlice = createSlice({
       state.isAuthenticated = false;
       state.error = action.payload;
       state.registering = false;
+    },
+    setUpdateDataUser: (state, action) => {
+      state.user = { ...state.user, ...action.payload };
     }
   }
 });
 
-export const { loginSuccessful, loginFailure, logoutSuccess, registerSuccess, registerFailure } = loginSlice.actions;
+export const { loginSuccessful, loginFailure, logoutSuccess, registerSuccess, registerFailure, setUpdateDataUser } = loginSlice.actions;
 
 export const loginUser = ({ email, password }) => {
   return async (dispatch) => {
@@ -80,6 +84,19 @@ export const getUserLogged = (id) => async (dispatch) => {
   } catch (error) {
 
   }
+};
+
+export const updateUserData = (userData) => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.put('/user/update', userData);
+      dispatch(setUpdateDataUser(data.updateUser));
+      // console.log(data.updateUser);
+      toast.success('Actulizacion con exito');
+    } catch (error) {
+      toast.error('Intente nuevamente');
+    }
+  };
 };
 
 export default loginSlice.reducer;

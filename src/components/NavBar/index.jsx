@@ -6,6 +6,7 @@ import signUp from '../../assets/sign-in-svgrepo-com.svg';
 import 'tailwindcss/tailwind.css';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import DropdownUser from '../../views/Admin - Dashboard/components/DropdownUser';
 
 export const NavBar = () => {
   const { cartTotalQuantity } = useSelector((state) => state.cart);
@@ -40,10 +41,11 @@ export const NavBar = () => {
             </ul>
           </div>
           {/* Sign up */}
-          <div className='flex-shrink-0 flex items-center'>
+          <div className='flex-shrink-0 flex items-center z-99999'>
             {userLogged
               ? (
-                <a href='/perfil'>Mi perfil</a>
+                <DropdownUser />
+                // <a href='/perfil'>Mi perfil</a>
                 )
               : (
                 <a
