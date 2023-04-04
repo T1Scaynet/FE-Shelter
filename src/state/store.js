@@ -1,7 +1,7 @@
 import {
   combineReducers,
   configureStore,
-  getDefaultMiddleware,
+  getDefaultMiddleware
 } from '@reduxjs/toolkit';
 import {
   FLUSH,
@@ -11,7 +11,7 @@ import {
   persistStore,
   PURGE,
   REGISTER,
-  REHYDRATE,
+  REHYDRATE
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import pets from './features/pets/petSlice';
@@ -24,10 +24,12 @@ import login from './features/login/loginSlice';
 import products from './features/products/productSlice';
 import cartSlice from './features/cartSlice';
 import { productsApi } from './features/products/productsApi';
+import donations from './features/donations/donationSlice';
+import formRequest from './features/formDashAdopciones';
 
 const persistConfig = {
   key: 'root',
-  storage,
+  storage
 };
 
 const rootReducer = combineReducers({
@@ -41,6 +43,8 @@ const rootReducer = combineReducers({
   products,
   cart: cartSlice,
   [productsApi.reducerPath]: productsApi.reducer,
+  donations,
+  formRequest
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
@@ -48,8 +52,8 @@ export const store = configureStore({
   reducer: persistedReducer,
   middleware: getDefaultMiddleware({
     serializableCheck: {
-      ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-    },
-  }),
+      ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER]
+    }
+  })
 });
 export const persistor = persistStore(store);

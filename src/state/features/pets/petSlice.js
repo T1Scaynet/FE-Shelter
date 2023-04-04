@@ -30,16 +30,13 @@ export const petSlice = createSlice({
     },
 
     setFilters: (state, action) => {
+      console.log('dentro de slice', action);
       state.filters = action.payload;
     }
   }
 });
 
-export const {
-  setPetsList,
-  setPagination,
-  setFilters
-} = petSlice.actions;
+export const { setPetsList, setPagination, setFilters } = petSlice.actions;
 
 export default petSlice.reducer;
 
@@ -49,13 +46,42 @@ export const getAllPets = ({
   type = '',
   genre = '',
   sort = '',
+  state = '',
   currentPage = '',
   search = ''
 }) => {
   return async function (dispatch) {
     axios
       .get(
-        `/pet?search=${search}&page=${currentPage}&size=${size}&type=${type}&genre=${genre}&sort=${sort}`
+        `/pet?search=${search}&page=${currentPage}&size=${size}&type=${type}&genre=${genre}&sort=${sort}&state=${state}`
+      )
+      .then((r) => r.data)
+      .then((response) => {
+        dispatch(setPetsList(response.pets));
+        dispatch(
+          setPagination({
+            totalPages: response.totalPages,
+            currentPage: response.currentPage
+          })
+        );
+      })
+      .catch(() => dispatch(setPetsList({})));
+  };
+};
+
+export const getAllPetsAdmin = ({
+  size = '',
+  type = '',
+  genre = '',
+  sort = '',
+  state = '',
+  currentPage = '',
+  search = ''
+}) => {
+  return async function (dispatch) {
+    axios
+      .get(
+        `/pet/admin/getPets?search=${search}&page=${currentPage}&size=${size}&type=${type}&genre=${genre}&sort=${sort}&state=${state}`
       )
       .then((r) => r.data)
       .then((response) => {
@@ -72,19 +98,29 @@ export const getAllPets = ({
 };
 
 export const PostPet = (payload) => {
-  return async function (_dispatch, getState) {
-    const currentState = getState().login;
+  return async function () {
     try {
-      // console.log(currentState.token);
-      const instance = axios.create();
-      instance.defaults.headers.common['x-access-token'] = currentState.token;
-      const sendaxios = await instance.post(
+      const sendaxios = await axios.post(
         '/pet/create',
         payload
       );
       return sendaxios;
     } catch (error) {
       console.warn("Error al enviar datos en función 'PostPet'");
+      return error;
+    }
+  };
+};
+
+export const deletePet = (id) => {
+  return async function (dispatch, getState) {
+    try {
+      const pets = getState().pets.list;
+      await axios.delete(`pet/delete/${id}`);
+      const newList = pets.filter(p => p._id !== id);
+      dispatch(setPetsList(newList));
+    } catch (error) {
+      console.warn("Error al enviar datos en función 'DeletePet'");
       return error;
     }
   };

@@ -23,13 +23,13 @@ export const Display3 = () => {
   };
 
   return (
-    <section className="grid grid-cols-2 gap-32 items-center py-[120px] px-[14%]">
-      <div className="flex flex-col gap-8">
-        <div>
-          <h2 className="font-bold text-4xl leading-[48px]">
-            Bienvenido a nuestra <br /> familia
+    <section className=" bg-[#FFFEFD] w-full grid grid-cols-1 md:grid-cols-2 gap-32 items-center py-[120px] md:px-[14%]">
+      <div className="w-[90%] m-auto flex flex-col gap-6">
+        <div className=' space-y-5'>
+          <h2 className="text-center text-2xl md:text-start font-bold md:text-4xl md:leading-[48px]">
+            Bienvenido a nuestra <span className='text-[#7C58D3]'>familia</span>
           </h2>
-          <h1 className="font-normal text-sm leading-5 text-[#1C103B]">
+          <h1 className=" pl-[0.80rem] font-normal text-sm md:pl-0 leading-5 text-[#1C103B]">
             Fundación ALMANIMAL Mendiolaza es una organización sin fines de
             lucro, cuyo objetivo es la protección
           </h1>
@@ -44,7 +44,7 @@ export const Display3 = () => {
           <Collapse in={open} timeout="auto" unmountOnExit>
             <List component="div" disablePadding>
               <ListItemButton sx={{ pl: 4 }}>
-                <ListItemText sx={{ color: 'red', fontSize: '20px' }} primary="Un grupo de amigos preocupados por el bienestar de los animales sin hogar decidieron crear su propio refugio de animales. Con donaciones y trabajo voluntario, construyeron un refugio que proporcionaba hogares temporales y atención médica a los animales. Con el tiempo, se expandieron y muchos animales encontraron hogares amorosos gracias a su trabajo." />
+                <ListItemText primary="Un grupo de amigos preocupados por el bienestar de los animales sin hogar decidieron crear su propio refugio de animales. Con donaciones y trabajo voluntario, construyeron un refugio que proporcionaba hogares temporales y atención médica a los animales. Con el tiempo, se expandieron y muchos animales encontraron hogares amorosos gracias a su trabajo." />
               </ListItemButton>
             </List>
           </Collapse>
@@ -74,7 +74,7 @@ export const Display3 = () => {
           </Collapse>
         </div>
       </div>
-      <div className="w-[600px]">
+      <div className="hidden w-full md:block md:w-[600px]">
         <img src={aboutimg} alt="" className=" max-w-full h-auto" />
       </div>
     </section>

@@ -8,23 +8,6 @@ import './styles.css';
 import { useState } from 'react';
 import axios from 'axios';
 
-const initialForm = {
-  name: '',
-  vaccine: '',
-  disability: '',
-  age: '',
-  size: '',
-  weight: '',
-  genre: '',
-  castrated: '',
-  coexistencePets: '',
-  coexistenceKids: '',
-  type: '',
-  state: '',
-  history: '',
-  galery: []
-};
-
 const validationsForm = (form) => {
   const noNumbersValidation = /^\D+$/;
   // const urlVal = new RegExp(/^(ftp|http|https):[^ "]+$/);
@@ -130,8 +113,25 @@ const validationsForm = (form) => {
 };
 
 export const CreatePetScreen = () => {
+  const initialForm = {
+    name: '',
+    vaccine: '',
+    disability: '',
+    age: '',
+    size: '',
+    weight: '',
+    genre: '',
+    castrated: '',
+    coexistencePets: '',
+    coexistenceKids: '',
+    type: '',
+    state: '',
+    history: '',
+    galery: []
+  };
   const { form, errors, handleChange, handleBlur, handleSubmit, loading } = useForm(initialForm, validationsForm);
   const [loadinng, setLoadinng] = useState('');
+  const [uploadedImages, setUploadedImages] = useState({ array: [] });
 
   const handleDrop = (files) => {
     const uploaders = files.map(file => {
@@ -150,10 +150,10 @@ export const CreatePetScreen = () => {
           const fileURL = data.secure_url;
           const specificArrayInObject = form.galery;
           specificArrayInObject.push(fileURL);
-          // console.log('array que envio', specificArrayInObject);
-          // const newObj = { ...uploadedImages, specificArrayInObject };
-          // setUploadedImages(newObj);
-          // console.log(uploadedImages);
+          console.log('array que envio', specificArrayInObject);
+          const newObj = { ...uploadedImages, specificArrayInObject };
+          setUploadedImages(newObj);
+          console.log(uploadedImages);
         });
     });
     axios.all(uploaders).then(() => {
@@ -169,9 +169,9 @@ export const CreatePetScreen = () => {
       return (
         <h3 className='flex'>
           {
-            form.galery.length <= 0
+            uploadedImages.length <= 0
               ? 'No hay imagenes'
-              : form.galery.map((item, index) => (
+              : uploadedImages.map((item, index) => (
                 <img
                   key={index}
                   alt='imagenes subidas'

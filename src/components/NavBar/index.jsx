@@ -1,28 +1,31 @@
 import React from 'react';
 import { options } from '../../constants/optionsRutes';
 import logo from '../../assets/Group.svg';
+import logoDog from '../../assets/Nav/dogLogo.svg';
 import signUp from '../../assets/sign-in-svgrepo-com.svg';
 import 'tailwindcss/tailwind.css';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import DropdownUser from '../../views/Admin - Dashboard/components/DropdownUser';
 
 export const NavBar = () => {
   const { cartTotalQuantity } = useSelector((state) => state.cart);
   const userLogged = useSelector((state) => state.login.token);
 
   return (
-    <nav className='bg-[#FFFEFD] h-[6.1rem] flex items-center '>
-      <div className='w-full m-[12.8rem]'>
-        <div className='flex justify-between h-16'>
+    <nav className='bg-[#FFFEFD] w-full h-[5rem] md:h-[6.1rem] flex items-center'>
+      <div className='w-full md:m-[12.8rem]'>
+        <div className='flex w-full h-full px-5 justify-between md:h-16'>
           {/* Logo */}
-          <div className='flex-shrink-0 flex items-center'>
+          <div className='md:flex-shrink-0 md:flex md:items-center'>
             <Link to='/'>
-              <img src={logo} alt='Logo' />
+              <img src={logoDog} alt='Logo resposive' className=' md:hidden' />
+              <img src={logo} alt='Logo' className='hidden md:block' />
             </Link>
           </div>
 
           {/* Desktop menu */}
-          <div className='flex-grow flex justify-center items-center'>
+          <div className='hidden md:flex-grow md:flex justify-center items-center'>
             <ul className='flex space-x-4'>
               {options.length &&
                 options.map((o) => (
@@ -38,10 +41,11 @@ export const NavBar = () => {
             </ul>
           </div>
           {/* Sign up */}
-          <div className='flex-shrink-0 flex items-center'>
+          <div className='flex-shrink-0 flex items-center z-99999'>
             {userLogged
               ? (
-                <a href='/perfil'>Mi perfil</a>
+                <DropdownUser />
+                // <a href='/perfil'>Mi perfil</a>
                 )
               : (
                 <a
@@ -59,15 +63,13 @@ export const NavBar = () => {
           </div>
 
           {userLogged && (
-            <div className='flex justify-center items-center ml-6 font-medium'>
+            <div className='hidden md:flex md:justify-center items-center ml-6 font-medium'>
               <Link to='/carrito' className='flex items-center justify-center'>
                 <i className='bx bx-shopping-bag  text-[32px] text-[#7e5ad3] ' />
                 <span>{cartTotalQuantity}</span>
               </Link>
             </div>
           )}
-          {/* Empty space to keep the links centered */}
-          <div className='w-1/12' />
         </div>
       </div>
     </nav>

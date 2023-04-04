@@ -60,31 +60,28 @@ const profiles = [
 ];
 
 export const Display5 = () => {
-  const settings = {
-    dots: true,
-    lazyLoad: true,
-    infinite: false,
-    speed: 500,
-    slidesToShow: 4,
-    slidesToScroll: 4,
-    initialSlide: 4
-  };
-
   return (
     <section
       id='nosotros'
-      className='h-[39.75rem] w-[100%] flex flex-col items-center justify-center'
+      className='bg-[#FFFEFD] hidden h-[39.75rem] w-full md:flex flex-col items-center justify-center'
     >
-      <div className='flex flex-col items-center justify-center mb-[3.125rem]'>
+      <div className='flex flex-col items-center space-y-4 justify-center mb-[3.125rem]'>
         <p className='text-[#7C58D3] text-[0.787rem]'>
-          EQUIPO DE CUIDADO DE MASCOTAS
+          EQUIPO DE DESARROLLO
         </p>
         <h2 className='text-[2.263rem] font-bold'>
           Bienvenido a nuestra familia
         </h2>
       </div>
-      <div className='flex flex-row items-center justify-center mb-[2.438rem]'>
-        <Slider {...settings} className='w-[90rem] bg-[#FBF9FF] rounded-t-lg'>
+      <div className='flex flex-row items-center justify-center mb-[4rem]'>
+        <Slider
+          dots
+          infinite
+          speed={500}
+          slidesToShow={4}
+          slidesToScroll={4}
+          className='w-[90rem] bg-[#FBF9FF] rounded-t-lg'
+        >
           {profiles.map((profile) => (
             <div
               key={profile.id}
@@ -99,10 +96,10 @@ export const Display5 = () => {
           ))}
         </Slider>
       </div>
-      <button className='flex flex-row items-center justify-center rounded-[6.3px] bg-[#7C58D3] h-[3.563rem] w-[9.688rem] text-[white] hover:bg-[#5930b9] transition-colors duration-500 font-bold'>
+      {/* <button className='flex flex-row items-center justify-center rounded-[6.3px] bg-[#7C58D3] h-[3.563rem] w-[9.688rem] text-[white] hover:bg-[#5930b9] transition-colors duration-500 font-bold'>
         <img src={fingerprint} alt='fingerprint' className='mr-[0.4rem]' />
         Nuestro equipo
-      </button>
+      </button> */}
     </section>
   );
 };
