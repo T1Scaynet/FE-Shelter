@@ -19,8 +19,10 @@ export const Adopciones = () => {
     <DefaultLayout>
       <Breadcrumb pageName='Adopciones' />
       <div>Lista de solicitudes adopciones</div>
-      <RowTitles titles={titleForm} />
-      <RowAdoption info={dataRequest} />
+      <div className='md:w-[61rem]'>
+        <RowTitles titles={titleForm} />
+        <RowAdoption info={dataRequest} />
+      </div>
     </DefaultLayout>
   );
 };
