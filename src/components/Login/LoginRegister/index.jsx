@@ -16,7 +16,7 @@ function RegistrationForm () {
 
   return (
     <div className='flex h-screen'>
-      <div className='w-1/2 flex justify-center items-center'>
+      <div className='w-full xl:w-1/2 flex justify-center items-center'>
         <div>
           <h1 className='text-4xl font-bold mb-4'>Crea una cuenta</h1>
           <h2 className='text-m font-medium mb-8'>
@@ -135,7 +135,7 @@ function RegistrationForm () {
                   type='submit'
                   onClick={handleSubmit}
                   variant='contained'
-                  style={{ backgroundColor: '#7C58D3', width: '30.438rem' }}
+                  style={{ backgroundColor: '#7C58D3', width: '20rem' }}
                   sx={{
                     '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline':
                       {
@@ -159,7 +159,7 @@ function RegistrationForm () {
           </p>
         </div>
       </div>
-      <div className='w-1/2 flex justify-center items-center'>
+      <div className='hidden lg:block xl:w-1/2 xl:flex justify-center items-center'>
         <img
           src={register}
           alt='Imagen de registro'
