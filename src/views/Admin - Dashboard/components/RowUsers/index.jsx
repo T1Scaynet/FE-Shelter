@@ -17,10 +17,10 @@ export const RowUsers = ({ info }) => {
                 <ButtonCopied idPet={data._id} />
               </div>
               <p className={`${style}`}>{data.name}</p>
-              <p className={`${style}`}>{data.roles}</p>
+              <p className={`${style}`}>{data.roles[0].name}</p>
               <p className={`${style}`}>{data.email}</p>
               <p className={`${style}`}>{data.phone}</p>
-              <p className={`${style}`}>{data.address}</p>
+              <p className={`${style}`}>{new Date(data.createAt).toLocaleString('es-AR')}</p>
               <div className={`${style} flex justify-center space-x-2`}>
                 <button className='bg-[#BDF5D3] w-7 px-1 rounded-md'>
                   <img src={pencil} alt='Lapiz para editar' />
