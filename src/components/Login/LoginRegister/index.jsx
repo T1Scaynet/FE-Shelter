@@ -15,8 +15,8 @@ function RegistrationForm () {
   const dispatch = useDispatch();
 
   return (
-    <div className='flex h-screen'>
-      <div className='w-full xl:w-1/2 flex justify-center items-center'>
+    <div className='flex h-screen md:w-full md:justify-center md:items-center'>
+      <div className='md:flex md:justify-center md:items-center'>
         <div>
           <h1 className='text-4xl font-bold mb-4'>Crea una cuenta</h1>
           <h2 className='text-m font-medium mb-8'>
@@ -61,6 +61,7 @@ function RegistrationForm () {
               navigate('/ingresar');
               resetForm();
             }}
+
           >
             {({ values, errors, touched, handleChange, handleSubmit, handleBlur }) => (
               <form onSubmit={handleSubmit} className='flex flex-col gap-4'>
@@ -95,7 +96,7 @@ function RegistrationForm () {
                   variant='outlined'
                   name='email'
                   value={values.email}
-                  helperText={touched.email && errors.name ? errors.email : undefined}
+                  helperText={touched.email && errors.email ? errors.email : undefined}
                   onChange={handleChange}
                   onBlur={handleBlur}
                   sx={{
@@ -117,7 +118,7 @@ function RegistrationForm () {
                   variant='outlined'
                   name='password'
                   value={values.password}
-                  helperText={touched.password && errors.name ? errors.password : undefined}
+                  helperText={touched.password && errors.password ? errors.password : undefined}
                   onChange={handleChange}
                   onBlur={handleBlur}
                   type='password'
@@ -151,19 +152,19 @@ function RegistrationForm () {
               </form>
             )}
           </Formik>
-          <p className='mt-4 text-center font-bold text-black'>
+          <p className='mt-4 text-center font-bold text-black text-[1.1rem]'>
             ¿Ya tienes cuenta?{' '}
-            <Link to='/ingresar' className='text-pink-500'>
+            <Link to='/ingresar' className='text-[#FF47A2] text-[1.1rem] font-bold'>
               Inicia sesión
             </Link>
           </p>
         </div>
       </div>
-      <div className='hidden lg:block xl:w-1/2 xl:flex justify-center items-center'>
+      <div className='hidden sm:block md:w-1/2 md:flex justify-center items-center'>
         <img
           src={register}
           alt='Imagen de registro'
-          className='object-cover h-[34.625rem] rounded-[0.5rem] mr-8'
+          className='object-cover h-[44.6rem] w-[27.049rem] rounded-[0.5rem]'
         />
       </div>
     </div>
