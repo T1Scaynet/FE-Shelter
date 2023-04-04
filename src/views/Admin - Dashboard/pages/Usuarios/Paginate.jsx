@@ -37,7 +37,7 @@ const Pagination = ({ itemsPerPage, totalItems, paginate }) => {
             className="page-link"
             onClick={handlePrevClick}
           >
-            Anterior
+            {'<'}
           </a>
         </li>
         {pageNumbers.map((number) => (
@@ -57,7 +57,7 @@ const Pagination = ({ itemsPerPage, totalItems, paginate }) => {
             className="page-link"
             onClick={handleNextClick}
           >
-            Siguiente
+            {'>'}
           </a>
         </li>
       </ul>

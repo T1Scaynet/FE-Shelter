@@ -3,105 +3,86 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getAllUsers } from '../../../../state/features/users/userSlice';
 import DefaultLayout from '../../layout/DefaultLayout';
 import Breadcrumb from '../../components/Breadcrumb';
-import { titlesUsers } from '../../constants/titleUsers';
 import { RowTitles } from '../../components/RowTitles';
 import css from '../../../Admin - Dashboard/pages/Usuarios/Listado.module.css';
 import { RowUsers } from '../../components/RowUsers';
-import Pagination from './Paginate';
+import Paginate from './Paginate';
+import { Select, Input } from 'antd';
+
+const { Option } = Select;
 
 export const ListaUsuarios = () => {
   const dispatch = useDispatch();
   const users = useSelector((state) => state.users.list);
-  console.log("aca vienen los usuarios",users)
+  console.log(users)
   const [sortedUsers, setSortedUsers] = useState(users);
-  const [sortOrder, setSortOrder] = useState('ascendente');
-  const [searchTerm, setSearchTerm] = useState('');
-
-  /////////////////////////////////////////////////////////////
+  const [selectedRole, setSelectedRole] = useState('all');
   const [currentPage, setCurrentPage] = useState(1);
-const itemsPerPage = 5; // Cambia esto al número de elementos que quieres mostrar por página
-const indexOfLastItem = currentPage * itemsPerPage;
-const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-const currentItems = sortedUsers.slice(indexOfFirstItem, indexOfLastItem);
-console.log("aca esta el fucking paginado",currentItems)
+  const [searchQuery, setSearchQuery] = useState('');
 
-const paginate = (pageNumber) => {
-  setCurrentPage(pageNumber);
-};
+  const titlesUsers = ['ID', 'NOMBRE', 'ROL', 'EMAIL', 'TELEFONO','CREADO', 'ACCIÓN'];
+
+  const handleRoleChange = (value) => {
+    setSelectedRole(value);
+  };
+
+  const handleSearchChange = (e) => {
+    setSearchQuery(e.target.value);
+    setCurrentPage(1);
+  };
+
+  const filteredUsers = selectedRole === 'all' ? users : users.filter(user => user.roles[0].name === selectedRole);
+
+  const filteredUsersBySearch = filteredUsers.filter(user => {
+    const searchLowerCase = searchQuery.toLowerCase();
+    return (
+      user.name.toLowerCase().includes(searchLowerCase) ||
+      user.email.toLowerCase().includes(searchLowerCase)
+    )
+  });
+
+  const itemsPerPage = 5; // Cambia esto al número de elementos que quieres mostrar por página
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = filteredUsersBySearch.slice(indexOfFirstItem, indexOfLastItem);
+
+  const paginate = (pageNumbers) => {
+    setCurrentPage(pageNumbers);
+  };
 
   useEffect(() => {
     dispatch(getAllUsers());
   }, []);
 
-  useEffect(() => {
-    const filteredUsers = users.filter((user) => {
-      const lowerCaseSearchTerm = searchTerm.toLowerCase();
-      const name = user.name ? user.name.toLowerCase() : '';
-      const role = user.roles[0] ? user.roles[0].toLowerCase() : '';
-      const email = user.email ? user.email.toLowerCase() : '';
-
-      return (
-        name.includes(lowerCaseSearchTerm) ||
-        role.includes(lowerCaseSearchTerm) ||
-        email.includes(lowerCaseSearchTerm)
-      );
-    });
-
-    setSortedUsers(filteredUsers);
-  }, [searchTerm, users]);
-
-
-
-  const handleSortByName = () => {
-    const sorted = [...sortedUsers].sort((a, b) => {
-      const nameA = a.name ? a.name.toLowerCase() : '';
-      const nameB = b.name ? b.name.toLowerCase() : '';
-
-      if (nameA < nameB) {
-        return sortOrder === 'ascendente' ? -1 : 1;
-      }
-      if (nameA > nameB) {
-        return sortOrder === 'ascendente' ? 1 : -1;
-      }
-      return 0;
-    });
-    setSortedUsers(sorted);
-    setSortOrder(sortOrder === 'ascendente' ? 'descendente' : 'ascendente');
-  };
-
-
-  const handleSearchInputChange = (event) => {
-    setSearchTerm(event.target.value);
-  };
-
-
-
   return (
     <DefaultLayout>
-
-            <div>
-              <input
-                  type="text"
-                  placeholder="Buscar por nombre, rol o email"
-                  value={searchTerm}
-                  onChange={handleSearchInputChange}
-                />
-            </div>
       <Breadcrumb pageName="Lista de Usuarios" />
-      <div>
-        <button className={css.buttonOrder} onClick={handleSortByName}>
-          Ordenar
-        </button>
+      <div className={css.filterRol}>
+        <span className={css.filterSpan}>Filtrar por rol:</span>
+        <Select defaultValue="all" className={css.select} onChange={handleRoleChange}>
+          <Option value="all">Todos</Option>
+          <Option value="admin">Admin</Option>
+          <Option value="client">Cliente</Option>
+          <Option value="moderator">Moderador</Option>
+        </Select>
       </div>
-
+      <div className={css.filterRol}>
+        <Input
+          placeholder="Buscar por nombre o correo electrónico"
+          value={searchQuery}
+          onChange={handleSearchChange}
+        />
+      </div>
       <RowTitles titles={titlesUsers} />
-      <RowUsers info={currentItems} />
+      <RowUsers info={currentItems}/>
+      <div>
+        <Paginate
+          paginate={paginate}
+          totalItems={filteredUsersBySearch.length}
 
-      <Pagination
-            itemsPerPage={itemsPerPage}
-            totalItems={sortedUsers.length}
-            paginate={paginate}
-          />
+          itemsPerPage={itemsPerPage}
+        />
+      </div>
     </DefaultLayout>
   );
 };
