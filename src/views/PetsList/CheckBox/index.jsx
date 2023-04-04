@@ -13,7 +13,7 @@ export const CheckBox = ({
     <div className='md:w-[80%] md:mx-auto w-full'>
       <label className='font-bold text-[#7C58D3] text-[0.875rem] md:text-[1rem]'>{title}:</label>
 
-      <label className='flex justify-between md:w-auto w-[5.4rem]'>
+      <label className='flex space-x-1 md:justify-between md:w-auto w-[5.4rem]'>
         <p className='text-[0.875rem] md:text-[1rem]'>{optionOne}</p>
         <input
           onChange={(e) => handleFilter(e, param)}
@@ -23,7 +23,7 @@ export const CheckBox = ({
         />
       </label>
 
-      <label className='flex justify-between md:w-auto w-[5.4rem]'>
+      <label className='flex space-x-1 md:justify-between md:w-auto w-[5.4rem]'>
         <p className='text-[0.875rem] md:text-[1rem]'>{optionTwo}</p>
         <input
           onChange={(e) => handleFilter(e, param)}
@@ -34,7 +34,7 @@ export const CheckBox = ({
       </label>
 
       {optionThree && (
-        <label className='flex justify-between md:w-auto w-[5.4rem]'>
+        <label className='flex space-x-1 md:justify-between md:w-auto w-[5.4rem]'>
           <p className='text-[0.875rem] md:text-[1rem]'>{optionThree}</p>
           <input
             onChange={(e) => handleFilter(e, param)}

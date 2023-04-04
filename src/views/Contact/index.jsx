@@ -9,6 +9,7 @@ import time from '../../assets/Contact/time.svg';
 import addres from '../../assets/Contact/addres.svg';
 import { MapView } from './MapView';
 import { ContactForm } from './Form';
+import { Menu } from '../../components/Menu';
 
 export const Contact = () => {
   useEffect(() => {
@@ -31,11 +32,12 @@ export const Contact = () => {
           Contacto
         </Link>
       </span>
+      <Menu />
       <section className='bg-[#FBF9FF] w-full h-[18.6rem] relative overflow-hidden'>
-        <div className='md:w-[79%] h-[90%] m-auto flex'>
+        <div className='md:w-[85%] h-[90%] m-auto flex'>
           <div className='flex flex-col justify-evenly ml-[2.5rem]'>
-            <div className='md:w-[35rem]'>
-              <h1 className='md:text-7xl text-[2.5rem] font-extrabold mb-[2.02rem]'>Contáctenos</h1>
+            <div className='w-[18rem] space-y-8 md:w-[35rem] md:space-y-5'>
+              <h1 className='md:text-7xl text-[2.5rem] font-extrabold'>Contáctenos</h1>
               <p className='md:text-[1rem] text-[0.875rem]'>
                 ¿Quieres marcar la <b>diferencia</b> en la vida de un animal
                 necesitado? ¡Contacta con nuestra fundación de rescate de
@@ -47,7 +49,7 @@ export const Contact = () => {
             </div>
           </div>
 
-          <div className='h-full md:flex md:justify-center md:items-center md:ml-[8rem] hidden'>
+          <div className='h-full md:flex md:justify-center md:items-center 2xl:mt-8 md:ml-[8rem] hidden'>
             <img src={dog} alt='imagen de un perro' />
           </div>
         </div>
