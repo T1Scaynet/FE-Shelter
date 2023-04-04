@@ -1,1 +1,1 @@
-export const titleForm = ['ID', 'NOMBRE', 'DOMICILIO', 'E-MAIL', 'TELÉFONO', 'ESTADO', 'ACCIONES'];
+export const titleForm = ['ID', 'USUARIO', 'ESTADO', 'ACCIONES'];
