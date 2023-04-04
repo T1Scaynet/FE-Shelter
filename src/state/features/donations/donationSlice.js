@@ -6,13 +6,7 @@ export const getDonations = () => {
     try {
       const response = await axios.get('/payment');
       const donations = response.data.allPayments;
-      console.log(donations);
-      // const requests = donations.map(async (donation) => {
-      //   const userResponse = await axios.get(`/user/${donation.idUser}`);
-      //   return { ...donation, idUser: userResponse.data.user.name };
-      // });
-      // const donationsWithUserName = await Promise.all(requests);
-      // dispatch(setDonations(donationsWithUserName));
+      dispatch(setDonations(donations));
     } catch (error) {
       console.log(error);
       dispatch(setDonations([]));

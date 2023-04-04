@@ -11,6 +11,7 @@ function App () {
   const login = useSelector(state => state.login);
 
   axios.defaults.baseURL = import.meta.env.VITE_REACT_APP_URL_BACKEND;
+  console.log(import.meta.env.VITE_REACT_APP_URL_BACKEND);
   axios.interceptors.request.use((request) => {
     if (!request.url.includes('cloudinary')) {
       request.headers['x-access-token'] = login.token;
