@@ -47,7 +47,7 @@ export const RowAdoption = ({ info }) => {
               </div>
               <div className='w-[22.4rem] md:w-[61rem]'>
                 <Collapse in={showInput[data._id]}>
-                  <div className='w-full md:h-[18rem] border-x-2 px-3 py-3 border-b-2 border-[#f0f0f0]'>
+                  <div className='w-full md:h-[18rem] md:border-x-2 px-3 py-3 md:border-b-2 border-[#f0f0f0]'>
                     <h3 className='border-b-2 border-black font-bold text-xl text-center mb-3'>Datos Pesonales</h3>
                     <div className='flex md:flex-row gap-5 flex-col w-full justify-between'>
                       <div>
