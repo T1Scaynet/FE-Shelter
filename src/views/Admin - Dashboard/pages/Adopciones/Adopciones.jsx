@@ -10,6 +10,7 @@ import { RowAdoption } from '../../components/RowAdoption';
 export const Adopciones = () => {
   const dispatch = useDispatch();
   const dataRequest = useSelector(state => state.formRequest.list);
+  // console.log(dataRequest);
 
   useEffect(() => {
     dispatch(getAdoptionRequest());

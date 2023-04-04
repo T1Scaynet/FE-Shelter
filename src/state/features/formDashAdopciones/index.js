@@ -10,26 +10,25 @@ export const formDashAdopciones = createSlice({
     // Acá van los reducers
     setDataRequest: (state, action) => {
       state.list = action.payload;
+    },
+    setDataList: (state, action) => {
+      state.list = [];
     }
   }
 });
 
-export const { setDataRequest } = formDashAdopciones.actions;
+export const { setDataRequest, setDataList } = formDashAdopciones.actions;
 
 export default formDashAdopciones.reducer;
 
 /// Acá abajo van lo que vendrian a ser las funciones del action (funciones asíncronas)
 export const getAdoptionRequest = () => {
-  const url = '/form';
-  return async function (dispatch) {
+  return async (dispatch) => {
     try {
-      const r = await axios.get(url);
-      const data = await r.data;
-      const response = data.forms;
-      console.log(response);
-      await dispatch(setDataRequest(response));
+      const { data } = await axios.get('/form');
+      dispatch(setDataRequest(data.forms));
     } catch {
-      await dispatch(setDataRequest('Error de peticion'));
+      dispatch(setDataList());
     }
   };
 };

@@ -9,13 +9,14 @@ import { useState } from 'react';
 const style = 'py-3 px-3 border-[1px] border-solid border-[#f0f0f0] w-full truncate';
 
 export const RowAdoption = ({ info }) => {
+  // console.log(info)
   let obj = {};
 
   info.forEach(valor => {
     obj[valor._id] = false;
   });
 
-  console.log(obj);
+  // console.log(obj);
 
   const [showInput, setShowInput] = useState(obj);
 
