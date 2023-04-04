@@ -25,7 +25,6 @@ const INITIAL_STATE = {
 export const ListadeMascotas = () => {
   const dispatch = useDispatch();
   const pets = useSelector((state) => state.pets);
-  console.log('sadkjhsajkdhahksjdsa',pets)
   const filters = useSelector((state) => state.pets.filters);
   const pagination = useSelector(state => state.pets.pagination);
   const [modal, setModal] = useState(false);
