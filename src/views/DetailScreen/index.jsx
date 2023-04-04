@@ -1,7 +1,7 @@
 /* eslint-disable multiline-ternary */
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useNavigate } from 'react-router-dom';
 import { getDetailById } from '../../state/features/details/detailSlice';
 import bg from '../../assets/DetailScreen/bg.svg';
 import weight from '../../assets/DetailScreen/peso.svg';
@@ -14,11 +14,14 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import './DetailScreen.css';
+import { toast } from 'sonner';
 
 export const DetailScreen = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const pet = useSelector((state) => state.petDetails);
+  const verifyLogged = useSelector((state) => state.login.token);
+  const navigate = useNavigate();
   const [galery, setGalery] = useState('');
   // console.log({ galery });
 
@@ -47,6 +50,23 @@ export const DetailScreen = () => {
     afterChange: function (currentSlide) {
     }
   };
+
+  function handleClick () {
+    if (verifyLogged !== null) {
+      navigate('/adopta-una-mascota');
+    } else {
+      toast.error('Debe estar registrado para adoptar una mascota, porfavor registrese', {
+        style: {
+          height: '5rem',
+          fontSize: '1rem',
+          display: 'flex',
+          justifyContent: 'space-evenly',
+          paddingLeft: '2.5rem'
+        }
+      });
+      navigate('/registro');
+    }
+  }
 
   function handleChange (img) {
     setGalery(img);
@@ -132,17 +152,16 @@ export const DetailScreen = () => {
                   </p>
                 </span>
                 {/* <span className='flex flex-row text-[#7C58D3]'>Peso : <p className='text-[1.438rem] ml-[0.5rem]'>{pet.vaccine === true ? 'Si' : 'Ninguna'}</p></span> */}
-                <Link
-                  to='/adopta-una-mascota'
-                  className='rounded-[0.5rem] h-[4.375rem] w-[11.625rem] bg-[#7C58D3] hover:bg-[#5930b9] flex justify-center items-center mt-[3rem] ml-[3.125rem] text-[#FFFEFD] text-[1.5rem] font-extrabold transition-colors duration-500'
-                >
+                <div onClick={handleClick} className='rounded-[0.5rem] h-[4.375rem] w-[11.625rem] bg-[#7C58D3] hover:bg-[#5930b9] flex justify-center items-center mt-[3rem] ml-[3.125rem] text-[#FFFEFD] text-[1.5rem] font-extrabold transition-colors duration-500'>
                   <img
                     src={fingerprint}
                     alt='fingerprint'
                     className='h-[1.875rem] mr-[0.4rem]'
                   />{' '}
                   Adoptar
-                </Link>
+
+                </div>
+
               </div>
             </div>
           </section>
