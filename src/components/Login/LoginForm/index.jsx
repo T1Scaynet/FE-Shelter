@@ -3,7 +3,6 @@ import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { loginUser } from '../../../state/features/login/loginSlice';
 import ingresar from '../../../assets/ingresar.png';
-import password from '../../../assets/password.svg';
 import { Button, TextField } from '@mui/material';
 import iconGoogle from '../../../assets/iconGoogle.png';
 
@@ -58,7 +57,7 @@ export const LoginForm = () => {
             />
             <TextField
               label='Contraseña'
-              type={password}
+              type='password'
               id='password'
               variant='outlined'
               name='password'
@@ -75,7 +74,7 @@ export const LoginForm = () => {
                 }
               }}
             />
-            <Link to='/recuperar-contraseña' className=''>
+            <Link to={`${import.meta.env.VITE_REACT_APP_URL_BACKEND}/user/forgot`} className=''>
               <p className='mt-4 text-[#FF47A2] hover:text-[#7C58D3]'>¿Olvidaste tu contraseña?</p>
             </Link>
             <div className='grid place-items-center gap-6'>

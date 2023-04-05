@@ -185,7 +185,6 @@ export const AgregarMascota = ({ updateData }) => {
     dispatch(PostPet(pet)).then((res) => {
       if (res.status === 200 || res.status === 201) {
         showModal();
-        console.log(res);
         actions.resetForm();
       } else {
         Swal.fire({
@@ -233,10 +232,8 @@ export const AgregarMascota = ({ updateData }) => {
           const fileURL = data.secure_url;
           const specificArrayInObject = initialForm.galery;
           specificArrayInObject.push(fileURL);
-          // console.log('array que envio', specificArrayInObject);
           // const newObj = { ...uploadedImages, specificArrayInObject };
           // setUploadedImages(newObj);
-          // console.log(uploadedImages);
         });
     });
     axios.all(uploaders).then(() => {

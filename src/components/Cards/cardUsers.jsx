@@ -4,7 +4,6 @@ import { Card } from '../Card';
 import { PetsNotFound } from '../PetsNotFound';
 
 export const CardsUsers = ({ users }) => {
-  console.log("este es el console log de users",users)
   return (
     <div>
       {

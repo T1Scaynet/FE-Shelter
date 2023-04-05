@@ -41,7 +41,7 @@ export const Display1 = () => {
         </Link>
 
         <div className=" space-y-4 pt-10 h-72 flex flex-col justify-evenly md:space-y-0 md:flex md:pt-0 md:flex-row md:justify-evenly md:w-[30rem] md:h-full">
-          <Link to="/donaciones/#insumos">
+          <Link to="/donaciones">
             <div className="relative w-[13.271rem] h-[6.563rem] rounded-[0.394rem] bg-white flex justify-center items-center flex-col">
               <div className="bg-[#EBE5F7] h-[3.938rem] w-[3.938rem] flex justify-center items-center rounded-[50%] absolute top-0 mt-[-1.969rem] hover:scale-110 hover:bg-[#c5b4e69d] transition-all duration-500">
                 <img src={donate1} alt="donate2" />
@@ -51,7 +51,7 @@ export const Display1 = () => {
               </p>
             </div>
           </Link>
-          <Link to="/donaciones/#castración">
+          <Link to="/donaciones">
             <div className="relative w-[13.271rem] h-[6.563rem] rounded-[0.394rem] bg-white flex justify-center items-center flex-col">
               <div className="bg-[#EBE5F7] h-[3.938rem] w-[3.938rem] flex justify-center items-center rounded-[50%] absolute top-0 mt-[-1.969rem] hover:scale-110 hover:bg-[#c5b4e69d] transition-all duration-500">
                 <img src={donate2} alt="donate2" />

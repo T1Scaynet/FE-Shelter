@@ -242,14 +242,14 @@ export const profileUpdate = () => {
                       <button
                         className='flex justify-center rounded border border-stroke py-2 px-6 font-medium text-black hover:shadow-1 dark:border-strokedark dark:text-white'
                       >
-                        Cancel
+                        Cancelar
                       </button>
                     </Link>
                     <button
                       className='flex justify-center rounded bg-primary py-2 px-6 font-medium text-gray hover:shadow-1'
                       type='submit'
                     >
-                      Save
+                      Guardar
                     </button>
                   </div>
                 </form>

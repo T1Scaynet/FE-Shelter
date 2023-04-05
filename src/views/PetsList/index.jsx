@@ -33,10 +33,7 @@ export const PetsList = () => {
       dispatch(getAllPets(INITIAL_STATE));
       return;
     }
-    console.log('event', e.target.value);
-    console.log('type', type);
     const newValue = filters[type] === e.target.value ? '' : e.target.value;
-    console.log({ newValue });
     dispatch(setFilters({
       ...filters,
       [type]: newValue,

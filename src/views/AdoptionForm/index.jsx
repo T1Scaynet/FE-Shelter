@@ -9,7 +9,6 @@ export const AdoptionForm = () => {
   const dispatch = useDispatch();
   const selectedPet = useSelector((state) => state.petDetails.detailPet);
   const navigate = useNavigate();
-  // console.log(selectedPet.galery[0]);
   return (
     <div className='w-full h-full flex flex-col'>
       <div>

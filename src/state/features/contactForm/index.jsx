@@ -18,7 +18,6 @@ export const PostContat = (data) => {
   const urlPost = '/form/contact';
   return async function (dispatch) {
     const r = axios.post(urlPost, data);
-    console.log(data);
     return r;
   };
 };

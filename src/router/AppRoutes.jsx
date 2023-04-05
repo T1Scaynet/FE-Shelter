@@ -24,6 +24,7 @@ import { Adopciones } from '../views/Admin - Dashboard/pages/Adopciones/Adopcion
 import Settings from '../views/Admin - Dashboard/pages/Settings';
 import { profileUpdate } from '../components/Login/Profile/profile-update';
 import { passwordUpdate } from '../components/Login/Profile/password-update';
+import { profileComment } from '../components/Login/Profile/profile-comment';
 
 export function AppRoutes ({ setShowLayout }) {
   const token = useSelector((state) => state.login?.token);
@@ -137,13 +138,18 @@ export function AppRoutes ({ setShowLayout }) {
       public: true
     },
     {
-      path: '/perfil/update',
+      path: '/perfil/actualizar',
       component: profileUpdate,
       public: true
     },
     {
-      path: '/perfil/password-update',
+      path: '/perfil/actualizar-contraseña',
       component: passwordUpdate,
+      public: true
+    },
+    {
+      path: '/perfil/comentario',
+      component: profileComment,
       public: true
     }
   ];
