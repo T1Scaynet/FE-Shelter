@@ -12,13 +12,15 @@ export const detailSlice = createSlice({
     setDetailList: (state, action) => {
       return {
         ...state,
-        petDatail: action.payload
+        petDatail: action.payload,
+        detailPet: action.payload
       };
     },
     clearDetailList: state => {
       return {
         ...state,
-        petDatail: []
+        petDatail: [],
+        detailPet: []
       };
     },
     setLoading: (state, action) => {
