@@ -22,7 +22,7 @@ export const DetailScreen = () => {
   const dispatch = useDispatch();
   const pet = useSelector((state) => state.petDetails);
   console.log(pet.petDatail);
-  const verifyLogged = useSelector((state) => state.login.token);
+  const verifyLogged = useSelector((state) => state.login.userLogged);
   const navigate = useNavigate();
   const [galery, setGalery] = useState('');
   // console.log({ galery });
@@ -32,9 +32,6 @@ export const DetailScreen = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
     dispatch(getDetailById(id));
-    return () => {
-      dispatch(getDetailById(''));
-    };
   }, [dispatch, id]);
 
   const settingsVertical = {
@@ -54,7 +51,7 @@ export const DetailScreen = () => {
   };
 
   function handleClick () {
-    if (verifyLogged !== null) {
+    if (verifyLogged === false) {
       navigate('/adopta-una-mascota');
     } else {
       toast.error('Debe estar registrado para adoptar una mascota, porfavor registrese', {
