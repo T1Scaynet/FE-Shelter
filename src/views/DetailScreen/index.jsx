@@ -15,6 +15,7 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import './DetailScreen.css';
 import { toast } from 'sonner';
+import Loader from '../../utils/Loader';
 
 export const DetailScreen = () => {
   const { id } = useParams();
@@ -97,14 +98,8 @@ export const DetailScreen = () => {
         </Link>
       </span>
 
-      {pet === undefined ? (
-        <div class='conteneinerLoading'>
-          <div class='loader' id='loader'>
-            Loading....
-          </div>
-        </div>
-      ) : pet === null ? (
-        <></>
+      {pet.loading ? (
+        <Loader />
       ) : (
         <>
           <section className='grid grid-cols-1 lg:flex lg:flex-row lg:items-center lg:space-x-10 lg:mt-[0.9rem]'>

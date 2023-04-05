@@ -4,26 +4,33 @@ import axios from 'axios';
 export const detailSlice = createSlice({
   name: 'petDetails',
   initialState: {
-    value: undefined
+    value: undefined,
+    loading: true
   },
   reducers: {
     // Acá van los reducers
     setDetailList: (state, action) => {
       return {
-        ...state.value,
+        ...state,
         value: action.payload
       };
     },
     clearDetailList: state => {
       return {
-        ...state.value,
+        ...state,
         value: undefined
+      };
+    },
+    setLoading: (state, action) => {
+      return {
+        ...state,
+        loading: action.payload
       };
     }
   }
 });
 
-export const { setDetailList, clearDetailList } = detailSlice.actions;
+export const { setDetailList, clearDetailList, setLoading } = detailSlice.actions;
 
 export default detailSlice.reducer;
 
@@ -36,11 +43,14 @@ export const getDetailById = (id) => {
         const r = await axios.get(urlDetail);
         const data = r.data.pet;
         await dispatch(setDetailList(data));
+        await dispatch(setLoading(false));
       } catch (error) {
         dispatch(setDetailList(null));
+        await dispatch(setLoading(false));
       }
     } else {
       dispatch(setDetailList());
+      await dispatch(setLoading(false));
     }
   };
 };
