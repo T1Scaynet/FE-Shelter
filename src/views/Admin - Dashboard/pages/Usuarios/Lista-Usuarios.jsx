@@ -14,7 +14,6 @@ const { Option } = Select;
 export const ListaUsuarios = () => {
   const dispatch = useDispatch();
   const users = useSelector((state) => state.users.list);
-  console.log(users)
   const [sortedUsers, setSortedUsers] = useState(users);
   const [selectedRole, setSelectedRole] = useState('all');
   const [currentPage, setCurrentPage] = useState(1);
@@ -24,6 +23,7 @@ export const ListaUsuarios = () => {
 
   const handleRoleChange = (value) => {
     setSelectedRole(value);
+    setCurrentPage(1);
   };
 
   const handleSearchChange = (e) => {
@@ -53,6 +53,8 @@ export const ListaUsuarios = () => {
   useEffect(() => {
     dispatch(getAllUsers());
   }, []);
+
+
 
   return (
     <DefaultLayout>

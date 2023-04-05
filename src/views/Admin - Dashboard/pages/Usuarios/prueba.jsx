@@ -147,76 +147,16 @@
 //   );
 // };
 
-
-
-
-
-
-
-      {/* <div>
-        {users.map(user => {
-          return (
-            <div key={user._id}>
-              <span>{user._id}</span>
-              <span>{user.name}</span>
-            </div>
-          );
-        })}
-      </div> */}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
-
-
-
-
-
-
+// {/* <div>
+//   {users.map(user => {
+//     return (
+//       <div key={user._id}>
+//         <span>{user._id}</span>
+//         <span>{user.name}</span>
+//       </div>
+//     );
+//   })}
+// </div> */}
 
 //       import React, { useEffect, useState } from 'react';
 // import { useDispatch, useSelector } from 'react-redux';
@@ -237,7 +177,6 @@
 //   const [sortOrder, setSortOrder] = useState('ascendente');
 //   const [searchTerm, setSearchTerm] = useState('');
 
-  /////////////////////////////////////////////////////////////
 //   const [currentPage, setCurrentPage] = useState(1);
 // const itemsPerPage = 5; // Cambia esto al número de elementos que quieres mostrar por página
 // const indexOfLastItem = currentPage * itemsPerPage;
@@ -270,8 +209,6 @@
 //     setSortedUsers(filteredUsers);
 //   }, [searchTerm, users]);
 
-
-
 //   const handleSortByName = () => {
 //     const sorted = [...sortedUsers].sort((a, b) => {
 //       const nameA = a.name ? a.name.toLowerCase() : '';
@@ -289,12 +226,9 @@
 //     setSortOrder(sortOrder === 'ascendente' ? 'descendente' : 'ascendente');
 //   };
 
-
 //   const handleSearchInputChange = (event) => {
 //     setSearchTerm(event.target.value);
 //   };
-
-
 
 //   return (
 //     <DefaultLayout>

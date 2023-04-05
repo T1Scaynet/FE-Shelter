@@ -150,10 +150,8 @@ export const CreatePetScreen = () => {
           const fileURL = data.secure_url;
           const specificArrayInObject = form.galery;
           specificArrayInObject.push(fileURL);
-          console.log('array que envio', specificArrayInObject);
           const newObj = { ...uploadedImages, specificArrayInObject };
           setUploadedImages(newObj);
-          console.log(uploadedImages);
         });
     });
     axios.all(uploaders).then(() => {

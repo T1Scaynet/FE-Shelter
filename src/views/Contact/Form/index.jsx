@@ -70,7 +70,6 @@ export const ContactForm = () => {
     >
       {({ values, errors, touched, handleChange, handleSubmit, handleBlur }) => (
         <form onSubmit={handleSubmit} className='flex flex-col gap-4 md:w-[39rem] w-[17.5rem] mt-8'>
-          {/* {console.log(touched)} */}
           <div className='flex justify-between md:flex-row flex-col md:gap-0 gap-6'>
             <TextField
               error={errors.name && touched.name ? true : false}

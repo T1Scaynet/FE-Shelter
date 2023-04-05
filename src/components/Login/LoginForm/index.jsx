@@ -24,13 +24,16 @@ export const LoginForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     dispatch(loginUser(login));
-    navigate('/');
+    setTimeout(() => {
+      navigate('/');
+      window.location.reload();
+    }, 1000);
   };
 
   return (
-    <div className='flex h-screen '>
-      <div className='md:w-1/2 md:flex md:justify-center md:items-center'>
-        <div>
+    <div className='flex h-full '>
+      <div className='md:w-1/2 m-auto md:m-0 md:flex md:justify-center items-center'>
+        <div className=' '>
           <h3 className='text-4xl font-bold mb-4'>Iniciar Sesión</h3>
           <h2 className='text-m font-medium mb-8'>Utilice sus credenciales para acceder a su cuenta.</h2>
           <form onSubmit={handleSubmit} className='max-w-md flex flex-col gap-4'>
@@ -71,7 +74,7 @@ export const LoginForm = () => {
                 }
               }}
             />
-            <Link to='/recuperar-contraseña' className=''>
+            <Link to={`${import.meta.env.VITE_REACT_APP_URL_BACKEND}/user/forgot`} className=''>
               <p className='mt-4 text-[#FF47A2] hover:text-[#7C58D3]'>¿Olvidaste tu contraseña?</p>
             </Link>
             <div className='grid place-items-center gap-6'>

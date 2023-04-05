@@ -1,8 +1,11 @@
 import React from 'react';
-import profile1 from '../../../assets/DisplayFive/perfil2.svg';
-import profile2 from '../../../assets/DisplayFive/perfil1.svg';
-import profile3 from '../../../assets/DisplayFive/perfil3.svg';
-import profile4 from '../../../assets/DisplayFive/perfil4.svg';
+import imgRodrigo from '../../../assets/DisplayFive/rodrigo.jpeg';
+import imgSelene from '../../../assets/DisplayFive/selene.jpeg';
+import imgKevin from '../../../assets/DisplayFive/kevin.jpeg';
+import imgRomina from '../../../assets/DisplayFive/romina.jpeg';
+import imgGustavo from '../../../assets/DisplayFive/gustavo.jpeg';
+import imgEstani from '../../../assets/DisplayFive/estani.jpeg';
+import imgJoaquin from '../../../assets/DisplayFive/joaquin.jpeg';
 import fingerprint from '../../../assets/DisplayFive/fingerprint.svg';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
@@ -13,49 +16,49 @@ const profiles = [
     id: 1,
     name: 'Romina',
     position: 'FrontEnd Team',
-    image: profile4
+    image: imgRomina
   },
   {
     id: 2,
     name: 'Rodrigo',
     position: 'BackEnd Team',
-    image: profile1
+    image: imgRodrigo
   },
   {
     id: 3,
-    name: 'Ramiro',
+    name: 'Kevin',
     position: 'FrontEnd Team',
-    image: profile3
+    image: imgKevin
   },
   {
     id: 4,
     name: 'Gustavo',
     position: 'BackEnd Team',
-    image: profile1
+    image: imgGustavo
   },
   {
     id: 5,
     name: 'Estanilao',
     position: 'FrontEnd Team',
-    image: profile3
+    image: imgEstani
   },
   {
     id: 6,
     name: 'Selene',
     position: 'BackEnd Team',
-    image: profile2
+    image: imgSelene
   },
   {
     id: 7,
     name: 'Joaquin',
     position: 'BackEnd Team',
-    image: profile1
+    image: imgJoaquin
   },
   {
     id: 8,
     name: 'Ivan',
     position: 'FrontEnd Team',
-    image: profile3
+    image: imgRodrigo
   }
 ];
 
@@ -87,7 +90,9 @@ export const Display5 = () => {
               key={profile.id}
               className='flex justify-center items-center mr-[4.625rem] ml-[4.625rem]'
             >
-              <img src={profile.image} alt={profile.name} />
+              <div className='w-60 h-60 bg-gray-100 flex items-center justify-center '>
+                <img className='object-contain rounded-full' src={profile.image} alt={profile.name} />
+              </div>
               <div className='text-center w-[15rem]'>
                 <h3 className='text-[1.181rem] font-bold'>{profile.name}</h3>
                 <p className='text-[0.886rem] font-normal'>{profile.position}</p>

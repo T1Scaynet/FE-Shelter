@@ -16,6 +16,7 @@ export const RowAdoption = ({ info }) => {
   const [open, setOpen] = useState(false);
   const [openD, setOpenD] = useState(false);
   const [id, setId] = useState('');
+  
   let obj = {};
   const dispatch = useDispatch();
   const handleClose = () => setOpen(false);

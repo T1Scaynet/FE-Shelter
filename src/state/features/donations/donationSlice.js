@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { toast } from 'sonner';
 
 export const getDonations = () => {
   return async function (dispatch) {
@@ -8,7 +9,7 @@ export const getDonations = () => {
       const donations = response.data.allPayments;
       dispatch(setDonations(donations));
     } catch (error) {
-      console.log(error);
+      toast.error('Ocurrio un problema, intente nuevamente');
       dispatch(setDonations([]));
     }
   };

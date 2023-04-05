@@ -269,7 +269,7 @@ const Calendar = () => {
       </div>
       {/* <!-- ====== Calendar Section End ====== --> */}
     </DefaultLayout>
-  )
-}
+  );
+};
 
 export default Calendar;
