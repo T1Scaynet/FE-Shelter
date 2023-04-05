@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { toast } from 'sonner';
 
 export const petSlice = createSlice({
   name: 'pets',
@@ -30,13 +31,15 @@ export const petSlice = createSlice({
     },
 
     setFilters: (state, action) => {
-      console.log('dentro de slice', action);
       state.filters = action.payload;
+    },
+    setUpdatePet: (state, action) => {
+      state.list = { ...state.list, ...action.payload };
     }
   }
 });
 
-export const { setPetsList, setPagination, setFilters } = petSlice.actions;
+export const { setPetsList, setPagination, setFilters, setUpdatePet } = petSlice.actions;
 
 export default petSlice.reducer;
 
@@ -126,15 +129,13 @@ export const deletePet = (id) => {
   };
 };
 
-export const editPet = (id) => {
-  return async function (dispatch, getState) {
+export const editPet = (update) => {
+  return async function (dispatch) {
     try {
-      // const pets = getState().pets.list;
-      await axios.put(`pet/update/${id}`);
-      // const petFound = pets.find(p => p._id === id);
-      // console.log();
+      const { data } = await axios.put(`pet/update/${update._id}`, update);
+      await dispatch(setUpdatePet(update));
     } catch (error) {
-      console.log(error);
+      toast.error('intente nuevamente');
     }
   };
 };
