@@ -23,11 +23,14 @@ export const LoginForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    dispatch(loginUser(login));
-    setTimeout(() => {
-      navigate('/');
-      window.location.reload();
-    }, 1000);
+    // await dispatch(loginUser(login));
+    await new Promise((resolve) => {
+      dispatch(loginUser(login));
+      resolve(setTimeout(() => {
+        navigate('/');
+        window.location.reload();
+      }, 2000));
+    });
   };
 
   return (

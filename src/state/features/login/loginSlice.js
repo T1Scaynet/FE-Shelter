@@ -61,7 +61,8 @@ export const loginUser = ({ email, password }) => {
       });
       dispatch(loginSuccessful({ token: data.token, user: user.data.user }));
     } catch (error) {
-      dispatch(loginFailure(error.response.data.msg));
+      toast.error('Verifique la contraseña y email');
+      // dispatch(loginFailure(error.response.data.msg));
     }
   };
 };
