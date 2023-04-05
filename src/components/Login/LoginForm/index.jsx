@@ -29,9 +29,9 @@ export const LoginForm = () => {
   };
 
   return (
-    <div className='flex h-screen '>
-      <div className='md:w-1/2 md:flex md:justify-center md:items-center'>
-        <div>
+    <div className='flex h-full '>
+      <div className='md:w-1/2 m-auto md:m-0 md:flex md:justify-center items-center'>
+        <div className=' '>
           <h3 className='text-4xl font-bold mb-4'>Iniciar Sesión</h3>
           <h2 className='text-m font-medium mb-8'>Utilice sus credenciales para acceder a su cuenta.</h2>
           <form onSubmit={handleSubmit} className='max-w-md flex flex-col gap-4'>
