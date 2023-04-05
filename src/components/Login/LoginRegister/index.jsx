@@ -4,6 +4,7 @@
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { loginRegister } from '../../../state/features/login/loginSlice';
+import iconGoogle from '../../../assets/iconGoogle.png';
 import register from '../../../assets/ingresar.png';
 import { Link } from 'react-router-dom';
 import { Formik } from 'formik';
@@ -149,6 +150,14 @@ function RegistrationForm () {
                 >
                   Registrar
                 </Button>
+                <Link to={`${import.meta.env.VITE_REACT_APP_URL_BACKEND}/social/auth/google`} className='px-[5rem] py-3 md:hover:bg-[#F1F2F2] bg-[#ffffff00] rounded-[0.5rem] md:w-[22.188rem] transition-colors duration-300'>
+                  <div className='grid place-items-center'>
+                    <p className='flex flex-row justify-center items-center font-semibold text-[1rem] gap-2 text-[#5A5A5A]'>
+                      o inicia sesión con
+                      <img src={iconGoogle} alt='icon' className='h-[16px]' />
+                    </p>
+                  </div>
+                </Link>
               </form>
             )}
           </Formik>
