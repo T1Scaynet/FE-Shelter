@@ -83,7 +83,7 @@ export const getUserLogged = (id) => async (dispatch) => {
     const user = response.data;
     console.log('getuserlogged', user);
   } catch (error) {
-
+    toast.error('Intente nuevamente');
   }
 };
 
