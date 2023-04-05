@@ -22,6 +22,8 @@ import { AgregarUsuario } from '../views/Admin - Dashboard/pages/Usuarios/Agrega
 import { DonacionesPagos } from '../views/Admin - Dashboard/pages/Donaciones/Donaciones';
 import { Adopciones } from '../views/Admin - Dashboard/pages/Adopciones/Adopciones';
 import Settings from '../views/Admin - Dashboard/pages/Settings';
+import { profileUpdate } from '../components/Login/Profile/profile-update';
+import { passwordUpdate } from '../components/Login/Profile/password-update';
 
 export function AppRoutes ({ setShowLayout }) {
   const token = useSelector((state) => state.login?.token);
@@ -132,6 +134,16 @@ export function AppRoutes ({ setShowLayout }) {
     {
       path: '/dashboard-admin/settings',
       component: Settings,
+      public: true
+    },
+    {
+      path: '/perfil/update',
+      component: profileUpdate,
+      public: true
+    },
+    {
+      path: '/perfil/password-update',
+      component: passwordUpdate,
       public: true
     }
   ];
