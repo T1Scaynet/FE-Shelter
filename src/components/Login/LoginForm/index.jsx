@@ -29,7 +29,7 @@ export const LoginForm = () => {
       resolve(setTimeout(() => {
         navigate('/');
         window.location.reload();
-      }, 2000));
+      }, 4000));
     });
   };
 
