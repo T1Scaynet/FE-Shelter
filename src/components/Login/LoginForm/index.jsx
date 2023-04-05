@@ -3,7 +3,6 @@ import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { loginUser } from '../../../state/features/login/loginSlice';
 import ingresar from '../../../assets/ingresar.png';
-import password from '../../../assets/password.svg';
 import { Button, TextField } from '@mui/material';
 import iconGoogle from '../../../assets/iconGoogle.png';
 
@@ -55,7 +54,7 @@ export const LoginForm = () => {
             />
             <TextField
               label='Contraseña'
-              type={password}
+              type='password'
               id='password'
               variant='outlined'
               name='password'
@@ -113,7 +112,7 @@ export const LoginForm = () => {
         <img
           src={ingresar}
           alt='Imagen de ingreso'
-          className='object-cover h-full w-full rounded-[0.5rem]'
+          className='object-cover h-[44.6rem] w-[27.049rem] rounded-[0.5rem]'
         />
       </div>
     </div>
