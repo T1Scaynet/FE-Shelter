@@ -196,9 +196,9 @@ export const AgregarMascota = ({ updateData }) => {
     });
   };
 
-  const handleUpdate = (pet, actions) => {
+  const handleUpdate = (pet) => {
     dispatch(editPet(pet));
-    toast.success('Formulario enviado correctamente', {
+    toast.success('Formulario actualizado correctamente', {
       style: {
         height: '5rem',
         fontSize: '1rem',
