@@ -12,19 +12,14 @@ export const detailSlice = createSlice({
     setDetailList: (state, action) => {
       return {
         ...state,
-        petDatail: action.payload
+        petDatail: action.payload,
+        detailPet: action.payload
       };
     },
     clearDetailList: state => {
       return {
         ...state,
         petDatail: []
-      };
-    },
-    setLoading: (state, action) => {
-      return {
-        ...state,
-        loading: action.payload
       };
     }
   }
@@ -43,14 +38,11 @@ export const getDetailById = (id) => {
         const r = await axios.get(urlDetail);
         const data = r.data.pet;
         await dispatch(setDetailList(data));
-        await dispatch(setLoading(false));
       } catch (error) {
-        dispatch(setDetailList(null));
-        await dispatch(setLoading(false));
+        dispatch(clearDetailList());
       }
     } else {
       dispatch(setDetailList());
-      await dispatch(setLoading(false));
     }
   };
 };
