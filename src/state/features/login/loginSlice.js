@@ -43,6 +43,7 @@ const loginSlice = createSlice({
       state.registering = false;
     },
     setUpdateDataUser: (state, action) => {
+      console.log(action);
       state.user = { ...state.user, ...action.payload };
     }
   }
@@ -90,8 +91,19 @@ export const updateUserData = (userData) => {
   return async (dispatch) => {
     try {
       const { data } = await axios.put('/user/update', userData);
-      dispatch(setUpdateDataUser(data.updateUser));
-      // console.log(data.updateUser);
+      await dispatch(setUpdateDataUser(userData));
+      toast.success('Actulizacion con exito');
+    } catch (error) {
+      toast.error('Intente nuevamente');
+    }
+  };
+};
+
+export const updateUserPassword = (password) => {
+  return async () => {
+    try {
+      // console.log(password)
+      const { data } = await axios.post('/user/reset', password);
       toast.success('Actulizacion con exito');
     } catch (error) {
       toast.error('Intente nuevamente');

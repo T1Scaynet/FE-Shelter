@@ -1,4 +1,5 @@
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 import CoverOne from '../../../views/Admin - Dashboard/images/cover/cover-01.png';
 
@@ -92,6 +93,26 @@ export function Profile () {
               {lastName}
             </h3>
             <p className='font-medium'>{email}</p>
+          </div>
+        </div>
+
+        <div className='Menu-Perfil grid place-content-center'>
+          <div className=' h-[400px] w-[400px] bg-[#FFDA47] grid grid-rows-5 place-items-center p-6'>
+            <Link to='/perfil/update'>
+              <button className=' bg-[#7C58D3] w-[250px] h-10 rounded-sm text-[#FFFEFD] hover:bg-[#FF47A2]'>Actualizar datos personales</button>
+            </Link>
+            <Link to='/perfil/password-update'>
+              <button className=' bg-[#7C58D3] w-[250px] h-10 rounded-sm text-[#FFFEFD] hover:bg-[#FF47A2]'>Actualizar contraseña</button>
+            </Link>
+            <Link to='/perfil/update'>
+              <button className=' bg-[#7C58D3] w-[250px] h-10 rounded-sm text-[#FFFEFD] hover:bg-[#FF47A2]'>Hacer una reseña</button>
+            </Link>
+            <Link to='/perfil/update'>
+              <button className=' bg-[#7C58D3] w-[250px] h-10 rounded-sm text-[#FFFEFD] hover:bg-[#FF47A2]'>Mis adopciones</button>
+            </Link>
+            <Link to='/perfil/update'>
+              <button className=' bg-[#7C58D3] w-[250px] h-10 rounded-sm text-[#FFFEFD] hover:bg-[#FF47A2]'>Mis Donaciones</button>
+            </Link>
           </div>
         </div>
       </div>

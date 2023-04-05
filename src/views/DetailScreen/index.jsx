@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams, useNavigate } from 'react-router-dom';
-import { getDetailById } from '../../state/features/details/detailSlice';
+import { clearDetailList, getDetailById } from '../../state/features/details/detailSlice';
 import bg from '../../assets/DetailScreen/bg.svg';
 import weight from '../../assets/DetailScreen/peso.svg';
 import genre from '../../assets/DetailScreen/genero.svg';
@@ -15,11 +15,13 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import './DetailScreen.css';
 import { toast } from 'sonner';
+import Loader from '../../utils/Loader';
 
 export const DetailScreen = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const pet = useSelector((state) => state.petDetails);
+  console.log(pet.petDatail);
   const verifyLogged = useSelector((state) => state.login.token);
   const navigate = useNavigate();
   const [galery, setGalery] = useState('');
@@ -31,7 +33,7 @@ export const DetailScreen = () => {
     window.scrollTo(0, 0);
     dispatch(getDetailById(id));
     return () => {
-      dispatch(getDetailById(undefined));
+      dispatch(clearDetailList());
     };
   }, [dispatch, id]);
 
@@ -90,27 +92,21 @@ export const DetailScreen = () => {
         </Link>
         <div className='rounded-[50%] bg-[#FF47A2] h-[0.4rem] w-[0.4rem]' />
         <Link
-          to={`/detalles/${pet._id}`}
+          to={`/detalles/${pet.petDatail?._id}`}
           className={linkStyle}
         >
-          {pet.name}
+          {pet.petDatail?.name}
         </Link>
       </span>
 
-      {pet === undefined ? (
-        <div class='conteneinerLoading'>
-          <div class='loader' id='loader'>
-            Loading....
-          </div>
-        </div>
-      ) : pet === null ? (
-        <></>
+      {!pet.petDatail ? (
+        <Loader />
       ) : (
         <>
           <section className='grid grid-cols-1 lg:flex lg:flex-row lg:items-center lg:space-x-10 lg:mt-[0.9rem]'>
             <div className='hidden lg:block'>
               <Slider {...settingsVertical}>
-                {pet.galery?.map((img, i) => (
+                {pet.petDatail?.galery?.map((img, i) => (
                   <div key={i}>
                     <img src={img} alt='pet' className='object-cover rounded-[0.5rem] cursor-pointer' onClick={() => handleChange(img)} />
                   </div>
@@ -118,37 +114,37 @@ export const DetailScreen = () => {
               </Slider>
             </div>
             <div className='bg-[#FBF9FF] [20rem] h-[30rem] md:w-[31.313rem] md:h-[31rem] flex items-center justify-center rounded-md'>
-              <img src={pet.image ? pet.image : galery || pet.galery?.[0]} alt={pet.image} className='h-96 rounded-md object-cover bg-slate-700' />
+              <img src={pet.petDatail?.image ? pet.petDatail?.image : galery || pet.petDatail?.galery?.[0]} alt={pet.petDatail?.image} className='h-96 rounded-md object-cover bg-slate-700' />
             </div>
             <div className='flex flex-col items-start w-[20.938rem]'>
-              <h4 className='text-[4.125rem] font-bold mt-[1.5rem]'>{pet.name}</h4>
+              <h4 className='text-[4.125rem] font-bold mt-[1.5rem]'>{pet.petDatail?.name}</h4>
               <div className='text-[1.625rem] font-bold flex flex-col justify-center text-left'>
                 <span className='flex flex-row items-center mt-[2rem] text-[#7C58D3]'>
                   <img className='mr-[0.5rem]' src={size} alt='icon' /> Tamaño :{' '}
-                  <p className='text-[1.438rem] ml-[0.5rem]'>{pet.size}</p>
+                  <p className='text-[1.438rem] ml-[0.5rem]'>{pet.petDatail?.size}</p>
                 </span>
                 <span className='flex flex-row items-center mt-[0.9rem] text-[#7C58D3]'>
                   <img className='mr-[0.5rem]' src={genre} alt='icon' />
                   Genero :{' '}
-                  <p className='text-[1.438rem] ml-[0.5rem]'>{pet.genre}</p>
+                  <p className='text-[1.438rem] ml-[0.5rem]'>{pet.petDatail?.genre}</p>
                 </span>
                 <span className='flex flex-row items-center mt-[0.9rem] text-[#7C58D3]'>
                   <img className='mr-[0.5rem]' src={weight} alt='icon' />
                   Peso :{' '}
-                  <p className='text-[1.438rem] ml-[0.5rem]'>{pet.weight} kg</p>
+                  <p className='text-[1.438rem] ml-[0.5rem]'>{pet.petDatail?.weight} kg</p>
                 </span>
                 <span className='flex flex-row items-center mt-[0.9rem] text-[#7C58D3]'>
                   <img className='mr-[0.5rem]' src={vac} alt='icon' />
                   Vacunado:{' '}
                   <p className='text-[1.438rem] ml-[0.5rem]'>
-                    {pet.vaccine === true ? 'Si' : 'No'}
+                    {pet.petDatail?.vaccine === true ? 'Si' : 'No'}
                   </p>
                 </span>
                 <span className='flex flex-row items-center mt-[0.9rem] text-[#7C58D3]'>
                   <img className='mr-[0.5rem]' src={castrated} alt='icon' />
                   Castrado/a :{' '}
                   <p className='text-[1.438rem] ml-[0.5rem]'>
-                    {pet.castrated === true ? 'Si' : 'No'}
+                    {pet.petDatail?.castrated === true ? 'Si' : 'No'}
                   </p>
                 </span>
                 {/* <span className='flex flex-row text-[#7C58D3]'>Peso : <p className='text-[1.438rem] ml-[0.5rem]'>{pet.vaccine === true ? 'Si' : 'Ninguna'}</p></span> */}
@@ -165,7 +161,7 @@ export const DetailScreen = () => {
               </div>
             </div>
           </section>
-          {pet.history === undefined ? (
+          {pet.petDatail?.history === undefined ? (
             <div className='bg-[#FBF9FF] rounded-[0.5rem] mt-[3rem] w-[5rem] h-[6rem] p-[6rem] md:mt-[6.875rem] md:w-[68.875rem] md:h-[10rem] flex items-center justify-center border-solid border-black '>
               <div className='text-left md:text-center'>
                 <h4 className='text-[1.5rem] font-bold'>
@@ -179,7 +175,7 @@ export const DetailScreen = () => {
                 <h4 className='text-[1.5rem] font-bold'>
                   Descripción de la mascota
                 </h4>
-                <p className='text-left pt-4'>{pet.history}</p>
+                <p className='text-left pt-4'>{pet.petDatail?.history}</p>
               </div>
             </div>
           )}
