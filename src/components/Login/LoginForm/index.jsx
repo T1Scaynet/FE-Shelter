@@ -25,7 +25,10 @@ export const LoginForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     dispatch(loginUser(login));
-    navigate('/');
+    setTimeout(() => {
+      navigate('/');
+      window.location.reload();
+    }, 1000);
   };
 
   return (
