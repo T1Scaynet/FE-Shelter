@@ -97,21 +97,15 @@ export function Profile () {
         </div>
 
         <div className='Menu-Perfil grid place-content-center'>
-          <div className=' h-[400px] w-[400px] bg-[#FFDA47] grid grid-rows-5 place-items-center p-6'>
-            <Link to='/perfil/update'>
+          <div className='grid grid-rows-3 place-items-center p-6 gap-6'>
+            <Link to='/perfil/actualizar'>
               <button className=' bg-[#7C58D3] w-[250px] h-10 rounded-sm text-[#FFFEFD] hover:bg-[#FF47A2]'>Actualizar datos personales</button>
             </Link>
-            <Link to='/perfil/password-update'>
+            <Link to='/perfil/actualizar-contraseña'>
               <button className=' bg-[#7C58D3] w-[250px] h-10 rounded-sm text-[#FFFEFD] hover:bg-[#FF47A2]'>Actualizar contraseña</button>
             </Link>
-            <Link to='/perfil/update'>
+            <Link to='/perfil/comentario'>
               <button className=' bg-[#7C58D3] w-[250px] h-10 rounded-sm text-[#FFFEFD] hover:bg-[#FF47A2]'>Hacer una reseña</button>
-            </Link>
-            <Link to='/perfil/update'>
-              <button className=' bg-[#7C58D3] w-[250px] h-10 rounded-sm text-[#FFFEFD] hover:bg-[#FF47A2]'>Mis adopciones</button>
-            </Link>
-            <Link to='/perfil/update'>
-              <button className=' bg-[#7C58D3] w-[250px] h-10 rounded-sm text-[#FFFEFD] hover:bg-[#FF47A2]'>Mis Donaciones</button>
             </Link>
           </div>
         </div>
