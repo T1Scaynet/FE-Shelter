@@ -58,7 +58,7 @@ export const LoginForm = () => {
             />
             <TextField
               label='Contraseña'
-              type={password}
+              type='password'
               id='password'
               variant='outlined'
               name='password'
