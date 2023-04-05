@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 
 export const AdoptionForm = () => {
   const dispatch = useDispatch();
-  const selectedPet = useSelector((state) => state.petDetails);
+  const selectedPet = useSelector((state) => state.petDetails.detailPet);
   const navigate = useNavigate();
   // console.log(selectedPet.galery[0]);
   return (
