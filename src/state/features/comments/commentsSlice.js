@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { toast } from 'sonner';
 // import axios from 'axios';
 
 export const commentSlice = createSlice({
@@ -28,5 +29,16 @@ export const getCommentsList = () => {
         dispatch(setCommentsList(response));
       })
       .catch(() => dispatch(setCommentsList({})));
+  };
+};
+
+export const postComment = (comment) => {
+  return async () => {
+    try {
+      const { data } = await axios.post('/comment', comment);
+      toast.success('Comentario enviado correctamente');
+    } catch (error) {
+      toast.error('El comentario no se envio correctamente, intente nuevamente');
+    }
   };
 };

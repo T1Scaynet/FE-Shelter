@@ -58,11 +58,9 @@ export const useForm = (initialForm, validateForm) => {
       dispatch(PostPet(form)).then((res) => {
         if (res.status === 200 || res.status === 201) {
           showModal();
-          // console.log(res.data);
           handleReset();
           navigate('/');
         } else {
-          // console.log(res);
           showModal('errorserver');
           navigate('/');
         }

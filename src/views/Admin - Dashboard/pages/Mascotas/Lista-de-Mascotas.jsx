@@ -25,7 +25,6 @@ const INITIAL_STATE = {
 export const ListadeMascotas = () => {
   const dispatch = useDispatch();
   const pets = useSelector((state) => state.pets);
-  console.log('sadkjhsajkdhahksjdsa',pets)
   const filters = useSelector((state) => state.pets.filters);
   const pagination = useSelector(state => state.pets.pagination);
   const [modal, setModal] = useState(false);
@@ -37,9 +36,7 @@ export const ListadeMascotas = () => {
       dispatch(getAllPetsAdmin(INITIAL_STATE));
       return;
     }
-    console.log('type', type);
     const newValue = filters[type] === e.target.value ? '' : e.target.value;
-    console.log('newValue', newValue);
     dispatch(setFilters({
       ...filters,
       [type]: newValue,

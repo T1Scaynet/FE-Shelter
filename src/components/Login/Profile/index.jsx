@@ -1,4 +1,5 @@
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 import CoverOne from '../../../views/Admin - Dashboard/images/cover/cover-01.png';
 
@@ -92,6 +93,20 @@ export function Profile () {
               {lastName}
             </h3>
             <p className='font-medium'>{email}</p>
+          </div>
+        </div>
+
+        <div className='Menu-Perfil grid place-content-center'>
+          <div className='grid grid-rows-3 place-items-center p-6 gap-6'>
+            <Link to='/perfil/actualizar'>
+              <button className=' bg-[#7C58D3] w-[250px] h-10 rounded-sm text-[#FFFEFD] hover:bg-[#FF47A2]'>Actualizar datos personales</button>
+            </Link>
+            <Link to='/perfil/actualizar-contraseña'>
+              <button className=' bg-[#7C58D3] w-[250px] h-10 rounded-sm text-[#FFFEFD] hover:bg-[#FF47A2]'>Actualizar contraseña</button>
+            </Link>
+            <Link to='/perfil/comentario'>
+              <button className=' bg-[#7C58D3] w-[250px] h-10 rounded-sm text-[#FFFEFD] hover:bg-[#FF47A2]'>Hacer una reseña</button>
+            </Link>
           </div>
         </div>
       </div>

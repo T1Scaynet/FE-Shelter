@@ -80,9 +80,8 @@ export const getUserLogged = (id) => async (dispatch) => {
   try {
     const response = await axios.get(`/user/${id}`);
     const user = response.data;
-    console.log('getuserlogged', user);
   } catch (error) {
-
+    toast.error('Intente nuevamente');
   }
 };
 
@@ -90,8 +89,18 @@ export const updateUserData = (userData) => {
   return async (dispatch) => {
     try {
       const { data } = await axios.put('/user/update', userData);
-      dispatch(setUpdateDataUser(data.updateUser));
-      // console.log(data.updateUser);
+      await dispatch(setUpdateDataUser(userData));
+      toast.success('Actulizacion con exito');
+    } catch (error) {
+      toast.error('Intente nuevamente');
+    }
+  };
+};
+
+export const updateUserPassword = (password) => {
+  return async () => {
+    try {
+      const { data } = await axios.post('/user/reset', password);
       toast.success('Actulizacion con exito');
     } catch (error) {
       toast.error('Intente nuevamente');
