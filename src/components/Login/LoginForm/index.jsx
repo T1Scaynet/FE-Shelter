@@ -115,7 +115,7 @@ export const LoginForm = () => {
         <img
           src={ingresar}
           alt='Imagen de ingreso'
-          className='object-cover h-full w-full rounded-[0.5rem]'
+          className='object-cover h-[44.6rem] w-[27.049rem] rounded-[0.5rem]'
         />
       </div>
     </div>
