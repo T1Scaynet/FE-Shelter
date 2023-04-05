@@ -4,7 +4,7 @@ import axios from 'axios';
 export const detailSlice = createSlice({
   name: 'petDetails',
   initialState: {
-    value: undefined,
+    detailPet: [],
     loading: true
   },
   reducers: {
@@ -12,13 +12,13 @@ export const detailSlice = createSlice({
     setDetailList: (state, action) => {
       return {
         ...state,
-        value: action.payload
+        petDatail: action.payload
       };
     },
     clearDetailList: state => {
       return {
         ...state,
-        value: undefined
+        petDatail: []
       };
     },
     setLoading: (state, action) => {
