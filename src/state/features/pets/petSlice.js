@@ -125,3 +125,16 @@ export const deletePet = (id) => {
     }
   };
 };
+
+export const editPet = (id) => {
+  return async function (dispatch, getState) {
+    try {
+      // const pets = getState().pets.list;
+      await axios.put(`pet/update/${id}`);
+      // const petFound = pets.find(p => p._id === id);
+      // console.log();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};

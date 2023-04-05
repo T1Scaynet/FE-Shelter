@@ -168,12 +168,17 @@ const validationsForm = (form) => {
 
   return errors;
 };
+const Wrapper = ({ children, updateData }) => {
+  if (!updateData) return <DefaultLayout>{children}</DefaultLayout>;
+  else return <div className='relative'>{children}</div>;
+};
 
 export const AgregarMascota = ({ updateData }) => {
   const dispatch = useDispatch();
   const [loadinng, setLoadinng] = useState('');
 
   const handleSubmit = (pet, actions) => {
+    console.log({ pet });
     dispatch(PostPet(pet)).then((res) => {
       if (res.status === 200 || res.status === 201) {
         // window.alert('Enviado con éxito');
@@ -252,188 +257,181 @@ export const AgregarMascota = ({ updateData }) => {
       );
     }
   };
-  const Wrapper = ({ children }) => {
-    if (!updateData) return <DefaultLayout>{children}</DefaultLayout>;
-    else return <div className='relative'>{children}</div>;
-  };
   return (
-    <Wrapper>
-      <>
-        {!updateData && <Breadcrumb pageName="Agregar Mascota" />}
-        <div className="flex min-h-full items-center justify-center bg-whiter p-6">
-          <Formik
-            initialValues={updateData || initialForm}
-            validate={validationsForm}
-            onSubmit={handleSubmit}
-          >
-            {(props) => {
-              const validateModal = (errors) => {
-                if (Object.keys(errors).length > 0) {
-                  showModal('errorform');
-                }
-              };
-              return (
-                <Form className="w-[750px] bg-[#fff] p-5 shadow ">
-                  <h3 className="pb-1 text-xl uppercase text-[#333]">
-                    Detalles de mascota
-                  </h3>
-                  <div className="flex flex-wrap gap-6">
-                    {/* LEFT SIDE */}
-                    <div className="col flex-shrink-1 min-w-0 max-w-full flex-1">
-                      {inputText?.map((input, i) => (
-                        <div className="mx-0 my-6" key={i}>
-                          <span className="bold mb-2 font-semibold">
-                            {' '}
-                            {input.title} :
+  // <Wrapper>
+    <Wrapper updateData={updateData}>
+      {!updateData && <Breadcrumb pageName="Agregar Mascota" />}
+      <div className="flex min-h-full items-center justify-center bg-whiter p-6">
+        <Formik
+          initialValues={updateData || initialForm}
+          validate={validationsForm}
+          onSubmit={handleSubmit}
+        >
+          {(props) => {
+            const validateModal = (errors) => {
+              if (Object.keys(errors).length > 0) {
+                showModal('errorform');
+              }
+            };
+            return (
+              <Form className="w-[750px] bg-[#fff] p-5 shadow ">
+                <h3 className="pb-1 text-xl uppercase text-[#333]">
+                  Detalles de mascota
+                </h3>
+                <div className="flex flex-wrap gap-6">
+                  {/* LEFT SIDE */}
+                  <div className="col flex-shrink-1 min-w-0 max-w-full flex-1">
+                    {inputText?.map((input, i) => (
+                      <div className="mx-0 my-6" key={i}>
+                        <span className="bold mb-2 font-semibold">
+                          {' '}
+                          {input.title} :
+                        </span>
+                        <ErrorMessage
+                          name={input.name}
+                          component={() => (
+                            <span className="ml-4 text-xs text-danger">
+                              {props.errors[input.name]}
+                            </span>
+                          )}
+                        />
+                        <Field
+                          type="text"
+                          name={input.name}
+                          placeholder={input.placeholder}
+                          className="w-full border border-solid border-[#ccc]  px-4 py-2 text-sm normal-case outline-none transition-all duration-200 ease-linear focus:border-[#000]"
+                        />
+                      </div>
+                    ))}
+
+                    <div className="mx-0 my-6">
+                      <span className="mb-2 font-semibold"> Castrado :</span>
+                      <Field
+                        name="castrated"
+                        as="select"
+                        className="w-full border border-solid border-[#ccc] px-4 py-2 text-sm normal-case outline-none transition-all duration-200 ease-linear focus:border-[#000]"
+                      >
+                        <option value="">¿Está castrado?</option>
+                        <option value="true">Si</option>
+                        <option value="false">No</option>
+                      </Field>
+                    </div>
+
+                    <div className="mx-0 mt-4 flex gap-4">
+                      {inputNumber?.map((el) => (
+                        <div className="inputBox" key={el.name}>
+                          <span className="mb-2 font-semibold">
+                            {el.title} :
                           </span>
                           <ErrorMessage
-                            name={input.name}
+                            name={el.name}
                             component={() => (
                               <span className="ml-4 text-xs text-danger">
-                                {props.errors[input.name]}
+                                {props.errors[el.name]}
                               </span>
                             )}
                           />
                           <Field
-                            type="text"
-                            name={input.name}
-                            placeholder={input.placeholder}
-                            className="w-full border border-solid border-[#ccc]  px-4 py-2 text-sm normal-case outline-none transition-all duration-200 ease-linear focus:border-[#000]"
+                            name={el.name}
+                            type="number"
+                            placeholder=""
+                            className="w-full border border-solid border-[#ccc] px-4 py-2 text-sm normal-case outline-none transition-all duration-200 ease-linear focus:border-[#000]"
                           />
                         </div>
                       ))}
+                    </div>
+                  </div>
 
-                      <div className="mx-0 my-6">
-                        <span className="mb-2 font-semibold"> Castrado :</span>
+                  {/* RIGHT SIDE */}
+                  <div className="col flex-shrink-1 min-w-0 max-w-full flex-1">
+                    {inputSelect?.map((input) => (
+                      <div className="mx-0 my-6" key={input.name}>
+                        <span className="mb-2 font-semibold">
+                          {input.title} :
+                        </span>
+                        <ErrorMessage
+                          name={input.name}
+                          component={() => (
+                            <span className="ml-4 text-xs text-danger">
+                              {props.errors[input.name]}
+                            </span>
+                          )}
+                        />
                         <Field
-                          name="castrated"
-                          as="select"
+                          name={input.name}
+                          as={input.type}
                           className="w-full border border-solid border-[#ccc] px-4 py-2 text-sm normal-case outline-none transition-all duration-200 ease-linear focus:border-[#000]"
                         >
-                          <option value="">¿Está castrado?</option>
-                          <option value="true">Si</option>
-                          <option value="false">No</option>
+                          {input.options?.map((op, i) => (
+                            <option value={input.values[i]} key={i}>
+                              {op}
+                            </option>
+                          ))}
                         </Field>
                       </div>
+                    ))}
+                  </div>
+                </div>
+                <div className="">
+                  <span className="mb-2 font-semibold">Historia: </span>
+                  <ErrorMessage
+                    name="history"
+                    component={() => (
+                      <span className="ml-4 text-xs text-danger">
+                        {props.errors.history}
+                      </span>
+                    )}
+                  />
+                  <Field
+                    as="textarea"
+                    className="w-full resize-none border border-solid border-[#ccc] px-4 py-2 text-sm normal-case outline-none transition-all duration-200 ease-linear focus:border-[#000]"
+                    name="history"
+                  />
+                </div>
 
-                      <div className="mx-0 mt-4 flex gap-4">
-                        {inputNumber?.map((el) => (
-                          <div className="inputBox" key={el.name}>
-                            <span className="mb-2 font-semibold">
-                              {el.title} :
-                            </span>
-                            <ErrorMessage
-                              name={el.name}
-                              component={() => (
-                                <span className="ml-4 text-xs text-danger">
-                                  {props.errors[el.name]}
-                                </span>
-                              )}
-                            />
-                            <Field
-                              name={el.name}
-                              type="number"
-                              placeholder=""
-                              className="w-full border border-solid border-[#ccc] px-4 py-2 text-sm normal-case outline-none transition-all duration-200 ease-linear focus:border-[#000]"
-                            />
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* RIGHT SIDE */}
-                    <div className="col flex-shrink-1 min-w-0 max-w-full flex-1">
-                      {inputSelect?.map((input) => (
-                        <div className="mx-0 my-6" key={input.name}>
-                          <span className="mb-2 font-semibold">
-                            {input.title} :
-                          </span>
-                          <ErrorMessage
-                            name={input.name}
-                            component={() => (
-                              <span className="ml-4 text-xs text-danger">
-                                {props.errors[input.name]}
-                              </span>
-                            )}
+                <div className="mt-4 border border-dashed border-[#ccc] p-2">
+                  <h3 className="mb-2 font-semibold">Imágenes :</h3>
+                  <Dropzone
+                    name="galery"
+                    onDrop={handleDrop}
+                  >
+                    {({ getRootProps, getInputProps }) => (
+                      <section className=" cursor-pointer">
+                        <div {...getRootProps()}>
+                          <input {...getInputProps()} />
+                          <img
+                            src="https://icongr.am/fontawesome/folder-open.svg?size=80&color=currentColor"
+                            alt="img de carpeta"
                           />
-                          <Field
-                            name={input.name}
-                            as={input.type}
-                            className="w-full border border-solid border-[#ccc] px-4 py-2 text-sm normal-case outline-none transition-all duration-200 ease-linear focus:border-[#000]"
-                          >
-                            {input.options?.map((op, i) => (
-                              <option value={input.values[i]} key={i}>
-                                {op}
-                              </option>
-                            ))}
-                          </Field>
+                          <p className="text-center">
+                            Clickea para seleccionar tus imagenes
+                          </p>
                         </div>
-                      ))}
-                    </div>
-                  </div>
-                  <div className="">
-                    <span className="mb-2 font-semibold">Historia: </span>
-                    <ErrorMessage
-                      name="history"
-                      component={() => (
-                        <span className="ml-4 text-xs text-danger">
-                          {props.errors.history}
-                        </span>
-                      )}
-                    />
-                    <Field
-                      as="textarea"
-                      className="w-full resize-none border border-solid border-[#ccc] px-4 py-2 text-sm normal-case outline-none transition-all duration-200 ease-linear focus:border-[#000]"
-                      name="history"
-                    />
-                  </div>
+                      </section>
+                    )}
+                  </Dropzone>
+                  {imagePreview(props.values)}
+                </div>
+                <div className="mt-6 flex gap-10">
+                  <input
+                    type="reset"
+                    value="Descartar"
+                    className="submit-btn text- mt-1 w-full cursor-pointer bg-[#27ae60] p-3 text-[#fff] outline-none transition-all duration-200 ease-linear hover:bg-[#2ecc71]"
+                  />
 
-                  <div className="mt-4 border border-dashed border-[#ccc] p-2">
-                    <h3 className="mb-2 font-semibold">Imágenes :</h3>
-                    <Dropzone
-                      name="galery"
-                      onDrop={handleDrop}
-                      // onChange={(e) => handleChange(e.target.value)}
-                      // onBlur={handleBlur}
-                      // value={form.galery}
-                    >
-                      {({ getRootProps, getInputProps }) => (
-                        <section className=" cursor-pointer">
-                          <div {...getRootProps()}>
-                            <input {...getInputProps()} />
-                            <img
-                              src="https://icongr.am/fontawesome/folder-open.svg?size=80&color=currentColor"
-                              alt="img de carpeta"
-                            />
-                            <p className="text-center">
-                              Clickea para seleccionar tus imagenes
-                            </p>
-                          </div>
-                        </section>
-                      )}
-                    </Dropzone>
-                    {imagePreview(props.values)}
-                  </div>
-                  <div className="mt-6 flex gap-10">
-                    <input
-                      type="reset"
-                      value="Descartar"
-                      className="submit-btn text- mt-1 w-full cursor-pointer bg-[#27ae60] p-3 text-[#fff] outline-none transition-all duration-200 ease-linear hover:bg-[#2ecc71]"
-                    />
-
-                    <input
-                      type="submit"
-                      onClick={() => validateModal(props.errors)}
-                      value="Guardar"
-                      className="submit-btn text- mt-1 w-full cursor-pointer bg-[#27ae60] p-3 text-[#fff] outline-none transition-all duration-200 ease-linear hover:bg-[#2ecc71]"
-                    />
-                  </div>
-                </Form>
-              );
-            }}
-          </Formik>
-        </div>
-      </>
+                  <input
+                    type="submit"
+                    onClick={() => validateModal(props.errors)}
+                    value={`${updateData ? 'Actualizar' : 'Crear'}`}
+                    className="submit-btn text- mt-1 w-full cursor-pointer bg-[#27ae60] p-3 text-[#fff] outline-none transition-all duration-200 ease-linear hover:bg-[#2ecc71]"
+                  />
+                </div>
+              </Form>
+            );
+          }}
+        </Formik>
+      </div>
     </Wrapper>
+  // </Wrapper>
   );
 };
