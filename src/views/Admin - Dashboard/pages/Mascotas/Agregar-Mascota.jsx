@@ -178,7 +178,6 @@ export const AgregarMascota = ({ updateData }) => {
       if (res.status === 200 || res.status === 201) {
         // window.alert('Enviado con éxito');
         showModal();
-        console.log(res);
         actions.resetForm();
       } else {
         // window.alert('Error al enviar');
@@ -213,10 +212,8 @@ export const AgregarMascota = ({ updateData }) => {
           const fileURL = data.secure_url;
           const specificArrayInObject = initialForm.galery;
           specificArrayInObject.push(fileURL);
-          // console.log('array que envio', specificArrayInObject);
           // const newObj = { ...uploadedImages, specificArrayInObject };
           // setUploadedImages(newObj);
-          // console.log(uploadedImages);
         });
     });
     axios.all(uploaders).then(() => {

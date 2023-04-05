@@ -36,9 +36,7 @@ export const ListadeMascotas = () => {
       dispatch(getAllPetsAdmin(INITIAL_STATE));
       return;
     }
-    console.log('type', type);
     const newValue = filters[type] === e.target.value ? '' : e.target.value;
-    console.log('newValue', newValue);
     dispatch(setFilters({
       ...filters,
       [type]: newValue,

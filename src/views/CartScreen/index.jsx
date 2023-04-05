@@ -64,16 +64,13 @@ export const CartScreen = () => {
 
   const handleDonations = async () => {
     // const currentState = getState().login;
-    // console.log(currentState.token);
-    const payload = {products: [...cart.cartItems]}
-    console.log(payload)
+    const payload = { products: [...cart.cartItems] };
     dispatch(donation(payload));
     setDonating(true);
     // const myId = await axios
     //   .post('/payment', cart.cartItems[0])
     //   .then((res) => (window.location.href = res.data.body.init_point));
 
-    // console.log(myId);
     setDonating(false);
   };
 
@@ -116,9 +113,9 @@ export const CartScreen = () => {
                     <p className="text-sm italic">{producto.description}</p>
                     <button onClick={() => handleRemoveFromCart(producto)} className="text-red-500 hover:text-red-600">Eliminar</button>
                   </div>
-                </div>  
+                </div>
 
-                <div className="precio">${producto.price.toLocaleString("es-AR")},00</div>
+                <div className="precio">${producto.price.toLocaleString('es-AR')},00</div>
                 <div className="cart-product-quantity">
                   <button onClick={() => handleDecreaseCart(producto)}>
                     -
@@ -129,8 +126,8 @@ export const CartScreen = () => {
                   </button>
                 </div>
                 <div className="cart-product-total-price justify-self-end">
-  ${ (producto.price * producto.cartQuantity).toLocaleString("es-AR") },00
-</div>
+                  ${(producto.price * producto.cartQuantity).toLocaleString('es-AR')},00
+                </div>
               </div>
             ))}
           </div>
@@ -139,10 +136,10 @@ export const CartScreen = () => {
               Limpiar carrito
             </button>
             <div className="cart-checkout">
-            <div class="subtotal flex justify-between items-center">
-  <span>Subtotal</span>
-  <span class="amount font-bold text-lg">$ {cart.cartTotalAmount.toLocaleString("es-AR")},00</span>
-</div>
+              <div class="subtotal flex justify-between items-center">
+                <span>Subtotal</span>
+                <span class="amount font-bold text-lg">$ {cart.cartTotalAmount.toLocaleString('es-AR')},00</span>
+              </div>
               <button onClick={handleDonations}>Donar</button>
 
               <div className="continue-shopping">

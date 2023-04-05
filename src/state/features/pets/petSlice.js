@@ -30,7 +30,6 @@ export const petSlice = createSlice({
     },
 
     setFilters: (state, action) => {
-      console.log('dentro de slice', action);
       state.filters = action.payload;
     }
   }

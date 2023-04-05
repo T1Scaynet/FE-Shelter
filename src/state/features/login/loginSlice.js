@@ -43,7 +43,6 @@ const loginSlice = createSlice({
       state.registering = false;
     },
     setUpdateDataUser: (state, action) => {
-      console.log(action);
       state.user = { ...state.user, ...action.payload };
     }
   }
@@ -81,7 +80,6 @@ export const getUserLogged = (id) => async (dispatch) => {
   try {
     const response = await axios.get(`/user/${id}`);
     const user = response.data;
-    console.log('getuserlogged', user);
   } catch (error) {
 
   }
@@ -102,7 +100,6 @@ export const updateUserData = (userData) => {
 export const updateUserPassword = (password) => {
   return async () => {
     try {
-      // console.log(password)
       const { data } = await axios.post('/user/reset', password);
       toast.success('Actulizacion con exito');
     } catch (error) {

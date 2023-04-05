@@ -21,11 +21,9 @@ export const DetailScreen = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const pet = useSelector((state) => state.petDetails);
-  console.log(pet.petDatail);
   const verifyLogged = useSelector((state) => state.login.token);
   const navigate = useNavigate();
   const [galery, setGalery] = useState('');
-  // console.log({ galery });
 
   const linkStyle = 'font-bold ml-[2rem] text-[#7C58D3] text-[0.9rem] md:font-bold md:ml-[12.813rem] md:text-[#7C58D3] md:text-[0.9rem]';
 
@@ -190,7 +188,7 @@ export const DetailScreen = () => {
               </p>
             </div>
             <Link
-              to='/donacion'
+              to='/donaciones'
               className='rounded-[0.5rem] h-[4.375rem] w-[11.625rem] bg-[#7C58D3] hover:bg-[#5930b9] flex justify-center items-center mt-[1.5rem] ml-[3.125rem] text-[#FFFEFD] text-[1.5rem] font-extrabold transition-colors duration-500'
             >
               Donación
