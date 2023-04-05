@@ -16,7 +16,7 @@ export const Display4 = () => {
   }, [dispatch]);
 
   return (
-    <section className='bg-[#FFFEFD] hidden md:block w-[90%] m-auto'>
+    <section className='bg-[#FFFEFD] hidden xl:block w-[90%] m-auto'>
       <div className='flex flex-col items-center justify-center md:space-y-5 py-5'>
         <p className='text-[#7C58D3] font-bold text-[1.2rem] font-[Nunito]'>Nuestras opiniones</p>
         <h1 className='text-[3rem] font-[Nunito]'>Lo que dice la gente</h1>
@@ -36,11 +36,11 @@ export const Display4 = () => {
               {commentsList.map((t, i) => (
                 <Fragment key={i}>
                   <Cards
-                    idPet={t.idPet}
-                    idUser={t.idUser}
+                    avatar={t.idUser.avatar}
+                    name={t.idUser.name}
+                    lastName={t.idUser.lastName}
                     stars={t.stars}
                     comments={t.comments}
-                    image={t.image}
                   />
                 </Fragment>
               ))}
