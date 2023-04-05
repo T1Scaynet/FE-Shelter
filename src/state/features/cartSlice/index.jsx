@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { toast } from 'sonner';
 import Swal from 'sweetalert2';
 
 // Toast message Config
@@ -48,7 +49,6 @@ const cartSlice = createSlice({
       } else {
         const tempProduct = { ...action.payload, cartQuantity: 1 };
         state.cartItems.push(tempProduct);
-        // console.log(action.payload);
         Toast.fire({
           icon: 'success',
           title: `${action.payload.title} agregado al carrito`
@@ -125,12 +125,11 @@ export const donation = (payload) => {
   return async () => {
     try {
       const donations = await axios.post('/payment', payload);
-      console.log(donations.data.body.init_point);
       // navigate(donations.data.body.init_point);
       window.location.href = donations.data.body.init_point;
       return donations;
     } catch (error) {
-      console.log(error);
+      toast.error('Intente nuevamente');
     }
   };
 };
