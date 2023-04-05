@@ -10,9 +10,11 @@ import DefaultLayout from '../../layout/DefaultLayout';
 import Dropzone from 'react-dropzone';
 import axios from 'axios';
 import { useState } from 'react';
-import { PostPet } from '../../../../state/features/pets/petSlice';
+import { PostPet, editPet } from '../../../../state/features/pets/petSlice';
 import { useDispatch } from 'react-redux';
 import Swal from 'sweetalert2';
+import { toast } from 'sonner';
+import { useNavigate } from 'react-router-dom';
 
 const initialForm = {
   name: '',
@@ -176,17 +178,16 @@ const Wrapper = ({ children, updateData }) => {
 export const AgregarMascota = ({ updateData }) => {
   const dispatch = useDispatch();
   const [loadinng, setLoadinng] = useState('');
+  const navigate = useNavigate();
 
   const handleSubmit = (pet, actions) => {
-    console.log({ pet });
+    console.log('datos del perro', pet);
     dispatch(PostPet(pet)).then((res) => {
       if (res.status === 200 || res.status === 201) {
-        // window.alert('Enviado con éxito');
         showModal();
         console.log(res);
         actions.resetForm();
       } else {
-        // window.alert('Error al enviar');
         Swal.fire({
           icon: 'error',
           title: 'Ooops',
@@ -194,6 +195,20 @@ export const AgregarMascota = ({ updateData }) => {
         });
       }
     });
+  };
+
+  const handleUpdate = (pet, actions) => {
+    dispatch(editPet(pet));
+    toast.success('Formulario enviado correctamente', {
+      style: {
+        height: '5rem',
+        fontSize: '1rem',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center'
+      }
+    });
+    navigate('/dashboard-admin/mascotas/agregar-mascota');
   };
 
   const handleDrop = (files) => {
@@ -246,6 +261,7 @@ export const AgregarMascota = ({ updateData }) => {
                 className="relative w-[30%] m-auto overflow-hidden rounded-sm space-x-2"
                 key={index}
               >
+                {console.log('aca las imagenes', item)}
                 <img
                   alt="imagenes subidas"
                   className="h-40 w-full bg-cover "
@@ -258,14 +274,13 @@ export const AgregarMascota = ({ updateData }) => {
     }
   };
   return (
-  // <Wrapper>
     <Wrapper updateData={updateData}>
       {!updateData && <Breadcrumb pageName="Agregar Mascota" />}
       <div className="flex min-h-full items-center justify-center bg-whiter p-6">
         <Formik
           initialValues={updateData || initialForm}
           validate={validationsForm}
-          onSubmit={handleSubmit}
+          onSubmit={updateData ? handleUpdate : handleSubmit}
         >
           {(props) => {
             const validateModal = (errors) => {
@@ -432,6 +447,5 @@ export const AgregarMascota = ({ updateData }) => {
         </Formik>
       </div>
     </Wrapper>
-  // </Wrapper>
   );
 };
