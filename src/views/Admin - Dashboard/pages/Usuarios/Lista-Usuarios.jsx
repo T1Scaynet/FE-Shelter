@@ -24,6 +24,7 @@ export const ListaUsuarios = () => {
 
   const handleRoleChange = (value) => {
     setSelectedRole(value);
+    setCurrentPage(1);
   };
 
   const handleSearchChange = (e) => {
@@ -53,6 +54,8 @@ export const ListaUsuarios = () => {
   useEffect(() => {
     dispatch(getAllUsers());
   }, []);
+
+
 
   return (
     <DefaultLayout>
