@@ -29,7 +29,7 @@ export default userSlice.reducer;
 // name, email, roles, sortBy, search, page, limit
 export const getAllUsers = () => {
   return async function (dispatch) {
-    axios.get(`/user`)
+    axios.get('/user')
       .then(r => r.data)
       .then(response => {
         dispatch(setAllUsers(response.users));
