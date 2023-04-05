@@ -54,7 +54,7 @@ export const DetailScreen = () => {
   };
 
   function handleClick () {
-    if (verifyLogged !== null) {
+    if (verifyLogged) {
       navigate('/adopta-una-mascota');
     } else {
       toast.error('Debe estar registrado para adoptar una mascota, porfavor registrese', {
