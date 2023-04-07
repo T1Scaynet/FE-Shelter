@@ -10,6 +10,13 @@
 body {
   background: #FFFEFD;
 }
+.slick-prev:before{
+  color: #7C58D3
+}
+.slick-next:before{
+  color: #7C58D3
+}
+
 @layer base {
     body {
       @apply font-satoshi font-normal text-base text-body bg-whiten relative z-1;
