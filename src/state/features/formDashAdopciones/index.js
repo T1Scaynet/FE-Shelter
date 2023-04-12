@@ -32,11 +32,9 @@ export default formDashAdopciones.reducer;
 
 /// Acá abajo van lo que vendrian a ser las funciones del action (funciones asíncronas)
 export const getAdoptionRequest = (currentPage) => {
-  // console.log(currentPage);
   return async (dispatch) => {
     try {
-      const { data } = await axios.get(`/form?page=${currentPage}`);
-      // console.log(data.form);
+      const { data } = await axios.get(`/form?pae=${currentPage}`);
       dispatch(setDataRequest(data.forms));
       dispatch(
         setPagination({
@@ -66,11 +64,10 @@ export const deleteRequestAdoption = (id) => {
 };
 
 export const putStateAdoption = (id, s) => {
-  console.log(id);
   return async (dispatch, getState) => {
     try {
       const listR = getState().formRequest.list;
-      const r = axios.put(`form/stateForm/${id}`, s);
+      const r = axios.put(`form/stateForm/${id}`, { state: s });
       const newList = listR.map(p => {
         if (p._id === id) {
           return { ...p, state: s };
