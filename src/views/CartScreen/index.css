@@ -73,6 +73,12 @@
   letter-spacing: 1.15px;
 }
 
+.cart-checkout button:hover {
+  color: #7C58D3;
+  background: white;
+  border: 1px solid #7C58D3;
+}
+
 .continue-shopping {
   margin-top: 1rem;
 }
