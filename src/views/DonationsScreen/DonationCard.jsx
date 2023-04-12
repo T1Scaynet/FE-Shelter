@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { addToCart, donation } from '../../state/features/cartSlice';
+import { toast } from 'sonner';
 
 /* eslint-disable jsx-quotes */
 export const DonationCard = ({ product }) => {
@@ -14,7 +15,15 @@ export const DonationCard = ({ product }) => {
       dispatch(addToCart(product));
       navigate('/carrito');
     } else {
-      window.alert('Para agregar productos al carrito, necesitas iniciar sesión.'); // Mostrar un alert indicando que se necesita estar logueado
+      toast.error('Para agregar productos al carrito, necesitas iniciar sesión.', {
+        style: {
+          height: '5rem',
+          fontSize: '1rem',
+          display: 'flex',
+          justifyContent: 'space-evenly',
+          paddingLeft: '2.5rem'
+        }
+      }); // Mostrar un alert indicando que se necesita estar logueado
       navigate('/ingresar'); // Agregar un botón para iniciar sesión o registrarse
     }
   };
