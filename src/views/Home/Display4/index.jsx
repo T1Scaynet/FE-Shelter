@@ -19,7 +19,7 @@ export const Display4 = () => {
   return (
     <section className='bg-[#FFFEFD] hidden xl:flex justify-center items-center w-full h-[38rem] 2xl:h-[43rem] m-auto relative'>
       <img className='absolute w-full h-full z-1' src={background} alt='fondo de la seccion cuatro' />
-      <div className='w-[90%] m-auto absolute z-9'>
+      <div className='w-full max-w-[1300px] 2xl:max-w-[1400px] m-auto absolute z-9'>
         <div className='flex flex-col items-center justify-center md:space-y-5 py-5'>
           <p className='text-[#7C58D3] font-bold text-[1.2rem] font-[Nunito]'>Nuestras opiniones</p>
           <h1 className='text-[3rem] font-[Nunito]'>Lo que dice la gente</h1>
