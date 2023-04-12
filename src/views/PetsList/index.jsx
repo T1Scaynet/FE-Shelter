@@ -7,7 +7,6 @@ import { Cards } from '../../components/Cards';
 import { Link } from 'react-router-dom';
 import { Pagination } from '../../components/Pagination';
 import { CheckBox } from './CheckBox';
-import { Search } from '../../components/Search';
 import { ButtonResetFilters } from '../../components/ButtonResetFilters';
 import { Menu } from '../../components/Menu';
 import Loader from '../../utils/Loader';
@@ -115,7 +114,6 @@ export const PetsList = () => {
           )
         : (
           <section className='mt-12 h-full w-[90%] 2xl:w-[80%] m-auto'>
-            <Search />
             <div>
               <div className='md:flex md:justify-between'>
                 <Cards pets={pets} />

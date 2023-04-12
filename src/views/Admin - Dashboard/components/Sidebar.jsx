@@ -7,7 +7,7 @@ import users from '../assets/users.svg';
 import donations from '../assets/donations.svg';
 import dashboard from '../assets/dashboard.svg';
 import calendar from '../assets/calendar.svg';
-import user from '../assets/user.svg';
+// import user from '../assets/user.svg';
 import adoption from '../assets/adoption.svg';
 import settings from '../assets/settings.svg';
 
@@ -385,16 +385,16 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                               Lista de usuarios
                             </NavLink>
                           </li>
-                          <li>
+                          {/* <li>
                             <NavLink
                               to='/dashboard-admin/usuarios/agregar-usuarios'
                               className={({ isActive }) =>
                                 'group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white ' +
                                 (isActive && '!text-white')}
                             >
-                              Agregar usuario
+                              Agregar usuariosss
                             </NavLink>
-                          </li>
+                          </li> */}
                         </ul>
                       </div>
                       {/* <!-- Dropdown Menu End --> */}

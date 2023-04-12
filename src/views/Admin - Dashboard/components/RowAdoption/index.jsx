@@ -16,7 +16,6 @@ export const RowAdoption = ({ info }) => {
   const [open, setOpen] = useState(false);
   const [openD, setOpenD] = useState(false);
   const [id, setId] = useState('');
-  
   let obj = {};
   const dispatch = useDispatch();
   const handleClose = () => setOpen(false);
@@ -32,7 +31,7 @@ export const RowAdoption = ({ info }) => {
     setId(idR);
   }
 
-  info.forEach(valor => {
+  info?.forEach(valor => {
     obj[valor._id] = false;
   });
 
@@ -44,7 +43,7 @@ export const RowAdoption = ({ info }) => {
 
   // Select
   function handleChangeOrgin (s) {
-    dispatch(putStateAdoption(id, s.target.value));
+    dispatch(putStateAdoption(id, s.target.value)); // numero de id y la opcion elegida
     toast.success('Cambio de estado hecha con exito!');
     setOpen(false);
   }
@@ -59,7 +58,6 @@ export const RowAdoption = ({ info }) => {
   const pagination = useSelector(state => state.formRequest.pagination);
 
   const handlePageChange = (pageNumber) => {
-    console.log(pageNumber);
     dispatch(getAdoptionRequest(pageNumber));
   };
 
@@ -116,7 +114,7 @@ export const RowAdoption = ({ info }) => {
                   <img src={trash} alt='Tacho de basura para eliminar' />
                 </button>
               </div>
-              <div className='w-[22.4rem] md:w-[61rem]'>
+              <div className='w-[22.4rem] md:w-full col-span-4'>
                 <Collapse in={showInput[data._id]}>
                   <div className='w-full md:h-[18rem] md:border-x-2 px-3 py-3 md:border-b-2 border-[#f0f0f0]'>
                     <h3 className='border-b-2 border-black font-bold text-xl text-center mb-3'>Datos Pesonales</h3>
