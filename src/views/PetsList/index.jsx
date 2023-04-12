@@ -63,11 +63,6 @@ export const PetsList = () => {
 
   return (
     <div className='w-full h-full'>
-      <div className='grid justify-center m-2'>
-        {
-          filters.search && <p>{`Mostrando resultados de ${filters.search}`}</p>
-        }
-      </div>
       <span className='flex justify-start items-center space-x-2 h-[4.875rem] w-full bg-[#FBF9FF]'>
         <Link
           to='/'
