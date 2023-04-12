@@ -11,6 +11,7 @@ import { filtersValues } from '../../constants/filtersValues';
 import { useEffect, useState } from 'react';
 import { toast } from 'sonner';
 import { Modal } from '../../components/Modal';
+import { Search } from '../../../../components/Search';
 
 const INITIAL_STATE = {
   size: '',
@@ -78,6 +79,7 @@ export const ListadeMascotas = () => {
   return (
     <DefaultLayout>
       <Breadcrumb pageName='Lista de Mascotas' />
+      <Search />
       <Filters filtersValues={filtersValues} handleFilter={handleFilter} filters={filters} />
       <RowTitles titles={titlesPet} />
       <Row info={pets.list} handleDelete={handleDelete} handleEdit={handleEdit} />

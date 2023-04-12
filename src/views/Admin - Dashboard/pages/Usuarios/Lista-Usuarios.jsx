@@ -14,12 +14,12 @@ const { Option } = Select;
 export const ListaUsuarios = () => {
   const dispatch = useDispatch();
   const users = useSelector((state) => state.users.list);
-  const [sortedUsers, setSortedUsers] = useState(users);
+  // const [sortedUsers, setSortedUsers] = useState(users);
   const [selectedRole, setSelectedRole] = useState('all');
   const [currentPage, setCurrentPage] = useState(1);
   const [searchQuery, setSearchQuery] = useState('');
 
-  const titlesUsers = ['ID', 'NOMBRE', 'ROL', 'EMAIL', 'TELEFONO','CREADO', 'ACCIÓN'];
+  const titlesUsers = ['ID', 'NOMBRE', 'ROL', 'EMAIL', 'TELEFONO', 'CREADO', 'ACCIÓN'];
 
   const handleRoleChange = (value) => {
     setSelectedRole(value);
@@ -38,7 +38,7 @@ export const ListaUsuarios = () => {
     return (
       user.name.toLowerCase().includes(searchLowerCase) ||
       user.email.toLowerCase().includes(searchLowerCase)
-    )
+    );
   });
 
   const itemsPerPage = 5; // Cambia esto al número de elementos que quieres mostrar por página
@@ -54,34 +54,31 @@ export const ListaUsuarios = () => {
     dispatch(getAllUsers());
   }, []);
 
-
-
   return (
     <DefaultLayout>
-      <Breadcrumb pageName="Lista de Usuarios" />
+      <Breadcrumb pageName='Lista de Usuarios' />
       <div className={css.filterRol}>
         <span className={css.filterSpan}>Filtrar por rol:</span>
-        <Select defaultValue="all" className={css.select} onChange={handleRoleChange}>
-          <Option value="all">Todos</Option>
-          <Option value="admin">Admin</Option>
-          <Option value="client">Cliente</Option>
-          <Option value="moderator">Moderador</Option>
+        <Select defaultValue='all' className={css.select} onChange={handleRoleChange}>
+          <Option value='all'>Todos</Option>
+          <Option value='admin'>Admin</Option>
+          <Option value='client'>Cliente</Option>
+          <Option value='moderator'>Moderador</Option>
         </Select>
       </div>
       <div className={css.filterRol}>
         <Input
-          placeholder="Buscar por nombre o correo electrónico"
+          placeholder='Buscar por nombre o correo electrónico'
           value={searchQuery}
           onChange={handleSearchChange}
         />
       </div>
       <RowTitles titles={titlesUsers} />
-      <RowUsers info={currentItems}/>
+      <RowUsers info={currentItems} />
       <div>
         <Paginate
           paginate={paginate}
           totalItems={filteredUsersBySearch.length}
-
           itemsPerPage={itemsPerPage}
         />
       </div>
