@@ -6,7 +6,6 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Slider from 'react-slick';
 import Cards from '../../../components/Card/CardComments';
-import background from '../../../assets/Comments/background.svg';
 
 export const Display4 = () => {
   const dispatch = useDispatch();
@@ -17,8 +16,7 @@ export const Display4 = () => {
   }, [dispatch]);
 
   return (
-    <section className='bg-[#FFFEFD] hidden xl:flex justify-center items-center w-full h-[38rem] 2xl:h-[43rem] m-auto relative'>
-      <img className='absolute w-full h-full z-1' src={background} alt='fondo de la seccion cuatro' />
+    <section className='bg-[#FFF8F9] hidden xl:flex justify-center items-center w-full h-[40rem] m-auto relative'>
       <div className='w-full max-w-[1300px] 2xl:max-w-[1400px] m-auto absolute z-9'>
         <div className='flex flex-col items-center justify-center md:space-y-5 py-5'>
           <p className='text-[#7C58D3] font-bold text-[1.2rem] font-[Nunito]'>Nuestras opiniones</p>
