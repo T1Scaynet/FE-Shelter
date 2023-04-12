@@ -110,8 +110,8 @@ export const CartScreen = () => {
                   <img src={producto.image} alt={producto.title} className="w-1/4 mr-4" />
                   <div>
                     <h3 className="font-bold">{producto.title}</h3>
-                    <p className="text-sm italic">{producto.description}</p>
-                    <button onClick={() => handleRemoveFromCart(producto)} className="text-red-500 hover:text-red-600">Eliminar</button>
+                    <p className="text-sm italic mb-[2rem]">{producto.description}</p>
+                    <button onClick={() => handleRemoveFromCart(producto)} className="bg-[#7C58D3] text-[#FFFEFD] border w-[5rem] rounded hover:bg-[#FFFEFD] hover:text-[#7C58D3]">Eliminar</button>
                   </div>
                 </div>
 
@@ -140,8 +140,9 @@ export const CartScreen = () => {
                 <span>Subtotal</span>
                 <span class="amount font-bold text-lg">$ {cart.cartTotalAmount.toLocaleString('es-AR')},00</span>
               </div>
-              <button onClick={handleDonations}>Donar</button>
-
+              <div>
+                <button onClick={handleDonations}>Donar</button>
+              </div>
               <div className="continue-shopping">
                 <Link to="/donaciones">
                   <i className="bx bx-arrow-back" />
