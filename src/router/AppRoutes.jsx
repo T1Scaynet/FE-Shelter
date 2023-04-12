@@ -65,7 +65,7 @@ export function AppRoutes ({ setShowLayout }) {
     {
       path: '/perfil',
       component: Profile,
-      public: isAdmin
+      public: true
     },
     {
       path: '/carrito',
