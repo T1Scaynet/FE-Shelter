@@ -1,8 +1,6 @@
 import { ButtonCopied } from '../ButtonCopied';
 import pencil from '../../../../assets/Dashboard/pencil.svg';
 import trash from '../../../../assets/Dashboard/trash.svg';
-import dog from '../../../../assets/Dashboard/dog.svg';
-import cat from '../../../../assets/Dashboard/cat.svg';
 const style = 'py-3 px-3 border-[1px] border-solid border-[#f0f0f0] w-full truncate';
 
 export const RowUsers = ({ info }) => {
@@ -16,7 +14,7 @@ export const RowUsers = ({ info }) => {
                 <p className='py-3 px-3 w-full truncate mr-3'>{data._id}</p>
                 <ButtonCopied idPet={data._id} />
               </div>
-              <p className={`${style}`}>{data.name}</p>
+              <p className={`${style}`}>{data.lastName ? data.name + ' ' + data.lastName : data.name}</p>
               <p className={`${style}`}>{data.roles[0].name}</p>
               <p className={`${style}`}>{data.email}</p>
               <p className={`${style}`}>{data.phone}</p>

@@ -41,7 +41,7 @@ export const NavBar = () => {
             </ul>
           </div>
           {/* Sign up */}
-          <div className='flex-shrink-0 flex items-center'>
+          <div className='flex-shrink-0 flex items-center z-50'>
             {userLogged
               ? (
                 <DropdownUser />

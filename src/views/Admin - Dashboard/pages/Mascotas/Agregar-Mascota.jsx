@@ -181,7 +181,6 @@ export const AgregarMascota = ({ updateData }) => {
   const navigate = useNavigate();
 
   const handleSubmit = (pet, actions) => {
-    console.log('datos del perro', pet);
     dispatch(PostPet(pet)).then((res) => {
       if (res.status === 200 || res.status === 201) {
         showModal();
@@ -258,7 +257,6 @@ export const AgregarMascota = ({ updateData }) => {
                 className="relative w-[30%] m-auto overflow-hidden rounded-sm space-x-2"
                 key={index}
               >
-                {console.log('aca las imagenes', item)}
                 <img
                   alt="imagenes subidas"
                   className="h-40 w-full bg-cover "

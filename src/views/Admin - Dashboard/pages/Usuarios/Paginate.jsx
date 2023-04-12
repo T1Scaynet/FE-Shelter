@@ -30,31 +30,31 @@ const Pagination = ({ itemsPerPage, totalItems, paginate }) => {
 
   return (
     <nav className={css.pagination}>
-      <ul className="pagination">
-        <li className="page-item">
+      <ul className='pagination'>
+        <li className='page-item'>
           <a
-            href="#"
-            className="page-link"
+            href='#'
+            className='page-link'
             onClick={handlePrevClick}
           >
             {'<'}
           </a>
         </li>
         {pageNumbers.map((number) => (
-          <li key={number} className="page-item">
+          <li key={number} className='page-item'>
             <a
-              href="#"
-              className="page-link"
+              href='#'
+              className='page-link'
               onClick={() => handlePageChange(number)}
             >
               {number}
             </a>
           </li>
         ))}
-        <li className="page-item">
+        <li className='page-item'>
           <a
-            href="#"
-            className="page-link"
+            href='#'
+            className='page-link'
             onClick={handleNextClick}
           >
             {'>'}
