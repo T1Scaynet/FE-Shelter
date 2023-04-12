@@ -13,11 +13,28 @@ export const profileComment = () => {
     stars: ''
   });
 
+  // const handleChange = ({ target }) => {
+  //   setComment({
+  //     ...comment,
+  //     [target.name]: target.value
+  //   });
+  // };
+
   const handleChange = ({ target }) => {
-    setComment({
-      ...comment,
-      [target.name]: target.value
-    });
+    if (target.name === 'stars') {
+      const value = parseInt(target.value); // Convertir el valor a un número entero
+      if (value >= 1 && value <= 5) { // Validar que el valor esté dentro del rango permitido
+        setComment({
+          ...comment,
+          [target.name]: value // Asignar el valor validado al campo "stars"
+        });
+      }
+    } else {
+      setComment({
+        ...comment,
+        [target.name]: target.value
+      });
+    }
   };
 
   const handleSubmit = () => {
@@ -45,7 +62,7 @@ export const profileComment = () => {
                       className='mb-3 block text-sm font-medium text-black dark:text-white'
                       htmlFor='emailAddress'
                     >
-                      Escribibe tu comenttario
+                      Escribe tu comentario
                     </label>
                     <div className='relative'>
                       {/* <span className='absolute left-4.5 top-4'>
@@ -65,6 +82,7 @@ export const profileComment = () => {
                         type='text'
                         name='comments'
                         id='comments'
+                        placeholder='Escribe aqui...'
                         value={comment.comments}
                         onChange={handleChange}
                       />
@@ -95,6 +113,7 @@ export const profileComment = () => {
                         type='number'
                         name='stars'
                         id='stars'
+                        placeholder='Debe ser un numero del 1 al 5'
                         value={comment.stars}
                         onChange={handleChange}
                       />
