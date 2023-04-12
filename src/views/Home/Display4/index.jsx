@@ -17,7 +17,7 @@ export const Display4 = () => {
   }, [dispatch]);
 
   return (
-    <section className='bg-[#FFFEFD] hidden xl:flex justify-center items-center w-full h-[38rem] 2xl:h-[43rem] m-auto relative'>
+    <section className='bg-[#FFFEFD] hidden xl:flex justify-center items-center max-w-[1600px]  h-[38rem] 2xl:h-[43rem] m-auto relative'>
       <img className='absolute w-full h-full z-1' src={background} alt='fondo de la seccion cuatro' />
       <div className='w-[90%] m-auto absolute z-9'>
         <div className='flex flex-col items-center justify-center md:space-y-5 py-5'>
