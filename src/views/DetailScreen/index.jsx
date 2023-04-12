@@ -146,7 +146,7 @@ export const DetailScreen = () => {
                   </p>
                 </span>
                 {/* <span className='flex flex-row text-[#7C58D3]'>Peso : <p className='text-[1.438rem] ml-[0.5rem]'>{pet.vaccine === true ? 'Si' : 'Ninguna'}</p></span> */}
-                <div onClick={handleClick} className='rounded-[0.5rem] h-[4.375rem] w-[11.625rem] bg-[#7C58D3] hover:bg-[#5930b9] flex justify-center items-center mt-[3rem] ml-[3.125rem] text-[#FFFEFD] text-[1.5rem] font-extrabold transition-colors duration-500'>
+                <div onClick={handleClick} className='rounded-[0.5rem] h-[4.375rem] w-[11.625rem] bg-[#7C58D3] hover:bg-[#5930b9] flex justify-center items-center mt-[3rem] ml-[3.125rem] text-[#FFFEFD] text-[1.5rem] font-extrabold transition-colors duration-500 hover:cursor-pointer'>
                   <img
                     src={fingerprint}
                     alt='fingerprint'
