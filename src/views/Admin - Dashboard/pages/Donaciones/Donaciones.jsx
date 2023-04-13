@@ -47,6 +47,7 @@ export const DonacionesPagos = () => {
 
   // paginado//
   const [currentPage, setCurrentPage] = useState(1); // Inicializamos currentPage con useState de React
+  // eslint-disable-next-line no-unused-vars
   const [itemsPerPage, setItemsPerPage] = useState(5); // Inicializamos itemsPerPage con useState de React
   const totalPages = Math.ceil(filterDonations().length / itemsPerPage);
 

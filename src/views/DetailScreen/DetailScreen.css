@@ -1,10 +1,9 @@
-.slick-list div{
-    /* width: 501px; */
-}
+/* .slick-list div{
+    /* width: 501px;
+} */
 
 /* Cambiar el color de fondo de los dots */
 .slick-dots {
-    background-color: #FBF9FF;
     border-bottom-left-radius: 0.5rem;
     border-bottom-right-radius: 0.5rem;
   }

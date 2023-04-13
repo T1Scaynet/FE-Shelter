@@ -27,9 +27,9 @@ import { passwordUpdate } from '../components/Login/Profile/password-update';
 import { profileComment } from '../components/Login/Profile/profile-comment';
 
 export function AppRoutes ({ setShowLayout }) {
-  const token = useSelector((state) => state.login?.token);
-  // const isAuth = user.user.token;
-  const isAdmin = token;
+  const user = useSelector((state) => state.login?.user);
+  const isAuth = user?.user?.token;
+  const isAdmin = user?.roles?.[0]?.name !== 'client';
   const routes = [
     {
       path: '/',
@@ -65,7 +65,7 @@ export function AppRoutes ({ setShowLayout }) {
     {
       path: '/perfil',
       component: Profile,
-      public: isAdmin
+      public: true
     },
     {
       path: '/carrito',
@@ -80,62 +80,62 @@ export function AppRoutes ({ setShowLayout }) {
     {
       path: '/ingresar',
       component: LoginPage,
-      public: true
+      public: !isAdmin || !isAuth
     },
     {
       path: '/registro',
       component: RegisterUser,
-      public: true
+      public: !isAdmin || !isAuth
     },
     {
       path: '/dashboard-admin',
       component: Analytics,
-      public: true
+      public: isAdmin
     },
     {
       path: '/dashboard-admin/calendar',
       component: Calendar,
-      public: true
+      public: isAdmin
     },
     {
       path: '/dashboard-admin/Profile',
       component: ProfileUser,
-      public: true
+      public: isAdmin
     },
     {
       path: '/dashboard-admin/mascotas/lista-mascotas',
       component: ListadeMascotas,
-      public: true
+      public: isAdmin
     },
     {
       path: '/dashboard-admin/mascotas/agregar-mascota',
       component: AgregarMascota,
-      public: true
+      public: isAdmin
     },
     {
       path: '/dashboard-admin/usuarios/lista-usuarios',
       component: ListaUsuarios,
-      public: true
+      public: isAdmin
     },
     {
       path: '/dashboard-admin/usuarios/agregar-usuarios',
       component: AgregarUsuario,
-      public: true
+      public: isAdmin
     },
     {
       path: '/dashboard-admin/donaciones/pagos',
       component: DonacionesPagos,
-      public: true
+      public: isAdmin
     },
     {
       path: '/dashboard-admin/adopciones/lista-adopciones',
       component: Adopciones,
-      public: true
+      public: isAdmin
     },
     {
       path: '/dashboard-admin/settings',
       component: Settings,
-      public: true
+      public: isAdmin
     },
     {
       path: '/perfil/actualizar',
