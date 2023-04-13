@@ -13,7 +13,7 @@ export const NavBar = () => {
   const userLogged = useSelector((state) => state.login.token);
 
   return (
-    <nav className='bg-[#FFFEFD] w-full h-[5rem] md:h-[6.1rem] flex items-center'>
+    <nav className='bg-[#FFFEFD] w-full h-[5rem] md:h-[6.1rem] flex items-center md:sticky md:top-0 md:z-50'>
       <div className='w-full md:m-[12.8rem]'>
         <div className='flex w-full h-full px-5 justify-between md:h-16'>
           {/* Logo */}
