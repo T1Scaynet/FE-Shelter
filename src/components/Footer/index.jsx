@@ -62,8 +62,8 @@ export const Footer = () => {
           <div className='hidden md:flex ml-20 pr-18  space-x-6 justify-between w-full h-[7.5rem]'>
             <a href='https://github.com/T1Scaynet' target='_blank' rel='noreferrer'><img src={Gus} alt='Foto de perfil de Gustavo' className={`${styleImg} z-99999`} /></a>
             <a href='https://github.com/Ramir095' target='_blank' rel='noreferrer'><img src={Rama} alt='Foto de perfil de Ramiro' className={`${styleImg} z-9999`} /></a>
-            <a href='https://github.com/joacorojasmoschini' target='_blank' rel='noreferrer'><img src={Sele} alt='Foto de perfil de Selene' className={`${styleImg} z-999`} /></a>
-            <a href='https://github.com/MadridSelene' target='_blank' rel='noreferrer'><img src={Joaco} alt='Foto de perfil de Joaco' className={`${styleImg} z-99`} /></a>
+            <a href='https://github.com/MadridSelene' target='_blank' rel='noreferrer'><img src={Sele} alt='Foto de perfil de Selene' className={`${styleImg} z-999`} /></a>
+            <a href='https://github.com/joacorojasmoschini' target='_blank' rel='noreferrer'><img src={Joaco} alt='Foto de perfil de Joaco' className={`${styleImg} z-99`} /></a>
             <a href='https://github.com/Estani02' target='_blank' rel='noreferrer'><img src={Tani} alt='Foto de perfil de Estanislao' className={`${styleImg} z-50`} /></a>
             <a href='https://github.com/rojassrodrigo' target='_blank' rel='noreferrer'><img src={Rodri} alt='Foto de perfil de Rodrigo' className={`${styleImg} z-40`} /></a>
             <a href='https://github.com/RomiMolina' target='_blank' rel='noreferrer'><img src={Romi} alt='Foto de perfil de Romina' className={`${styleImg} z-20`} /></a>
