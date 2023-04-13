@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import DefaultLayout from '../layout/DefaultLayout';
 import Breadcrumb from '../components/Breadcrumb';
-import userThree from '../images/user/user-03.png';
+// import userThree from '../images/user/user-03.png';
 import email from '../../../assets/Settings/email.svg';
 import address from '../../../assets/Settings/home.svg';
 import dni from '../../../assets/Settings/id-card.svg';
@@ -324,7 +324,8 @@ const Settings = () => {
               </div>
             </div>
           </div>
-          <div className='col-span-5 xl:col-span-2'>
+
+          {/* <div className='col-span-5 xl:col-span-2'>
             <div className='rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark'>
               <div className='border-b border-stroke py-4 px-7 dark:border-strokedark'>
                 <h3 className='font-medium text-black dark:text-white'>
@@ -416,7 +417,7 @@ const Settings = () => {
                 </form>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </DefaultLayout>
