@@ -75,7 +75,7 @@ export const CartScreen = () => {
   };
 
   return (
-    <div className="px-16 py-8 cart-container">
+    <div className="px-16 py-8 cart-container min-h-[50vh] flex flex-col justify-center items-center">
       <h2 className="font-normal text-[30px] text-center">
         Carrito de donaciones
       </h2>
