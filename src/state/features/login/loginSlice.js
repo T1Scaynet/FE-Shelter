@@ -60,6 +60,7 @@ export const loginUser = ({ email, password }) => {
         timeout: 5000
       });
       dispatch(loginSuccessful({ token: data.token, user: user.data.user }));
+      window.location.assign('/');
     } catch (error) {
       toast.error('Verifique la contraseña y email');
       // dispatch(loginFailure(error.response.data.msg));
