@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { loginUser } from '../../../state/features/login/loginSlice';
 import ingresar from '../../../assets/ingresar.png';
 import { Button, TextField } from '@mui/material';
@@ -8,7 +8,6 @@ import iconGoogle from '../../../assets/iconGoogle.png';
 
 export const LoginForm = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const [login, setLogin] = useState({
     email: '',
     password: ''
@@ -23,15 +22,7 @@ export const LoginForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await dispatch(loginUser(login));
-    navigate('/');
-    // dispatch(loginUser(login));
-    // navigate('/');
-    // await new Promise((resolve) => {
-    //   resolve(setTimeout(() => {
-    //     window.location.reload();
-    //   }, 2000));
-    // });
+    dispatch(loginUser(login));
   };
 
   return (

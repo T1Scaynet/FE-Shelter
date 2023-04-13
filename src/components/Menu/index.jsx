@@ -13,7 +13,7 @@ export const Menu = () => {
           : <div className='flex flex-col space-y-5 justify-center items-center'>
             <button onClick={() => setShowMenu(false)} className='absolute top-0 left-0 rounded-md p-3'>x</button>
             <Link to='/' className='hover:text-[#7C58D3]'>Inicio</Link>
-            <Link to='/nosotros' className='hover:text-[#7C58D3]'>Nosotros</Link>
+            {/* <Link to='/nosotros' className='hover:text-[#7C58D3]'>Nosotros</Link> */}
             <Link to='/listado' className='hover:text-[#7C58D3]'>Adoptar</Link>
             <Link to='/contacto' className='hover:text-[#7C58D3]'>Contacto</Link>
           </div>
