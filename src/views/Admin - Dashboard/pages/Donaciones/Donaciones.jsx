@@ -21,7 +21,7 @@ export const DonacionesPagos = () => {
   const handlePageChange = (pageNumber) => {
     dispatch(getDonations({
       ...donationsList,
-      currentPage: pageNumber
+      currentPage: pageNumber || 1
     }));
   };
 
