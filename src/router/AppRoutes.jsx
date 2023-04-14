@@ -29,9 +29,7 @@ import { profileComment } from '../components/Login/Profile/profile-comment';
 export function AppRoutes ({ setShowLayout }) {
   const user = useSelector((state) => state.login?.user);
   const isAuth = user?.user?.token;
-  console.log({ isAuth });
   const isAdmin = user?.roles?.[0]?.name !== 'client';
-  console.log({ isAdmin });
   const routes = [
     {
       path: '/',

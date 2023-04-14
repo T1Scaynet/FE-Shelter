@@ -31,7 +31,6 @@ export const petSlice = createSlice({
     },
 
     setFilters: (state, action) => {
-      console.log('estado en petSlice', action);
       state.filters = action.payload;
     },
     setUpdatePet: (state, action) => {
