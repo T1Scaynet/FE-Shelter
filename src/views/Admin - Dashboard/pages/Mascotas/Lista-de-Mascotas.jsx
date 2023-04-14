@@ -5,7 +5,7 @@ import { RowTitles } from '../../components/RowTitles';
 import { Row } from '../../components/Row';
 import { Pagination } from '../../../../components/Pagination';
 import { titlesPet } from '../../constants/titlePet';
-import { getAllPetsAdmin, setFilters, deletePet } from '../../../../state/features/pets/petSlice';
+import { getAllPetsAdmin, setFilters, deletePet, getAllPets } from '../../../../state/features/pets/petSlice';
 import { Filters } from '../../components/Filters';
 import { filtersValues } from '../../constants/filtersValues';
 import { useEffect, useState } from 'react';
@@ -31,6 +31,8 @@ export const ListadeMascotas = () => {
   const pagination = useSelector(state => state.pets.pagination);
   const [modal, setModal] = useState(false);
   const [dataEdit, setDataEdit] = useState({});
+  const [value, setValue] = useState('');
+  const searchBy = 'Buscar por id / nombre';
 
   const handleFilter = (e, type) => {
     if (!e) {
@@ -72,6 +74,18 @@ export const ListadeMascotas = () => {
     setModal(true);
   };
 
+  const handleChange = ({ target }) => {
+    setValue(target.value);
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    if (value.trim().length <= 0) return;
+    dispatch(setFilters({ ...filters, search: value, currentPage: 1 }));
+    dispatch(getAllPets({ ...filters, search: value, currentPage: 1 }));
+    setValue('');
+  };
+
   useEffect(() => {
     dispatch(getAllPetsAdmin(filters));
     window.scrollTo(0, 0);
@@ -81,7 +95,7 @@ export const ListadeMascotas = () => {
     <DefaultLayout>
       <Breadcrumb pageName='Lista de Mascotas' />
       <div>
-        <Search />
+        <Search filters={filters} handleChange={handleChange} handleSubmit={handleSubmit} searchBy={searchBy} />
         <Result filters={filters} handleFilter={handleFilter} />
       </div>
       <Filters filtersValues={filtersValues} handleFilter={handleFilter} filters={filters} />
