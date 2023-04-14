@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getDonations, setFilters1 } from '../../../../state/features/donations/donationSlice';
+import { getDonations } from '../../../../state/features/donations/donationSlice';
 import Breadcrumb from '../../components/Breadcrumb';
 import DefaultLayout from '../../layout/DefaultLayout';
 import { RowTitles } from '../../components/RowTitles';
@@ -85,8 +85,7 @@ export const DonacionesPagos = () => {
   };
 
   useEffect(() => {
-    const currentPage = pagination.currentPage;
-    dispatch(getDonations({ currentPage }));
+    dispatch(getDonations({ currentPage: 1 }));
   }, []);
 
   return (
