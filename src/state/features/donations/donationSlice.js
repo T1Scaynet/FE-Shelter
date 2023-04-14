@@ -36,7 +36,8 @@ export const donationsSlice = createSlice({
       state.list = action.payload;
     },
     setPagination: (state, action) => {
-      state.pagination = action.payload;
+      state.pagination.totalPages = action.payload.totalPages;
+      state.pagination.currentPage = action.payload.currentPage;
     },
     setFilters1: (state, action) => {
       state.filters = action.payload;
