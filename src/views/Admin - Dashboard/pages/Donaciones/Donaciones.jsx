@@ -20,7 +20,7 @@ export const DonacionesPagos = () => {
 
   const handlePageChange = (pageNumber) => {
     dispatch(getDonations({
-      // ...donationsList,
+      ...donationsList,
       currentPage: pageNumber
     }));
   };
