@@ -55,8 +55,8 @@ export const getDonations = ({ currentPage }) => {
       const { data } = await axios.get(`/payment?page=${currentPage}&`);
       dispatch(setDonations(data.payments));
       dispatch(setPagination({
-        totalPages: data.totalPages,
-        currentPage: data.currentPage
+        currentPage: data.currentPage,
+        totalPages: data.totalPages
       }));
       dispatch(setFilters({}));
     } catch (error) {
