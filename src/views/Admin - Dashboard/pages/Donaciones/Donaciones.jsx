@@ -6,13 +6,17 @@ import DefaultLayout from '../../layout/DefaultLayout';
 import { RowTitles } from '../../components/RowTitles';
 import { titlesDonations } from '../../constants/titlesDonations';
 import { RowDonations } from '../../components/RowDonations';
-import { FiltersDonations } from '../../components/FiltersDonations';
+// import { FiltersDonations } from '../../components/FiltersDonations';
 import { Pagination } from '../../../../components/Pagination';
+import { Search } from '../../../../components/Search';
+// import { Result } from '../../components/Result';
 
 export const DonacionesPagos = () => {
   const dispatch = useDispatch();
   const donationsList = useSelector((state) => state.donations.list);
   const pagination = useSelector(state => state.donations.pagination);
+  const [value, setValue] = useState('');
+  const searchBy = 'Buscar por id / correo / nombre';
 
   const handlePageChange = (pageNumber) => {
     dispatch(getDonations({
@@ -26,11 +30,11 @@ export const DonacionesPagos = () => {
   //   setSelectedStatus(event.target.value);
   // };
 
-  const [selectedDate, setSelectedDate] = useState('');
-  const handleDateChange = (date) => {
-    // console.log(new Date(date).toLocaleString('es-AR'));
-    dispatch(setFilters1(new Date(date).toLocaleString('es-AR')));
-  };
+  // const [selectedDate, setSelectedDate] = useState('');
+  // const handleDateChange = (date) => {
+  //   // console.log(new Date(date).toLocaleString('es-AR'));
+  //   dispatch(setFilters1(new Date(date).toLocaleString('es-AR')));
+  // };
 
   // const [searchText, setSearchText] = useState('');
 
@@ -69,6 +73,16 @@ export const DonacionesPagos = () => {
   //   const endIndex = startIndex + itemsPerPage;
   //   return filteredDonations.slice(startIndex, endIndex);
   // };
+  const handleChange = ({ target }) => {
+    setValue(target.value);
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    if (value.trim().length <= 0) return;
+    // dispatch(getAllUsers({ ...filters, search: value, currentPage: 1 }));
+    setValue('');
+  };
 
   useEffect(() => {
     const currentPage = pagination.currentPage;
@@ -78,14 +92,16 @@ export const DonacionesPagos = () => {
   return (
     <DefaultLayout>
       <Breadcrumb pageName='Donaciones' />
-      <FiltersDonations
+      <Search handleChange={handleChange} handleSubmit={handleSubmit} value={value} searchBy={searchBy} />
+      {/* <Result handleFilter={handleFilter}/> */}
+      {/* <FiltersDonations
         // searchText={searchText}
         // setSearchText={setSearchText}
         // selectedStatus={selectedStatus}
         // handleStatusChange={handleStatusChange}
         selectedDate={selectedDate}
         handleDateChange={handleDateChange}
-      />
+      /> */}
       <RowTitles titles={titlesDonations} />
       <RowDonations info={donationsList} />
       <Pagination

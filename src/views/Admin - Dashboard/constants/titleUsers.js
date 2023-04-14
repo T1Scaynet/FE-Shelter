@@ -1,1 +1,1 @@
-export const titlesUsers = ['ID', 'NOMBRE', 'ROL', 'EMAIL', 'TELEFONO','DIRECCION', 'ACCIÓN'];
+export const titlesUsers = ['ID', 'NOMBRE', 'ROL', 'EMAIL', 'TELEFONO', 'DIRECCION', 'ACCIÓN'];

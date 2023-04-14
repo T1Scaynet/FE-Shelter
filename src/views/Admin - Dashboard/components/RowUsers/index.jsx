@@ -7,7 +7,7 @@ export const RowUsers = ({ info }) => {
   return (
     <div>
       {
-        info.length
+        info?.length
           ? info.map((data, i) => (
             <div key={i} className={`${i % 2 === 0 ? 'bg-white' : 'bg-[#f8f8f8]'} grid grid-cols-7 `}>
               <div className='flex border-[1px] border-solid border-[#f0f0f0] relative'>
