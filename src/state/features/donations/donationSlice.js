@@ -36,13 +36,12 @@ export const donationsSlice = createSlice({
       state.list = action.payload;
     },
     setPagination: (state, action) => {
-      state.pagination.totalPages = action.payload.totalPages;
-      state.pagination.currentPage = action.payload.currentPage;
-    },
-    setFilters1: (state, action) => {
-      state.filters = action.payload;
-      state.filters.date = state.list.filter(donation => donation.date === state.filters.date);
+      state.pagination = { ...state, ...action.payload };
     }
+    // setFilters1: (state, action) => {
+    //   state.filters = action.payload;
+    //   state.filters.date = state.list.filter(donation => donation.date === state.filters.date);
+    // }
   }
 });
 
